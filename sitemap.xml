@@ -8,12 +8,6 @@
   </url>
   
   <url>
-    <loc>https://example.com/</loc>
-    <lastmod>2019-03-01T00:00:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://example.com/blogs/</loc>
     <lastmod>2019-03-01T00:00:00+08:00</lastmod>
     <priority>0</priority>
@@ -26,6 +20,12 @@
   
   <url>
     <loc>https://example.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://example.com/</loc>
+    <lastmod>2019-03-01T00:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
