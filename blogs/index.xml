@@ -17,13 +17,13 @@
       <pubDate>Sun, 03 Mar 2019 00:00:00 +0800</pubDate>
       
       <guid>https://example.com/blogs/es6_introduce/</guid>
-      <description>##### 概述  ES6（ECMAScript6）是新版本 JavaScript 语言的标准，代号 _harmony_。上一次标准的制定还是 2009 年出台的 ES5。
+      <description>概述 ES6（ECMAScript6）是新版本 JavaScript 语言的标准，代号 _harmony_。上一次标准的制定还是 2009 年出台的 ES5。
 ECMAScript 和 JavaScript 的关系：前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的
 ES6 和 ECMAScript2015 的关系：ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”
- ##### 箭头操作符  如果你会 C# 或者 Java，你肯定知道 lambda 表示，ES6 中新增的 箭头操作符（=&amp;gt;） 就有异曲同工之妙。它简化了函数的书写。操作符左边为输入的参数，而右边则是进行操作及返回的值 Inputs =&amp;gt; Outputs。我们知道在 JS 中回调是经常的事，而一般回调又以匿名函数的形式出现，每次都需要写一个 function，甚是繁琐，当引入箭头操作符后就可以方面的进行回调。
+箭头操作符 如果你会 C# 或者 Java，你肯定知道 lambda 表示，ES6 中新增的 箭头操作符（=&amp;gt;） 就有异曲同工之妙。它简化了函数的书写。操作符左边为输入的参数，而右边则是进行操作及返回的值 Inputs =&amp;gt; Outputs。我们知道在 JS 中回调是经常的事，而一般回调又以匿名函数的形式出现，每次都需要写一个 function，甚是繁琐，当引入箭头操作符后就可以方面的进行回调。
 箭头函数的 this 值：普通 function 函数和箭头函数的行为有一个微妙的区别，箭头函数没有它自己的 this 值，箭头函数内的 this 值继承自外围作用域。
 箭头集合：
-   &amp;lt;!</description>
+   &amp;lt;!&amp;ndash; 单行注释     &amp;ndash;&amp;gt; “趋向于”操作符   &amp;lt;= 小于等于   =&amp;gt; 箭头函数    如下面的例子所示。</description>
     </item>
     
   </channel>
