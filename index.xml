@@ -6,10 +6,22 @@
     <description>Recent content on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 03 Mar 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Mar 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>前端面试题</title>
+      <link>https://example.com/blogs/interview/</link>
+      <pubDate>Sat, 09 Mar 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://example.com/blogs/interview/</guid>
+      <description>前端 CSS 面试题积累 CSS 的盒子模型 有两种盒子模型
+ IE 盒子模型：content 部分包含了 border 和 padding 标准 W3C 盒子模型：包含内容（content）、填充（padding）、边界（margin）、边框（border）  CSS 选择符  id 选择器（#id） 类选择器（.myclassname） 标签选择器（div，h1，p） 相邻选择器（h1+p） 子选择器（ul &amp;gt; li） 后代选择器（li a） 通配符选择器（*） 属性选择器（a[rel = &amp;ldquo;external&amp;rdquo;]） 伪类选择器（a:hover, li:nth-child） 可继承的样式：font-size、font-family、color 等 不可继承的样式：border、padding、margin、width、height 等 优先级就近原则，同权重情况下样式定义最近者为准 优先级为：!important &amp;gt; id 选择器 &amp;gt; class 选择器 &amp;gt; 标签选择器  nth-child 和 nth-of-type 之间的差异 nth-child：按照个数来计算
+看如下的例子
+&amp;lt;style&amp;gt; p:nth-child(2), p:nth-child(7){ color:red; } &amp;lt;/style&amp;gt; &amp;lt;h1&amp;gt;标题&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt;  效果如下所示</description>
+    </item>
     
     <item>
       <title>ES6 概述</title>
