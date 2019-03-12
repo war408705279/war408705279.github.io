@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on rm -rf *</title>
-    <link>https://example.com/blogs/</link>
+    <link>https://war408705279.github.io/blogs/</link>
     <description>Recent content in Blogs on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
     <lastBuildDate>Sat, 09 Mar 2019 00:00:00 +0800</lastBuildDate>
     
-	<atom:link href="https://example.com/blogs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://war408705279.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>前端面试题</title>
-      <link>https://example.com/blogs/interview/</link>
+      <link>https://war408705279.github.io/blogs/interview/</link>
       <pubDate>Sat, 09 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://example.com/blogs/interview/</guid>
+      <guid>https://war408705279.github.io/blogs/interview/</guid>
       <description>前端 CSS 面试题积累 CSS 的盒子模型 有两种盒子模型
  IE 盒子模型：content 部分包含了 border 和 padding 标准 W3C 盒子模型：包含内容（content）、填充（padding）、边界（margin）、边框（border）  CSS 选择符  id 选择器（#id） 类选择器（.myclassname） 标签选择器（div，h1，p） 相邻选择器（h1+p） 子选择器（ul &amp;gt; li） 后代选择器（li a） 通配符选择器（*） 属性选择器（a[rel = &amp;ldquo;external&amp;rdquo;]） 伪类选择器（a:hover, li:nth-child） 可继承的样式：font-size、font-family、color 等 不可继承的样式：border、padding、margin、width、height 等 优先级就近原则，同权重情况下样式定义最近者为准 优先级为：!important &amp;gt; id 选择器 &amp;gt; class 选择器 &amp;gt; 标签选择器  nth-child 和 nth-of-type 之间的差异 nth-child：按照个数来计算
 看如下的例子
@@ -25,10 +25,10 @@
     
     <item>
       <title>ES6 概述</title>
-      <link>https://example.com/blogs/es6_introduce/</link>
+      <link>https://war408705279.github.io/blogs/es6_introduce/</link>
       <pubDate>Sun, 03 Mar 2019 00:00:00 +0800</pubDate>
       
-      <guid>https://example.com/blogs/es6_introduce/</guid>
+      <guid>https://war408705279.github.io/blogs/es6_introduce/</guid>
       <description>概述 ES6（ECMAScript6）是新版本 JavaScript 语言的标准，代号 _harmony_。上一次标准的制定还是 2009 年出台的 ES5。
 ECMAScript 和 JavaScript 的关系：前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的
 ES6 和 ECMAScript2015 的关系：ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”
