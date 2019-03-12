@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on rm -rf *</title>
-    <link>https://example.com/tags/</link>
+    <link>https://war408705279.github.io/tags/</link>
     <description>Recent content in Tags on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
     
-	<atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://war408705279.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
