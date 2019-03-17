@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="author" content="Zhazha ">
+<meta name="description" content="前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
+200-299：用于表示请求成功
+300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
+400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
+500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
+Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
+ 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度"/>
+<meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://war408705279.github.io/blogs/interview-other/" />
+
+
+    <title>
+        
+            前端面试题 - 其他 :: rm -rf *  — Welcome to my blog
+        
+    </title>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="https://war408705279.github.io/scss/main.min.099699ab246bf26f50616f7c9f00c79d46110459d1bd727b2d07d6fc09ece082.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://war408705279.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://war408705279.github.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://war408705279.github.io/favicon-16x16.png">
+<link rel="manifest" href="https://war408705279.github.io/site.webmanifest">
+<link rel="mask-icon" href="https://war408705279.github.io/safari-pinned-tab.svg" color="">
+<link rel="shortcut icon" href="https://war408705279.github.io/favicon.ico">
+<link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
+
+<meta itemprop="name" content="前端面试题 - 其他">
+<meta itemprop="description" content="前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
+200-299：用于表示请求成功
+300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
+400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
+500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
+Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
+ 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度">
+
+
+<meta itemprop="datePublished" content="2019-03-17T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-17T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="573">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://war408705279.github.io"/>
+
+<meta name="twitter:title" content="前端面试题 - 其他"/>
+<meta name="twitter:description" content="前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
+200-299：用于表示请求成功
+300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
+400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
+500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
+Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
+ 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度"/>
+
+
+
+<meta property="article:published_time" content="2019-03-17 00:00:00 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://war408705279.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ rm -rf *</span>
+            <span class="logo__cursor"></span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://war408705279.github.io/blogs/">博客</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/interview-other/">前端面试题 - 其他</a></h2>
+
+            
+
+            <div class="post-content">
+                
+
+<h3 id="前后端请求相关面试题积累">前后端请求相关面试题积累</h3>
+
+<h4 id="http-状态码">http 状态码</h4>
+
+<p>100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作</p>
+
+<p>200-299：用于表示请求成功</p>
+
+<p>300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求</p>
+
+<p>400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）</p>
+
+<p>500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用</p>
+
+<h4 id="ajax-中-get-和-post-方法的区别">Ajax 中 GET 和 POST 方法的区别</h4>
+
+<h5 id="get-和-post-都是向服务器发送的一种请求-只是发送机制不同">GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同</h5>
+
+<ul>
+<li><p>GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的</p></li>
+
+<li><p>首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K+35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度</p></li>
+
+<li><p>GET 方式请求的数据会被浏览器缓存起来，因此其他人就可以从浏览器的历史记录中读取到这些数据，例如账号和密码等。在某种情况下，GET 方式会带来严重的安全问题。而 POST 方式相对来说就可以避免这些问题</p></li>
+</ul>
+
+<h5 id="get-请求和-post-请求在服务器端的区别">GET 请求和 POST 请求在服务器端的区别</h5>
+
+<ul>
+<li><p>在客户端使用 GET 请求时，服务器端使用 Request.QueryString 来获取参数，而客户端使用 POST 请求时，服务器端使用 Request.Form 来获取参数</p></li>
+
+<li><p>HTTP 标准包含这两种方法是为了达到不同的目的。POST 用于创建资源，资源的内容会被编入 HTTP 请示的内容中。例如，处理订货表单、在数据库中加入新数据行等
+当请求无副作用时（如进行搜索），便可使用 GET 方法；当请求有副作用时（如添加数据行），则用 POST 方法。一个比较实际的问题是：GET 方法可能会产生很长的 URL，或许会超过某些浏览器与服务器对 URL 长度的限制</p></li>
+</ul>
+
+<h5 id="若符合下列任一情况-则用-post-方法">若符合下列任一情况，则用 POST 方法</h5>
+
+<ul>
+<li>请求的结果有持续性的副作用，例如，数据库内添加新的数据行</li>
+<li>若使用 GET 方法，则表单上收集的数据可能让 URL 过长</li>
+<li>要传送的数据不是采用 7 位的 ASCII 编码</li>
+</ul>
+
+<h5 id="若符合下列任一情况-则用-get-方法">若符合下列任一情况，则用 GET 方法</h5>
+
+<ul>
+<li>请求是为了查找资源，HTML 表单数据仅用来帮助搜索</li>
+<li>请求结果无持续性的副作用</li>
+<li>收集的数据及 HTML 表单内的输入字段名称的总长不超过 1024个 字符</li>
+</ul>
+
+<h4 id="http-类型">HTTP 类型</h4>
+
+<p>HTTP 协议类型有 8 种，分别是</p>
+
+<ul>
+<li><p>OPTIONS：返回服务器针对特定资源所支持的 HTTP 请求方法。也可以利用向 Web 服务器发送 * 的请求来测试服务器的功能性</p></li>
+
+<li><p>HEAD：向服务器索要与 GET 请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息</p></li>
+
+<li><p>GET：向特定的资源发出请求</p></li>
+
+<li><p>POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的创建和 / 或已有资源的修改</p></li>
+
+<li><p>PUT：向指定资源位置上传其最新内容</p></li>
+
+<li><p>DELETE：请求服务器删除 Request-URI 所标识的资源</p></li>
+
+<li><p>TRACE：回显服务器收到的请求，主要用于测试或诊断</p></li>
+
+<li><p>CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器</p></li>
+</ul>
+
+<h4 id="put-和-post-的区别">PUT 和 POST 的区别</h4>
+
+<p>PUT 和 POST 的技术实现上应该是没有很大区别的。但在于协议上语义是很大区别</p>
+
+<p>PUT 的方法就是其字面表意，将 client 的资源放在请求 URI 上。对于服务器到底是*创建*还是*更新*，由服务器返回的 HTTP Code 来区别。如果用 PUT 来达到更改资源，需要 client 提交资源全部信息，如果只有部分信息，不应该使用 PUT（因为服务器使用 client 提交的对象整体替换服务器的资源）</p>
+
+<p>基本上不能方便的归纳为*增删改*之类的行为，都可以使用 POST 方法。另外可以使用 POST 去实现<em>部分更新资源</em></p>
+
+<h3 id="前端其他相关面试题积累">前端其他相关面试题积累</h3>
+
+<h4 id="浏览器内核">浏览器内核</h4>
+
+<ul>
+<li>IE 浏览器：Trident（IE 内核）</li>
+<li>火狐浏览器：Gecko，特点是代码完全公开</li>
+<li>Opera 浏览器：前期采用 Presto 内核，现已改用 Google Chrome 的 Blink 内核</li>
+<li>Safari 浏览器：Webkit 内核，Webkit 内核是 Chrome 内核的原型</li>
+<li>Chrome 浏览器：采用 Blink 内核，是 Google 和 Opera Software 开发的浏览器排版引擎</li>
+</ul>
+
+<h4 id="ie6-bug-的解决方法">IE6 BUG 的解决方法</h4>
+
+<ul>
+<li>由 float 引起的双边距 BUG，使用 display 解决</li>
+<li>由 float 引起的 3 像素问题，使用 display: inline -3px</li>
+<li>超链接 hover 点击后失效，使用正确的书写顺序 link visited hover active</li>
+<li>IE z-index 问题，给父级添加 position: relative</li>
+<li>png 透明，使用 js 代码进行修改</li>
+<li>min-height 最小高度，使用 !important 解决</li>
+<li>select 在 IE6 下遮盖，使用 iframe 嵌套</li>
+<li>为什么没有办法定义 1px 左右的宽度容器，是由 IE6 默认的行高造成的，使用样式 overflow: hidden, zoom: 0.08; line-height: 1px; 解决</li>
+</ul>
+
+<h4 id="react-的特点">React 的特点</h4>
+
+<ul>
+<li>声明式设计</li>
+<li>高效：通过对 DOM 的模拟，最大限度的减少与 DOM 的交互</li>
+<li>灵活：可以与已知的框架或库很好的配合</li>
+<li>JSX：是 js 语法的扩展，不一定使用，但建议用</li>
+<li>组件：构建组件，使代码更容易得到复用，能够很好地应用在大项目的开发中</li>
+<li>单向响应的数据流：React 实现了单向响应的数据流，从而减少了重复代码，这也是解释了它为什么比传统数据绑定更简单</li>
+</ul>
+
+<h4 id="vue-的特性">Vue 的特性</h4>
+
+<ul>
+<li>轻量级框架</li>
+<li>MVVM 框架</li>
+<li>数据驱动</li>
+<li>组件化</li>
+<li>双向数据绑定</li>
+<li>指令</li>
+<li>插件化</li>
+<li>轻量、简洁、高效、快速、模块友好</li>
+</ul>
+
+<h4 id="bootstrap-的特点">Bootstrap 的特点</h4>
+
+<ul>
+<li>跨设备、跨浏览器，可以兼容所有现在浏览器，包括比较诟病的 IE7、8</li>
+<li>响应式布局，不但支持 PC 端的各种分辨率，还支持移动端 pad，手机等屏幕的响应式切换显示</li>
+<li>提供全面的组件，Bootstrap 提供了实用性很强的组件，包括：导航、标签、工具条、按钮等</li>
+<li>内置 jquery 插件</li>
+<li>支持 HTML5、CSS3</li>
+<li>支持 less 动态样式</li>
+</ul>
+
+<h4 id="node">Node</h4>
+
+<p>Node 的使用场景：高并发、聊天、实时消息推送</p>
+
+<h4 id="性能优化的方法">性能优化的方法</h4>
+
+<ul>
+<li>减少 http 请求次数：CSS、JS 等源码压缩，图片大小控制合适，data 缓存，图片服务器</li>
+<li>前端模版 JS + 数据，较少由于 HTML 标签导致的带宽浪费，前端用变量保存 ajax 请求结果，每次操作本地变量，不用请求，减少请求次数</li>
+<li>用 innerHTML 代替 DOM 操作，减少 DOM 操作次数，优化 JS 性能</li>
+<li>当需要设置的样式很多时设置 className，而不是直接操作 style</li>
+<li>少用全局变量、缓存 DOM 节点查找的结果，减少 IO 读取操作</li>
+<li>避免使用 CSS Expression（css 表达式），又称动态属性</li>
+<li>图片预加载，将样式表放在顶部，将脚本放在底部，加上时间戳</li>
+<li>避免在页面的主体布局中使用 table，table 要等其中的内容完全下载之后才会显示出来，显示效率慢</li>
+</ul>
+
+<h4 id="前端优化">前端优化</h4>
+
+<p>在不影响功能和体验的情况下</p>
+
+<p>能在浏览器执行的不要在服务器执行</p>
+
+<p>能在缓存服务器上直接返回的不要到应用服务器</p>
+
+<p>程序能直接取得结果的不要到外部取得</p>
+
+<p>本机内能取得的数据不要到远程取</p>
+
+<p>内存能取到的不要到磁盘取</p>
+
+<p>缓存中有的数据不要去数据库查询</p>
+
+<h4 id="一个页面从输入-url-到页面加载显示完成-这个过程中都发生了什么">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么</h4>
+
+<ul>
+<li>查找浏览器缓存</li>
+<li>DNS 解析、查找该域名对应的 IP 地址、重定向（301）、发出第二个 GET 请求</li>
+<li>进行 HTTP 协议会话</li>
+<li>客户端发送报头（请求报头）</li>
+<li>文档开始下载</li>
+<li>文档树建立，根据标记请求所需指定 MIME 类型的文件</li>
+<li>文件显示</li>
+</ul>
+
+<p>浏览器这边做的工作大致分为以下几步</p>
+
+<ul>
+<li>加载：根据请求的 URL 进行域名解析，向服务器发起请求，接收文件（HTML、JS、CSS、图象等）</li>
+<li>解析：对加载到的资源（HTML、JS、CSS 等）进行语法解析，建议相应的内部数据结构（比如 HTML 的 DOM 树，JS 的（对象）属性表，CSS 的样式规则等等）</li>
+</ul>
+
+<h4 id="vue-和-angularjs-的异同">Vue 和 AngularJS 的异同</h4>
+
+<p>相同点</p>
+
+<ul>
+<li>都支持指令：内置指令和自定义指令</li>
+<li>都支持过滤器：内置过滤器和自定义过滤器</li>
+<li>都支持双向数据绑定</li>
+<li>都不支持低端浏览器</li>
+</ul>
+
+<p>不同点</p>
+
+<ul>
+<li>AngularJS 的学习成本高</li>
+<li>在性能上，AngularJS 依赖对数据做脏检查，所以 Watcher 越多越慢</li>
+</ul>
+
+<h4 id="vue-和-react-的异同">Vue 和 React 的异同</h4>
+
+<p>相同点</p>
+
+<ul>
+<li>React 采用特殊的 JSX 语法，Vue 在组件开发中也推崇编写 .vue 特殊文件格式，对文件内容有一定的约定，两者都需要编译后使用</li>
+<li>二者的中心思想都是一切都是组件，组件实例之间可以嵌套</li>
+<li>都提供合理的钩子函数，可以让开发者定制化地去处理需求</li>
+<li>都不内置 Ajax、Route 等功能到核心包，而是以插件的方式加载</li>
+<li>组件开发中都支持 mixins 的特性</li>
+</ul>
+
+<p>不同点</p>
+
+<ul>
+<li>React 依赖 virtual DOM，而 Vue 使用的是 DOM 模版，React 采用的 virtual DOM 会对渲染出来的结果做脏检查</li>
+<li>Vue 在模板中提供了指令，过滤器等，可以非常方便、快捷的操作 DOM</li>
+</ul>
+
+<h4 id="vue-生命周期">Vue 生命周期</h4>
+
+<p>如下图所示</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/vue-lifecycle.png" alt="Vue 生命周期" title="Vue 生命周期" /></p>
+
+<h4 id="react-生命周期">React 生命周期</h4>
+
+<h5 id="实例化">实例化</h5>
+
+<p>首次实例化</p>
+
+<ul>
+<li>getDefaultProps</li>
+<li>getInitialState</li>
+<li>componentWillMount</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+
+<p>实例化完成后的更新</p>
+
+<ul>
+<li>getInitialState</li>
+<li>componentWillMount</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+
+<h5 id="存在期">存在期</h5>
+
+<p>组件已存在时的状态改变</p>
+
+<ul>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate</li>
+</ul>
+
+<p>销毁 &amp; 清理期</p>
+
+<ul>
+<li>componentWillUnmount</li>
+</ul>
+
+<h5 id="说明">说明</h5>
+
+<p>生命周期共提供了 10 个不同的 API</p>
+
+<ul>
+<li>getDefaultProps</li>
+</ul>
+
+<p>作用于组件类，只调用一次，返回对象用于设置默认的 props，对于引用值，会在实例中共享</p>
+
+<ul>
+<li>getInitialState</li>
+</ul>
+
+<p>作用于组件的实例，在实例创建时调用一次，用于初始化每个实例的 state，此时可以访问 this.props</p>
+
+<ul>
+<li>componentWillMount</li>
+</ul>
+
+<p>在完成首次渲染之前调用，此时仍可以修改组件的 state</p>
+
+<ul>
+<li>render</li>
+</ul>
+
+<p>必选的方法，创建虚拟 DOM，该方法具有特殊的规则</p>
+
+<ul>
+<li>只能通过 this.props 和 this.state 访问数据</li>
+<li>可以返回 null、false 或任何 React 组件</li>
+<li>只能出现一个顶级组件（不能返回数组）</li>
+<li>不能改变组件的状态</li>
+
+<li><p>不能修改 DOM 的输出</p></li>
+
+<li><p>componentDidMount</p></li>
+</ul>
+
+<p>真实的 DOM 被渲染出来后调用，在该方法中可通过 this.getDOMNode() 访问到真实的 DOM 元素。此时已可以使用其他类库来操作这个 DOM</p>
+
+<p>在服务端中，该方法不会被调用</p>
+
+<ul>
+<li>componentWillReceiveProps</li>
+</ul>
+
+<p>组件接收到新的 props 时调用，并将其作为参数 nextProps 使用，此时可以更改组件 props 及 state</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">componentWillReceiveProps</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">nextProps</span><span class="p">.</span><span class="nx">bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="nx">bool</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>shouldComponentUpdate</li>
+</ul>
+
+<p>组件是否应当渲染新的 props 或 state，返回 false 表示跳过后续的生命周期方法，通常不需要使用以避免出现 bug。在出现应用的瓶颈时，可通过该方法进行适当的优化</p>
+
+<p>在首次渲染期间或者调用了 forceUpdate 方法后，该方法不会被调用</p>
+
+<ul>
+<li>componentWillUpdate</li>
+</ul>
+
+<p>接收到新的 props 或者 state 后，进行渲染之前调用，此时不允许更新 props 或 state</p>
+
+<ul>
+<li>componentDidUpdate</li>
+</ul>
+
+<p>完成渲染新的 props 或者 state 后调用，此时可以访问到新的 DOM 元素</p>
+
+<ul>
+<li>componentWillUnmount</li>
+</ul>
+
+<p>组件被移除之前被调用，可以用于做一些清理工作，在 componentDidMount 方法中添加的所有任务都需要在该方法中撤销，比如创建的定时器或添加的事件监听器</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  			</div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2019</span>
+            
+                <span><a href="https://war408705279.github.io">Zhazha</a></span>
+            
+            <span><a href="https://github.com/war408705279/" target="_blank" rel="noopener">404 Not Found</a></span>
+            <span> <a href="https://war408705279.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+
+<script type="text/javascript" src="https://war408705279.github.io/js/bundle.f65a6fe80656eb86fce3f1228faa2ac0bf43b28d21eb91975f036839ed92dfd126cabb91223501623641f4ea67ac5d03882d0b8c744da38c637a1fdf8e9016c6.js" integrity="sha512-9lpv6AZW64b84/Eij6oqwL9Dso0h65GXXwNoOe2S39EmyruRIjUBYjZB9OpnrF0DiC0LjHRNo4xjeh/fjpAWxg=="></script>
+
+
+
+    </body>
+</html>

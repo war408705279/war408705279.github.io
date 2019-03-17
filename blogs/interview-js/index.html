@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="author" content="Zhazha ">
+<meta name="description" content="前端 JS 面试题积累 JS 获取 URL 中的 Query 参数 getQueryString(name) { var reg = new RegExp(&amp;#39;(^|&amp;amp;)&amp;#39; &#43; name &#43; &amp;#39;=([^&amp;amp;]*)(&amp;amp;|$)&amp;#39;, &amp;#39;i&amp;#39;); var r = routerStore.location.search.substr(1).match(reg); if (r !== null) { return unescape(r[2]); } return null; } // 调用的时候传递 query 参数的 key 值进去  // 例如需要获取 url 中 id 对应的值  var id = getQueryString(&amp;#39;id&amp;#39;)  call() 和 apply() 的异同 call 和 apply 的基本作用都是改变对象执行的上下文
+call 的基本使用
+function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明"/>
+<meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://war408705279.github.io/blogs/interview-js/" />
+
+
+    <title>
+        
+            前端面试题 - JS :: rm -rf *  — Welcome to my blog
+        
+    </title>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="https://war408705279.github.io/scss/main.min.099699ab246bf26f50616f7c9f00c79d46110459d1bd727b2d07d6fc09ece082.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://war408705279.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://war408705279.github.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://war408705279.github.io/favicon-16x16.png">
+<link rel="manifest" href="https://war408705279.github.io/site.webmanifest">
+<link rel="mask-icon" href="https://war408705279.github.io/safari-pinned-tab.svg" color="">
+<link rel="shortcut icon" href="https://war408705279.github.io/favicon.ico">
+<link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
+
+<meta itemprop="name" content="前端面试题 - JS">
+<meta itemprop="description" content="前端 JS 面试题积累 JS 获取 URL 中的 Query 参数 getQueryString(name) { var reg = new RegExp(&#39;(^|&amp;)&#39; &#43; name &#43; &#39;=([^&amp;]*)(&amp;|$)&#39;, &#39;i&#39;); var r = routerStore.location.search.substr(1).match(reg); if (r !== null) { return unescape(r[2]); } return null; } // 调用的时候传递 query 参数的 key 值进去  // 例如需要获取 url 中 id 对应的值  var id = getQueryString(&#39;id&#39;)  call() 和 apply() 的异同 call 和 apply 的基本作用都是改变对象执行的上下文
+call 的基本使用
+function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明">
+
+
+<meta itemprop="datePublished" content="2019-03-09T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-09T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="395">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://war408705279.github.io"/>
+
+<meta name="twitter:title" content="前端面试题 - JS"/>
+<meta name="twitter:description" content="前端 JS 面试题积累 JS 获取 URL 中的 Query 参数 getQueryString(name) { var reg = new RegExp(&#39;(^|&amp;)&#39; &#43; name &#43; &#39;=([^&amp;]*)(&amp;|$)&#39;, &#39;i&#39;); var r = routerStore.location.search.substr(1).match(reg); if (r !== null) { return unescape(r[2]); } return null; } // 调用的时候传递 query 参数的 key 值进去  // 例如需要获取 url 中 id 对应的值  var id = getQueryString(&#39;id&#39;)  call() 和 apply() 的异同 call 和 apply 的基本作用都是改变对象执行的上下文
+call 的基本使用
+function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明"/>
+
+
+
+<meta property="article:published_time" content="2019-03-09 00:00:00 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://war408705279.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ rm -rf *</span>
+            <span class="logo__cursor"></span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://war408705279.github.io/blogs/">博客</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/interview-js/">前端面试题 - JS</a></h2>
+
+            
+
+            <div class="post-content">
+                
+
+<h3 id="前端-js-面试题积累">前端 JS 面试题积累</h3>
+
+<h4 id="js-获取-url-中的-query-参数">JS 获取 URL 中的 Query 参数</h4>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">getQueryString</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reg</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;(^|&amp;)&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;=([^&amp;]*)(&amp;|$)&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">routerStore</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">match</span><span class="p">(</span><span class="nx">reg</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">r</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">unescape</span><span class="p">(</span><span class="nx">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+ <span class="p">}</span>
+ 
+ <span class="c1">// 调用的时候传递 query 参数的 key 值进去
+</span><span class="c1"></span> <span class="c1">// 例如需要获取 url 中 id 对应的值
+</span><span class="c1"></span> <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">getQueryString</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="call-和-apply-的异同">call() 和 apply() 的异同</h4>
+
+<p>call 和 apply 的基本作用都是改变对象执行的上下文</p>
+
+<p>call 的基本使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span> <span class="p">[,</span> <span class="nx">arg1</span> <span class="p">[,</span> <span class="nx">arg2</span><span class="p">[,</span> <span class="p">[,</span> <span class="nx">argN</span><span class="p">]]]]])</span>
+</code></pre></div>
+<p>说明</p>
+
+<ul>
+<li>调用 call 的对象必须是一个函数 function</li>
+<li>call 的第一个参数将会是 function 改变上下文后指向的对象，如果不传，将会默认是全局对象，在浏览器中就是 window</li>
+<li>第二个参数开始可以接收任意个参数，这些参数将会作为 function 的参数传入 function</li>
+<li>调用 call 的方法会立即执行</li>
+</ul>
+
+<p>apply 的基本使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">obj</span> <span class="p">[,</span> <span class="nx">argArray</span><span class="p">])</span>
+</code></pre></div>
+<p>说明</p>
+
+<ul>
+<li>与 call 方法的使用基本一致，但是只接收两个参数，其中第二个参数必须是一个数组或者类数组</li>
+</ul>
+
+<p>两个方法的相同点</p>
+
+<p>都能够改变方法的执行上下文（执行环境），将一个对象的方法交给另一个对象来执行，并且是立即执行</p>
+
+<p>两个方法的不同点</p>
+
+<p>call 方法从第二个参数开始可以接收任意个参数，每个参数会映射到相应位置的 function 的参数上，可以通过参数名调用，但是如果将所有的参数作为数组传入，它们会作为一个整体映射到 function 对应的第一个参数上，之后参数都为空</p>
+
+<p>apply 方法最多只有两个参数，第二个参数接收数组或者类数组，但是都会被转换成类数组传入 function 中，并且会被映射到 function 对应的参数上</p>
+
+<p>两个参数如何选择</p>
+
+<p>根据要传入的参数进行选择，不需要传参或者只有一个参数时，用 call。当要传入多个对象时，用 apply</p>
+
+<h4 id="数组和类数组">数组和类数组</h4>
+
+<p>数组的特征</p>
+
+<ul>
+<li>可以通过角标调用，如 array[0]</li>
+<li>具有长度属性 length</li>
+<li>可以通过 for 循环和 forEach 方法进行遍历</li>
+</ul>
+
+<p>类数组具备的特征应该与数组基本相同，例如下面这个对象就是一个类数组</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">arrayLike</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="mi">0</span><span class="o">:</span> <span class="s1">&#39;item1&#39;</span><span class="p">,</span>
+  <span class="mi">1</span><span class="o">:</span> <span class="s1">&#39;item2&#39;</span><span class="p">,</span>
+  <span class="mi">2</span><span class="o">:</span> <span class="s1">&#39;item3&#39;</span><span class="p">,</span>
+  <span class="nx">length</span><span class="o">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>类数组 arrayLike 可以通过角标进行调用，具有 length 属性，同时也可以通过 for 循环进行遍历
+那么问题来了，<strong>如何让类数组使用 forEach</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// dom 树其实就是一个类数组结构
+</span><span class="c1"></span>
+<span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">),</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">))</span>
+
+<span class="p">[].</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">),</span> <span class="p">[(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)])</span>
+</code></pre></div>
+<h4 id="数组方法">数组方法</h4>
+
+<p>push(): 尾部添加</p>
+
+<p>pop(): 尾部删除</p>
+
+<p>unshift(): 头部添加</p>
+
+<p>shift(): 头部删除</p>
+
+<h4 id="添加-删除-替换-插入某个节点的方法">添加、删除、替换、插入某个节点的方法</h4>
+
+<p>对 dom 树节点进行操作</p>
+
+<p>添加: obj.appendChild</p>
+
+<p>删除: obj.removeChild</p>
+
+<p>替换: obj.replaceChild</p>
+
+<p>插入: obj.innersetBefore</p>
+
+<h4 id="同源策略">同源策略</h4>
+
+<p>JS 同源策略：一段脚本只能读取来自于同一来源的窗口和文档的属性，这里的同一来源指的是主机名、协议和端口号的组合</p>
+
+<h4 id="instanceof">instanceof</h4>
+
+<p>instanceof 用于判断一个变量是否属于某个对象的实例</p>
+
+<p>instanceof 运算符可以用来判断某个构造函数的 prototype 属性是否存在于另外一个要检测对象的原型链上</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">a</span> <span class="k">instanceof</span> <span class="nx">b</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+</code></pre></div>
+<p>实例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">);</span> <span class="c1">// true
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span> <span class="k">instanceof</span> <span class="nb">Object</span><span class="p">)</span> <span class="c1">// true
+</span></code></pre></div>
+<h4 id="js-闭包">JS 闭包</h4>
+
+<p>定义和用法：当一个函数的返回值是另外一个函数，而返回的那个函数如果调用了其父函数内部的其它变量，如果返回的这个函数在外部被执行，就产生了闭包</p>
+
+<p>表现形式：使函数外部能够调用函数内部定义的变量</p>
+
+<p>实例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 全局作用域 标记为 flag1
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">add</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 函数全局作用域 标记为 flag2
+</span><span class="c1"></span>  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 函数的内部作用域
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="nx">add</span><span class="p">()</span>
+<span class="nx">s</span><span class="p">();</span> <span class="c1">// 输出 1
+</span><span class="c1"></span><span class="nx">s</span><span class="p">();</span> <span class="c1">// 输出 2
+</span></code></pre></div>
+<p>根据作用域链的规则，底层作用域没有声明的变量，会向上一级找，找到就返回，没找到就一直找，直到 window 的变量，没有就返回 undefined。这里明显 count 是函数内部的 flag2 的那个 count</p>
+
+<p>使用闭包需要注意的点</p>
+
+<ul>
+<li>滥用闭包，会造成内存泄漏：由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在 IE 中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除</li>
+<li>会改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值</li>
+</ul>
+
+<h4 id="变量声明提升和函数声明提升">变量声明提升和函数声明提升</h4>
+
+<p>变量声明提升</p>
+
+<h5 id="变量定义">变量定义</h5>
+
+<p>可以使用 var 定义变量，变量如果没有赋值，那变量的初始值为 undefined</p>
+
+<h5 id="变量作用域">变量作用域</h5>
+
+<p>变量作用域指变量起作用的范围。变量分为*全局变量*和*局部变量*。全局变量在全局都拥有定义；而局部变量只能在函数内有效</p>
+
+<p>*在函数体内，同名的局部变量或者参数的优先级会高于全局变量*。也就是说，如果函数内存在和全局变量同名的局部变量或者参数，那么全局变量将会被局部变量覆盖</p>
+
+<p>所有不使用 var 定义的变量都视为全局变量</p>
+
+<h5 id="函数作用域和声明提前">函数作用域和声明提前</h5>
+
+<p>JavaScript 的函数作用是指在函数内声明的所有变量在函数体内始终是有定义的，也就是说变量在声明之前已经可用，所有这特性称为声明提前（hoisting），即 JavaScript 函数里的所有声明（只是声明，但不涉及赋值）都被提前到函数体的顶部，而变量赋值操作留在原来的位置</p>
+
+<p>*注释*：声明提前是在 JavaScript 引擎的预编译时进行，是在代码开始运行之前</p>
+
+<p>如下面的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s1">&#39;global&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">f</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">scope</span> <span class="o">=</span> <span class="s1">&#39;local&#39;</span><span class="p">;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">scope</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 第一次输出 undefined，第二次输出 local
+</span></code></pre></div>
+<h5 id="函数声明提升">函数声明提升</h5>
+
+<p>*注*：只有函数声明式语法才会出现函数提升</p>
+
+<p>函数的两种创建方式</p>
+
+<p>（1）函数声明语法</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 函数声明语法
+</span><span class="c1"></span><span class="nx">f</span><span class="p">(</span><span class="s1">&#39;superman&#39;</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">f</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 结果会输出 superman
+</span></code></pre></div>
+<p>（2）函数表达式语法</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 函数表达式语法
+</span><span class="c1"></span><span class="nx">f</span><span class="p">(</span><span class="s1">&#39;superman&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">f</span><span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 上述代码会报错
+</span></code></pre></div>
+<p>函数声明提升</p>
+
+<p>函数声明提升，函数声明语句将会被提升到外部脚本或者外部函数作用域的顶部（跟变量提升非常类似）。正是因为这个特征，所以可以把函数声明放在调用它的语句后面</p>
+
+<p><em>值得注意的是，函数声明提升在变量声明提升的前面</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">getName</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">getName</span><span class="p">();</span>
+</code></pre></div>
+<p>可能会有人觉得最后输出的结果是 1。让我们来分析一下，这个例子涉及到了变量声明提升和函数声明提升。正如前面说到的函数声明提升，函数声明 <code>function getName() {...}</code> 的声明会被提前到顶部。而函数表达式 <code>var getName = function() {...}</code> 则表现出变量声明提升。因此在这种情况下，getName 也是一个变量，因此这个变量的声明也将提升到底部，而变量的赋值依然保留在原来的位置。因此上面的函数可以转换成下面的样子</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">getName</span><span class="p">;</span> <span class="c1">// 变量声明提升
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">getName</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 函数声明提升到顶部
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 变量赋值依然保留在原来的位置
+</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">getName</span><span class="p">();</span> <span class="c1">// 最终输出：2
+</span></code></pre></div>
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  			</div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2019</span>
+            
+                <span><a href="https://war408705279.github.io">Zhazha</a></span>
+            
+            <span><a href="https://github.com/war408705279/" target="_blank" rel="noopener">404 Not Found</a></span>
+            <span> <a href="https://war408705279.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+
+<script type="text/javascript" src="https://war408705279.github.io/js/bundle.f65a6fe80656eb86fce3f1228faa2ac0bf43b28d21eb91975f036839ed92dfd126cabb91223501623641f4ea67ac5d03882d0b8c744da38c637a1fdf8e9016c6.js" integrity="sha512-9lpv6AZW64b84/Eij6oqwL9Dso0h65GXXwNoOe2S39EmyruRIjUBYjZB9OpnrF0DiC0LjHRNo4xjeh/fjpAWxg=="></script>
+
+
+
+    </body>
+</html>
