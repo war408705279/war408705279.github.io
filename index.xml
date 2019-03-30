@@ -29,10 +29,15 @@
     <item>
       <title>前端面试题 - HTML</title>
       <link>https://war408705279.github.io/blogs/interview-html/</link>
-      <pubDate>Sun, 17 Mar 2019 00:00:00 +0800</pubDate>
+      <pubDate>Sat, 30 Mar 2019 00:00:00 +0800</pubDate>
       
       <guid>https://war408705279.github.io/blogs/interview-html/</guid>
-      <description>前端 HTML 面试题积累 语义化的 HTML  直观的认识标签对于搜索引擎的抓取有好处，用正确的标签做正确的事情 HTML 语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析 在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人更容易将网站分块，便于阅读维护理解  &amp;lt;!DOCTYPE html&amp;gt; 标签 H5 不基于 SGML，因此不需要对 DTD（document type definition）进行引用，但是需要 doctype 来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。而 HTML4.0 基于 SGML，所以需要对 DTD 进行引用，才能告知浏览器文档所使用的文档类型</description>
+      <description>前端 HTML 面试题积累 语义化的 HTML 说明一：
+ 直观的认识标签对于搜索引擎的抓取有好处，用正确的标签做正确的事情 HTML 语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析 在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人更容易将网站分块，便于阅读维护理解  说明二：
+ 用正确的标签做正确的事情 HTML 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析 即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的 搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解  &amp;lt;!DOCTYPE html&amp;gt; 标签 H5 不基于 SGML，因此不需要对 DTD（document type definition）进行引用，但是需要 doctype 来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。而 HTML4.0 基于 SGML，所以需要对 DTD 进行引用，才能告知浏览器文档所使用的文档类型
+Doctype 作用？标准模式与兼容模式各有什么区别?  &amp;lt;!DOCTYPE&amp;gt; 声明位于 HTML 文档中的第一行，处于  标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现
+ 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作
+  行内元素有哪些？块级元素有哪些？ 空（void）元素有那些？ 首先：CSS 规范规定，每个元素都有 display 属性，确定该元素的类型，每个元素都有默认的 display 值，如 div 的 display 默认值为 “block”，则为“块级”元素；span 默认 display 属性值为 “inline”，是“行内”元素</description>
     </item>
     
     <item>
