@@ -45,9 +45,9 @@
 &lt;style&gt; p:nth-child(2), p:nth-child(7){ color:red; } &lt;/style&gt; &lt;h1&gt;标题&lt;/h1&gt; &lt;p&gt;这是段落&lt;/p&gt; &lt;p&gt;这是段落&lt;/p&gt; &lt;span&gt;这是 span&lt;/span&gt; &lt;span&gt;这是 span&lt;/span&gt; &lt;span&gt;这是 span&lt;/span&gt; &lt;p&gt;这是段落&lt;/p&gt; 效果如下所示">
 
 
-<meta itemprop="datePublished" content="2019-03-17T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-17T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="96">
+<meta itemprop="datePublished" content="2019-03-30T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-30T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1643">
 
 
 
@@ -63,7 +63,7 @@
 
 
 
-<meta property="article:published_time" content="2019-03-17 00:00:00 &#43;0800 CST" />
+<meta property="article:published_time" content="2019-03-30 00:00:00 &#43;0800 CST" />
 
 
 
@@ -203,6 +203,643 @@
 <p>效果如下所示</p>
 
 <p><img src="https://war408705279.github.io/images/blogs/nth-of-type-effect.png" alt="nth-of-type 样式效果" title="nth-of-type 样式效果" /></p>
+
+<h4 id="页面导入样式时-使用-link-和-import-有什么区别">页面导入样式时，使用 link 和 @import 有什么区别？</h4>
+
+<ul>
+<li><p>link 属于 XHTML 标签，除了加载 CSS 外，还能用于定义 RSS, 定义 rel 连接属性等作用；而 @import 是 CSS 提供的，只能用于加载 CSS</p></li>
+
+<li><p>页面被加载的时，link 会同时被加载，而 @import 引用的 CSS 会等到页面被加载完再加载</p></li>
+
+<li><p>import 是 CSS2.1 提出的，只在 IE5 以上才能被识别，而 link 是 XHTML 标签，无兼容问题</p></li>
+
+<li><p>link 支持使用 js 控制 DOM 去改变样式，而 @import 不支持</p></li>
+</ul>
+
+<h4 id="css-优先级算法如何计算">CSS 优先级算法如何计算？</h4>
+
+<ul>
+<li>优先级就近原则，同权重情况下样式定义最近者为准</li>
+<li>载入样式以最后载入的定位为准</li>
+</ul>
+
+<p>优先级为：</p>
+
+<p>同权重: 内联样式表（标签内部）&gt; 嵌入样式表（当前文件中）&gt; 外部样式表（外部文件中）</p>
+
+<p>!important &gt; id &gt; class &gt; tag</p>
+
+<p>!important 比 内联优先级高（!important 的权重是最高的）</p>
+
+<h4 id="css3-新增伪类有那些">CSS3 新增伪类有那些？</h4>
+
+<p>p:first-of-type 选择属于其父元素的首个 <code>&lt;p&gt;</code> 元素的每个 <code>&lt;p&gt;</code> 元素</p>
+
+<p>p:last-of-type 选择属于其父元素的最后 <code>&lt;p&gt;</code> 元素的每个 <code>&lt;p&gt;</code> 元素</p>
+
+<p>p:only-of-type 选择属于其父元素唯一的 <code>&lt;p&gt;</code> 元素的每个 <code>&lt;p&gt;</code> 元素</p>
+
+<p>p:only-child 选择属于其父元素的唯一子元素的每个 <code>&lt;p&gt;</code> 元素</p>
+
+<dl>
+<dt>p:nth-child(2) 选择属于其父元素的第二个子元素的每个 <code>&lt;p&gt;</code> 元素</dt>
+<dt>::after 在元素之后添加内容，也可以用来做清除浮动</dt>
+<dt>::before 在元素之前添加内容</dt>
+<dt>:enabled 控制表单控件的可用状态</dt>
+<dt>:disabled 控制表单控件的禁用状态</dt>
+</dl>
+
+<p>:checked 单选框或复选框被选中</p>
+
+<h4 id="如何居中-div">如何居中 div？</h4>
+
+<p>水平居中：给 div 设置一个宽度，然后添加 <code>margin: 0 auto;</code> 属性</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span> <span class="kc">auto</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<p>让绝对定位的 div 居中</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">bottom</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="c">/* 方便看效果 */</span>
+<span class="p">}</span></code></pre></div>
+<p>水平垂直居中（1）</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 确定容器的宽为 500 高为 300
+</span><span class="c">设置层的外边距 */</span>
+
+<span class="nt">div</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span> <span class="c">/* 相对定位或绝对定位均可 */</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="mi">-150</span><span class="kt">px</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">-250</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* 外边距为自身宽高的一半 */</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="c">/* 方便看效果 */</span>
+<span class="p">}</span></code></pre></div>
+<p>水平垂直居中（2）</p>
+
+<p>未知容器的宽高，利用 <code>transform</code> 属性</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span> <span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span> <span class="c">/* 相对定位或绝对定位均可 */</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translate</span><span class="p">(</span><span class="mi">-50</span><span class="kt">%</span><span class="p">,</span> <span class="mi">-50</span><span class="kt">%</span><span class="p">);</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="c">/* 方便看效果 */</span>
+<span class="p">}</span></code></pre></div>
+<p>水平垂直居中（3）</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 利用 flex 布局
+</span><span class="c">实际使用时应考虑兼容性 */</span>
+
+<span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+  <span class="k">align-items</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span> <span class="c">/* 垂直居中 */</span>
+  <span class="k">justify-content</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span> <span class="c">/* 水平居中 */</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">container</span> <span class="nt">div</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="c">/* 方便看效果 */</span>
+<span class="p">}</span></code></pre></div>
+<h4 id="display-有哪些值-说明他们的作用">display 有哪些值？说明他们的作用</h4>
+
+<ul>
+<li>block 块类型。默认宽度为父元素宽度，可设置宽高，换行显示</li>
+<li>none 元素不显示，并从文档流中移除</li>
+<li>inline 行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示</li>
+<li>inline-block 默认宽度为内容宽度，可以设置宽高，同行显示</li>
+<li>list-item 像块类型元素一样显示，并添加样式列表标记</li>
+<li>table 此元素会作为块级表格来显示</li>
+<li>inherit 规定应该从父元素继承 display 属性的值</li>
+</ul>
+
+<h4 id="position-的值-relative-和-absolute-定位原点是什么">position 的值 relative 和 absolute 定位原点是什么</h4>
+
+<ul>
+<li>absolute 生成绝对定位的元素，相对于值不为 static 的第一个父元素进行定位</li>
+<li>fixed （老 IE 不支持）生成绝对定位的元素，相对于浏览器窗口进行定位</li>
+<li>relative 生成相对定位的元素，相对于其正常位置进行定位</li>
+<li>static 默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right, z-index 声明）</li>
+<li>inherit 规定从父元素继承 position 属性的值</li>
+</ul>
+
+<h4 id="css3-有哪些新特性">CSS3 有哪些新特性</h4>
+
+<ul>
+<li>新增各种 CSS 选择器（:not(.input)：表示选择所有 class 不是 input 的节点）</li>
+<li>圆角（border-radius: 8px;）</li>
+<li>多列布局（multi-column layout）</li>
+<li>阴影和反射（Shadow / Reflect）</li>
+<li>文字特效（text-shadow）</li>
+<li>文字渲染（text-decoration）</li>
+<li>线性渐变（gradient）</li>
+<li>旋转（transform）</li>
+<li>缩放，定位，倾斜，动画，多背景，例如</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">transform</span><span class="o">:</span> <span class="nt">scale</span><span class="o">(</span><span class="nt">0</span><span class="p">.</span><span class="nc">85</span><span class="o">,</span> <span class="nt">0</span><span class="p">.</span><span class="nc">90</span><span class="o">)</span> <span class="nt">translate</span><span class="o">(</span><span class="nt">0px</span><span class="o">,</span> <span class="nt">-30px</span><span class="o">)</span> <span class="nt">skew</span><span class="o">(</span><span class="nt">-9deg</span><span class="o">,</span> <span class="nt">0deg</span><span class="o">)</span> <span class="nt">Animation</span></code></pre></div>
+<h4 id="请解释一下-css3-的-flexbox-弹性盒布局模型-以及适用场景">请解释一下 CSS3 的 Flexbox（弹性盒布局模型），以及适用场景</h4>
+
+<p>一个用于页面布局的全新 CSS3 功能，Flexbox 可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间</p>
+
+<p>较为复杂的布局还可以通过嵌套一个伸缩容器（flex container）来实现</p>
+
+<p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称&rdquo;容器&rdquo;</p>
+
+<p>它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称&rdquo;项目&rdquo;</p>
+
+<p>常规布局是基于块和内联流方向，而 Flex 布局是基于 flex-flow 流可以很方便的用来做局中，能对不同屏幕大小自适应</p>
+
+<p>在布局上有了比以前更加灵活的空间。</p>
+
+<p>具体可以参考 <a href="http://www.w3cplus.com/css3/flexbox-basics.html" title="Flexbox - 快速布局神器" target="_blank">传送门</a></p>
+
+<h4 id="用纯-css-创建一个三角形的原理是什么">用纯 CSS 创建一个三角形的原理是什么</h4>
+
+<p>把上、左、右三条边隐藏掉（颜色设为 transparent）</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">triangle-demo</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">border-width</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">border-style</span><span class="p">:</span> <span class="kc">solid</span><span class="p">;</span>
+  <span class="k">border-color</span><span class="p">:</span> <span class="kc">transparent</span> <span class="kc">transparent</span> <span class="kc">red</span> <span class="kc">transparent</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<p>上面的例子绘制出来的是正三角，如果要绘制其他三角形（左三角、右三角、下三角等等）就把对应边的 border-color 设置为 transparent</p>
+
+<h4 id="一个满屏-品-字布局-如何设计">一个满屏 品 字布局 如何设计</h4>
+
+<p>简单的方式</p>
+
+<p>上面的 div 宽 100%，下面的两个 div 分别宽 50%，然后用 float 或者 inline 使其不换行即可</p>
+
+<h4 id="css-多列等高如何实现">css 多列等高如何实现</h4>
+
+<p>利用 padding-bottom | margin-bottom 正负值相抵</p>
+
+<p>设置父容器设置超出隐藏（overflow: hidden;），这样子父容器的高度就还是它里面的列没有设定 padding-bottom 时的高度</p>
+
+<p>当它里面的任一列高度增加了，则父容器的高度被撑到里面最高那列的高度</p>
+
+<p>其他比这列矮的列会用它们的 padding-bottom 补偿这部分高度差</p>
+
+<h4 id="经常遇到的浏览器的兼容性有哪些-原因-解决方法是什么-常用-hack-的技巧">经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用 hack 的技巧</h4>
+
+<ul>
+<li><p>png24 位的图片在 IE6 浏览器上出现背景，解决方案是做成 PNG8</p></li>
+
+<li><p>浏览器默认的 margin 和 padding 不同。解决方案是加一个全局的 <code>* {margin: 0; padding: 0;}</code> 来统一</p></li>
+
+<li><p>IE6 双边距 bug：块属性标签 float 后，又有横行的 margin 情况下，在 IE6 显示 margin 比设置的大。</p></li>
+
+<li><p>浮动 IE 产生的双倍距离 <code>#box {float: left; width: 10px; margin: 0 0 0 100px;}</code>。这种情况之下 IE 会产生 20px 的距离，解决方案是在 float 的标签样式控制中加入 <code>_display: inline;</code> 将其转化为行内属性(_ 这个符号只有 IE6 会识别)。</p></li>
+
+<li><p>渐进识别的方式，从总体中逐渐排除局部。</p></li>
+</ul>
+
+<p>首先，巧妙的使用 <code>\9</code> 这一标记，将 IE 浏览器从所有情况中分离出来</p>
+
+<p>接着，再次使用 <code>+</code> 将 IE8 和 IE7、IE6 分离开来，这样 IE8 已经独立识别，例如下面的例子</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">bb</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span> <span class="c">/* 所有识别 */</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#00deff</span><span class="err">\</span><span class="mi">9</span><span class="p">;</span> <span class="c">/* IE6、7、8 识别 */</span>
+  <span class="err">+</span><span class="k">background-color</span><span class="p">:</span> <span class="mh">#a200ff</span><span class="p">;</span> <span class="c">/* IE6、7 识别 */</span>
+  <span class="n">_background-color</span><span class="p">:</span> <span class="mh">#1e0bd1</span><span class="p">;</span> <span class="c">/* IE6 识别 */</span>
+<span class="p">}</span></code></pre></div>
+<ul>
+<li><p>IE 下，可以使用获取常规属性的方法来获取自定义属性，也可以使用 getAttribute() 获取自定义属性。Firefox 下，只能使用 getAttribute() 获取自定义属性。解决方法：统一通过 getAttribute() 获取自定义属性</p></li>
+
+<li><p>IE 下，event 对象有 x、y 属性，但是没有 pageX、pageY 属性。Firefox 下，event 对象有 pageX、pageY 属性，但是没有 x、y 属性。解决方法：（条件注释）缺点是在 IE 浏览器下可能会增加额外的 HTTP 请求数</p></li>
+
+<li><p>Chrome 中文界面下默认会将小于 12px 的文本强制按照 12px 显示，可通过加入 CSS 属性 <code>-webkit-text-size-adjust: none;</code> 解决</p></li>
+
+<li><p>超链接访问过后 hover 样式就不出现了，被点击访问过的超链接样式不在具有 hover 和 active 问题的解决方法是改变 CSS 属性的排列顺序：<code>L-V-H-A: a:link {}, a:visited {}, a:hover {}, a:active {}</code></p></li>
+</ul>
+
+<h4 id="li-与-li-之间有看不见的空白间隔是什么原因引起的-有什么解决办法">li 与 li 之间有看不见的空白间隔是什么原因引起的？有什么解决办法？</h4>
+
+<p>行框的排列会受到中间空白（回车\空格）等的影响，因为空格也属于字符，这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为 0，就没有空格了</p>
+
+<h4 id="为什么要初始化-css-样式">为什么要初始化 CSS 样式</h4>
+
+<ul>
+<li><p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对 CSS 初始化往往会出现浏览器之间的页面显示差异</p></li>
+
+<li><p>当然，初始化样式会对 SEO 有一定的影响，但鱼和熊掌不可兼得，力求影响最小的情况下初始化</p></li>
+</ul>
+
+<p>最简单的初始化方法： <code>* {padding: 0; margin: 0;}</code> （强烈不建议）</p>
+
+<ul>
+<li>淘宝的样式初始化代码：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">body</span><span class="o">,</span> <span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span><span class="o">,</span> <span class="nt">hr</span><span class="o">,</span> <span class="nt">p</span><span class="o">,</span> <span class="nt">blockquote</span><span class="o">,</span> <span class="nt">dl</span><span class="o">,</span> <span class="nt">dt</span><span class="o">,</span> <span class="nt">dd</span><span class="o">,</span> <span class="nt">ul</span><span class="o">,</span> <span class="nt">ol</span><span class="o">,</span> <span class="nt">li</span><span class="o">,</span> <span class="nt">pre</span><span class="o">,</span> <span class="nt">form</span><span class="o">,</span> <span class="nt">fieldset</span><span class="o">,</span> <span class="nt">legend</span><span class="o">,</span> <span class="nt">button</span><span class="o">,</span> <span class="nt">input</span><span class="o">,</span> <span class="nt">textarea</span><span class="o">,</span> <span class="nt">th</span><span class="o">,</span> <span class="nt">td</span> <span class="p">{</span> <span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span> <span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">body</span><span class="o">,</span> <span class="nt">button</span><span class="o">,</span> <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">textarea</span> <span class="p">{</span> <span class="k">font</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="o">/</span><span class="mf">1.5</span><span class="n">tahoma</span><span class="p">,</span> <span class="n">arial</span><span class="p">,</span> <span class="err">\</span><span class="mi">5</span><span class="n">b8b</span><span class="err">\</span><span class="mi">4</span><span class="n">f53</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">h1</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nt">h4</span><span class="o">,</span> <span class="nt">h5</span><span class="o">,</span> <span class="nt">h6</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">address</span><span class="o">,</span> <span class="nt">cite</span><span class="o">,</span> <span class="nt">dfn</span><span class="o">,</span> <span class="nt">em</span><span class="o">,</span> <span class="nt">var</span> <span class="p">{</span> <span class="k">font-style</span><span class="p">:</span> <span class="kc">normal</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">code</span><span class="o">,</span> <span class="nt">kbd</span><span class="o">,</span> <span class="nt">pre</span><span class="o">,</span> <span class="nt">samp</span> <span class="p">{</span> <span class="k">font-family</span><span class="p">:</span> <span class="n">couriernew</span><span class="p">,</span> <span class="n">courier</span><span class="p">,</span> <span class="kc">monospace</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">small</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">ul</span><span class="o">,</span> <span class="nt">ol</span> <span class="p">{</span> <span class="k">list-style</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">a</span> <span class="p">{</span> <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">a</span><span class="p">:</span><span class="nd">hover</span> <span class="p">{</span> <span class="k">text-decoration</span><span class="p">:</span> <span class="kc">underline</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">sup</span> <span class="p">{</span> <span class="k">vertical-align</span><span class="p">:</span> <span class="kc">text</span><span class="o">-</span><span class="kc">top</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">sub</span> <span class="p">{</span> <span class="k">vertical-align</span><span class="p">:</span> <span class="kc">text</span><span class="o">-</span><span class="kc">bottom</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">legend</span> <span class="p">{</span> <span class="k">color</span><span class="p">:</span> <span class="mh">#000</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">fieldset</span><span class="o">,</span> <span class="nt">img</span> <span class="p">{</span> <span class="k">border</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">button</span><span class="o">,</span> <span class="nt">input</span><span class="o">,</span> <span class="nt">select</span><span class="o">,</span> <span class="nt">textarea</span> <span class="p">{</span> <span class="k">font-size</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nt">table</span> <span class="p">{</span> <span class="k">border-collapse</span><span class="p">:</span> <span class="kc">collapse</span><span class="p">;</span> <span class="k">border-spacing</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span></code></pre></div>
+<h4 id="absolute-的-containing-block-容器块-计算方式跟正常流有什么不同">absolute 的 containing block（容器块）计算方式跟正常流有什么不同？</h4>
+
+<p>这个要详细看看，没看懂</p>
+
+<p>无论属于哪种，都要先找到其祖先元素中最近的 position 值不为 static 的元素，然后再判断：</p>
+
+<ul>
+<li>若此元素为 inline 元素，则 containing block 为能够包含这个元素生成的第一个和最后一个 inline box 的 padding box (除 margin, border 外的区域) 的最小矩形</li>
+<li>否则，则由这个祖先元素的 padding box 构成</li>
+<li>如果都找不到，则为 initial containing block</li>
+</ul>
+
+<p>补充：</p>
+
+<ul>
+<li>static(默认的)/relative：简单说就是它的父元素的内容框（即去掉 padding 的部分）</li>
+<li>absolute: 向上找最近的定位为 absolute/relative 的元素</li>
+<li>fixed: 它的 containing block 一律为根元素（html/body），根元素也是 initial containing block</li>
+</ul>
+
+<h4 id="css-里的-visibility-属性有个-collapse-属性值是干嘛用的-在不同浏览器下以后什么区别">CSS 里的 visibility 属性有个 collapse 属性值是干嘛用的？在不同浏览器下以后什么区别？</h4>
+
+<ul>
+<li>对于普通元素 <code>visibility: collapse;</code> 会将元素完全隐藏，不占据页面布局空间，与 <code>display: none;</code> 表现相同</li>
+<li>如果目标元素为 table，<code>visibility: collapse;</code> 将 table 隐藏，但是会占据页面布局空间。仅在 Firefox 下起作用，IE 会显示元素，Chrome 会将元素隐藏，但是占据空间</li>
+</ul>
+
+<h4 id="position-跟-display-margin-collapse-overflow-float-这些特性相互叠加后会怎么样">position 跟 display、margin、collapse、overflow、float 这些特性相互叠加后会怎么样？</h4>
+
+<ul>
+<li>如果元素的 display 为 none，那么元素不被渲染，position、float 不起作用</li>
+<li>如果元素拥有 position: absolute; 或者 position: fixed; 属性那么元素将为绝对定位，float 不起作用</li>
+<li>如果元素 float 属性不是 none，元素会脱离文档流，根据 float 属性值来显示</li>
+<li>有浮动，绝对定位，inline-block 属性的元素，margin 不会和垂直方向上的其他元素 margin 折叠</li>
+</ul>
+
+<h4 id="对-bfc-规范-块级格式化上下文-block-formatting-context-的理解">对 BFC 规范（块级格式化上下文：block formatting context）的理解？</h4>
+
+<p>W3C CSS 2.1 规范中的一个概念，它是一个独立容器，决定了元素如何对其内容进行定位，以及与其他元素的关系和相互作用。</p>
+
+<p>一个页面是由很多个 Box 组成的，元素的类型和 display 属性，决定了这个 Box 的类型</p>
+
+<p>不同类型的 Box，会参与不同的 Formatting Context（决定如何渲染文档的容器），因此 Box 内的元素会以不同的方式渲染，也就是说 BFC 内部的元素和外部的元素不会互相影响</p>
+
+<h4 id="css-定义的权重">css 定义的权重</h4>
+
+<p>以下是权重的规则：标签的权重为 1，class 的权重为 10，id 的权重为 100，以下例子是演示各种定义的权重值</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* 权重为 1 */</span>
+<span class="nt">div</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="c">/* 权重为 10 */</span>
+<span class="p">.</span><span class="nc">class1</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="c">/* 权重为 100 */</span>
+<span class="p">#</span><span class="nn">id1</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="c">/* 权重为 100 + 1 = 101 */</span>
+<span class="p">#</span><span class="nn">id1</span> <span class="nt">div</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="c">/* 权重为 10 + 1 = 11 */</span>
+<span class="p">.</span><span class="nc">class1</span> <span class="nt">div</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span>
+<span class="c">/* 权重为 10 + 10 + 1 = 21 */</span>
+<span class="p">.</span><span class="nc">class1</span> <span class="p">.</span><span class="nc">class2</span> <span class="nt">div</span> <span class="p">{</span> <span class="err">...</span> <span class="p">}</span></code></pre></div>
+<p>如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现</p>
+
+<p>!important 的权重是最高的</p>
+
+<h4 id="请解释一下为什么需要清除浮动-清除浮动的方式">请解释一下为什么需要清除浮动？清除浮动的方式</h4>
+
+<p>清除浮动是为了清除使用浮动元素产生的影响。浮动的元素，高度会塌陷，而高度的塌陷使我们页面后面的布局不能正常显示</p>
+
+<ul>
+<li>父级 div 定义 height</li>
+<li>父级 div 也一起浮动</li>
+<li>常规的使用一个 class</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-csss" data-lang="csss">.clearfix::before, .clearfix::after {
+  content: &#34; &#34;;
+  display: table;
+}
+.clearfix::after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}</code></pre></div>
+<ul>
+<li>SASS 编译的时候，浮动元素的父级 div 定义伪类 :after 和 :before</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="o">&amp;</span><span class="p">::</span><span class="nd">after</span><span class="o">,</span> <span class="o">&amp;</span><span class="p">::</span><span class="nd">before</span><span class="p">{</span>
+  <span class="k">content</span><span class="p">:</span> <span class="s2">&#34; &#34;</span><span class="p">;</span>
+  <span class="k">visibility</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">clear</span><span class="p">:</span> <span class="kc">both</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<p>解析原理：</p>
+
+<ul>
+<li>display: block; 使生成的元素以块级元素显示，占满剩余空间</li>
+<li>height: 0; 避免生成内容破坏原有布局的高度</li>
+<li>visibility: hidden; 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互</li>
+<li>通过 content: &ldquo; &ldquo;; 生成内容作为最后一个元素，至于 content 里面是点还是其他都是可以的，例如 oocss 里面就有经典的 content: &ldquo;.&rdquo;;，有些版本可能 content 里面内容为空，firefox 直到 7.0 content: &ldquo;&rdquo;; 仍然会产生额外的空隙</li>
+<li>zoom：1; 触发 IE hasLayout</li>
+</ul>
+
+<p>通过分析发现，除了 clear: both; 用来闭合浮动的，其他代码无非都是为了隐藏掉 content 生成的内容，这也就是其他版本的闭合浮动为什么会有 font-size: 0; line-height: 0;</p>
+
+<h4 id="什么是外边距合并">什么是外边距合并？</h4>
+
+<p>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距</p>
+
+<p>合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者</p>
+
+<p>w3school 介绍网址 <a href="http://www.w3school.com.cn/css/css_margin_collapsing.asp" title="CSS 外边距合并" target="_blank">传送门</a></p>
+
+<h4 id="zoom-1-的清除浮动原理">zoom: 1; 的清除浮动原理?</h4>
+
+<p>清除浮动，触发 hasLayout</p>
+
+<p>zoom 属性是 IE 浏览器的专有属性，它可以设置或检索对象的缩放比例。解决 IE 下比较奇葩的 bug</p>
+
+<p>譬如外边距（margin）的重叠，浮动清除，触发 IE 的 haslayout 属性等</p>
+
+<p>来龙去脉大概如下：</p>
+
+<p>当设置了 zoom 的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变 zoom 值时其实也会发生重新渲染，运用这个原理，也就解决了 IE 下子元素浮动时候父元素不随着自动扩大的问题</p>
+
+<p>zoom 属性是 IE 浏览器的专有属性，火狐和老版本的 webkit 核心的浏览器都不支持这个属性。然而，zoom 现在已经被逐步标准化，出现在 CSS 3.0 规范草案中</p>
+
+<p>目前非 IE 由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？可以通过 CSS3 里面的动画属性 scale 进行缩放</p>
+
+<h4 id="移动端的布局用过媒体查询吗">移动端的布局用过媒体查询吗？</h4>
+
+<p>假设你现在正用一台显示设备来阅读这篇文章，同时你也想把它投影到屏幕上，或者打印出来，而显示设备、屏幕投影和打印等这些媒介都有自己的特点，CSS 就是为文档提供在不同媒介上展示的适配方法</p>
+
+<p>当媒体查询为真时，相关的样式表或样式规则会按照正常的级联规被应用。当媒体查询返回假，标签上带有媒体查询的样式表仍将被下载（只不过不会被应用）</p>
+
+<p>包含了一个媒体类型和至少一个使用宽度、高度和颜色等媒体属性来限制样式表范围的表达式。 CSS3 加入的媒体查询使得无需修改内容便可以使样式应用于某些特定的设备范围</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+  <span class="p">@</span><span class="k">media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">700px</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">orientation</span><span class="o">:</span> <span class="nt">landscape</span><span class="o">)</span> <span class="p">{</span> <span class="p">.</span><span class="nc">sidebar</span> <span class="p">{</span> <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span> <span class="p">}}</span>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span></code></pre></div>
+<h4 id="使用-css-预处理器吗-喜欢那个">使用 CSS 预处理器吗？喜欢那个？</h4>
+
+<p>SASS (SASS、LESS 没有本质区别，团队前端都是用的 LESS)</p>
+
+<h4 id="css优化-提高性能的方法有哪些">CSS优化、提高性能的方法有哪些？</h4>
+
+<p>关键选择器（key selector）。选择器的最后面的部分为关键选择器（即用来匹配目标元素的部分）</p>
+
+<p>如果规则拥有 ID 选择器作为其关键选择器，则不要为规则增加标签。过滤掉无关的规则（这样样式系统就不会浪费时间去匹配它们了）</p>
+
+<p>提取项目的通用公有样式，增强可复用性，按模块编写组件；增强项目的协同开发性、可维护性和可扩展性</p>
+
+<p>使用预处理工具或构建工具（gulp 对 css 进行语法检查、自动补前缀、打包压缩、自动优雅降级）</p>
+
+<h4 id="浏览器是怎样解析-css-选择器的">浏览器是怎样解析 CSS 选择器的？</h4>
+
+<p>样式系统从关键选择器开始匹配，然后左移查找规则选择器的祖先元素</p>
+
+<p>只要选择器的子树一直在工作，样式系统就会持续左移，直到和规则匹配，或者是因为不匹配而放弃该规则</p>
+
+<h4 id="margin-和-padding-分别适合什么场景使用">margin 和 padding 分别适合什么场景使用？</h4>
+
+<p>margin 是用来隔开元素与元素的间距；padding 是用来隔开元素与内容的间隔</p>
+
+<p>margin 用于布局分开元素使元素与元素互不相干</p>
+
+<p>padding 用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段</p>
+
+<h4 id="before-和-after-中双冒号和单冒号有什么区别-解释一下这-2-个伪元素的作用">::before 和 :after 中双冒号和单冒号有什么区别？解释一下这 2 个伪元素的作用</h4>
+
+<p>单冒号（:）用于 CSS3 伪类，双冒号（::）用于 CSS3 伪元素（伪元素由双冒号和伪元素名称组成）</p>
+
+<p>伪类和伪元素具体可以参考 <a href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Introduction_to_CSS/Pseudo-classes_and_pseudo-elements" title="伪类和伪元素
+" target="_blank">传送门 1</a> <a href="http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/" title="总结伪类和伪元素" target="_blank">传送门 2</a></p>
+
+<p>双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法</p>
+
+<p>比如：first-line、:first-letter、:before、:after等</p>
+
+<p>而新的在 CSS3 中引入的伪元素则不允许再支持旧的单冒号的写法</p>
+
+<p>想让插入的内容出现在其它内容前，使用 ::before，否者使用 ::after</p>
+
+<p>在代码顺序上，::after 生成的内容也比 ::before 生成的内容靠后</p>
+
+<p>如果按堆栈视角，::after 生成的内容会在 ::before 生成的内容之上</p>
+
+<h4 id="如何修改-chrome-记住密码后自动填充表单的黄色背景">如何修改 chrome 记住密码后自动填充表单的黄色背景？</h4>
+
+<p>看下面的 css 代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">input</span><span class="p">:</span><span class="nd">-webkit-autofill</span><span class="o">,</span> <span class="nt">textarea</span><span class="p">:</span><span class="nd">-webkit-autofill</span><span class="o">,</span> <span class="nt">select</span><span class="p">:</span><span class="nd">-webkit-autofill</span> <span class="p">{</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">189</span><span class="p">);</span> <span class="c">/* #FAFFBD */</span>
+  <span class="k">background-image</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c">/* #000 */</span>
+<span class="p">}</span></code></pre></div>
+<h4 id="设置元素浮动后-该元素的-display-值是多少">设置元素浮动后，该元素的 display 值是多少？</h4>
+
+<p>自动变成了 display: block;</p>
+
+<h4 id="怎么让-chrome-支持小于-12px-的文字">怎么让 Chrome 支持小于 12px 的文字？</h4>
+
+<ul>
+<li><p>用图片：如果是内容固定不变情况下，使用将小于 12px 文字内容切出做图片，这样不影响兼容也不影响美观</p></li>
+
+<li><p>使用 12px 及 12px 以上字体大小：为了兼容各大主流浏览器，建议设计美工图时候设置大于或等于 12px 的字体大小，如果是接单的这个时候就需要给客户讲解小于 12px 浏览器不兼容等事宜</p></li>
+
+<li><p>继续使用小于 12px 字体大小样式设置：如果不考虑 chrome 可以不用考虑兼容，同时在设置小于 12px 对象设置 -webkit-text-size-adjust: none;，做到最大兼容考虑</p></li>
+
+<li><p>使用 12px 以上字体：为了兼容、为了代码更简单，重新考虑权重下兼容性</p></li>
+</ul>
+
+<h4 id="让页面里的字体变清晰-变细用-css-怎么做">让页面里的字体变清晰，变细用 CSS 怎么做？</h4>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">-webkit-font-smoothing</span><span class="o">:</span> <span class="nt">antialiased</span><span class="o">;</span></code></pre></div>
+<h4 id="font-style-属性可以让它赋值为-oblique-oblique-是什么意思">font-style 属性可以让它赋值为 oblique oblique 是什么意思？</h4>
+
+<p>倾斜的字体样式</p>
+
+<h4 id="position-fixed-在-android-下无效怎么处理">position: fixed; 在 android 下无效怎么处理？</h4>
+
+<p>fixed 的元素是相对整个页面固定位置的，在屏幕上滑动只是在移动这个所谓的 viewport</p>
+
+<p>原来的网页还好好的在那，fixed 的内容也没有变过位置</p>
+
+<p>所以说并不是 iOS 不支持 fixed，只是 fixed 的元素不是相对手机屏幕固定的</p>
+
+<p>可以在 header 里面添加下面的设置代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&#34;</span><span class="p">/&gt;</span></code></pre></div>
+<h4 id="如果需要手动写动画-你认为最小时间间隔是多久-为什么-阿里">如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）</h4>
+
+<p>多数显示器默认频率是 60Hz，即 1 秒刷新 60 次，所以理论上最小间隔为 1 / 60 ＊ 1000ms ＝ 16.7ms</p>
+
+<h4 id="display-inline-block-什么时候会显示间隙-携程">display: inline-block; 什么时候会显示间隙？（携程）</h4>
+
+<p>真正意义上的 inline-block 水平呈现的元素间，换行显示或空格分隔的情况下会有间距</p>
+
+<p>解决方法：移除空格、使用 margin 负值、使用 font-size: 0;、letter-spacing、word-spacing</p>
+
+<p>可以参考 <a href="https://www.zhangxinxu.com/wordpress/2012/04/inline-block-space-remove-%E5%8E%BB%E9%99%A4%E9%97%B4%E8%B7%9D/" title="去除 inline-block 元素间间距的 N 种方法" target="_blank">传送门</a></p>
+
+<h4 id="什么是-cookie-隔离-或者说-请求资源的时候不要让它带-cookie-怎么做">什么是 cookie 隔离？（或者说：请求资源的时候不要让它带 cookie 怎么做）</h4>
+
+<p>如果静态文件都放在主域名下，那静态文件请求的时候都带有的 cookie 的数据提交给 server 的，非常浪费流量，所以不如隔离开</p>
+
+<p>因为 cookie 有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有 cookie 数据</p>
+
+<p>这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的</p>
+
+<p>同时这种方式不会将 cookie 传入 Web Server，也减少了 Web Server 对 cookie 的处理分析环节，提高了 Web Server 的 http 请求的解析速度</p>
+
+<h3 id="什么是css-预处理器-后处理器">什么是CSS 预处理器 / 后处理器？</h3>
+
+<ul>
+<li><p>预处理器例如：LESS、Sass、Stylus，用来预编译 Sass 或 less，增强了 css 代码的复用性，还有层级、mixin、变量、循环、函数等，具有很方便的 UI 组件模块化开发能力，极大的提高工作效率</p></li>
+
+<li><p>后处理器例如：PostCSS，通常被视为在完成的样式表中根据 CSS 规范处理 CSS，让其更有效；目前最常做的是给 CSS 属性添加浏览器私有前缀，实现跨浏览器兼容性的问题</p></li>
+</ul>
+
+<h3 id="一些问题-持续更新答案">一些问题，持续更新答案</h3>
+
+<h4 id="在网页中的应该使用奇数还是偶数的字体-为什么呢">在网页中的应该使用奇数还是偶数的字体？为什么呢？</h4>
+
+<p>参考 <a href="https://blog.csdn.net/jian_xi/article/details/79346477" title="谈谈网页中使用奇数字体和偶数字体" target="_blank">传送门 1</a> <a href="https://www.zhihu.com/question/20440679" title="现在网页设计中的为什么少有人用 11px、13px、15px 等奇数的字体？" target="_blank">传送门 2</a> <a href="http://www.bkjia.com/Javascript/919905.html" title="网页设计中为啥少用奇数字体？，网页设计奇数字体?" target="_blank">传送门 3</a></p>
+
+<h4 id="抽离样式模块怎么写-说出思路-有无实践经验-阿里航旅的面试题">抽离样式模块怎么写，说出思路，有无实践经验？[阿里航旅的面试题]</h4>
+
+<p>把常用的 css 样式单独做成 css 文件，通用的和业务相关的分离出来，通用的做成样式模块共享，业务相关的，放进业务相关的库里面做成对应功能的模块</p>
+
+<p>通常，一个项目我们只引用一个 CSS，但是对于较大的项目，我们需要把 CSS 文件进行分类</p>
+
+<p>我们按照 CSS 的性质和用途，将 CSS 文件分成“公共型样式”、“特殊型样式”、“皮肤型样式”，并以此顺序引用（按需求决定是否添加版本号）</p>
+
+<ul>
+<li>公共型样式：包括了以下几个部分：“标签的重置和设置默认值”、“统一调用背景图和清除浮动或其他需统一处理的长样式”、“网站通用布局”、“通用模块和其扩展”、“元件和其扩展”、“功能类样式”、“皮肤类样式”</li>
+<li>特殊型样式：当某个栏目或页面的样式与网站整体差异较大或者维护率较高时，可以独立引用一个样式：“特殊的布局、模块和元件及扩展”、“特殊的功能、颜色和背景”，也可以是某个大型控件或模块的独立样式</li>
+<li>皮肤型样式：如果产品需要换肤功能，那么我们需要将颜色、背景等抽离出来放在这里</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;assets/css/global.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;assets/css/index.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span><span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;assets/css/skin.css&#34;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span><span class="p">/&gt;</span></code></pre></div>
+<p>具体可以参考 <a href="http://nec.netease.com/standard/css-sort.html" title="CSS规范 - 分类方法" target="_blank">传送门</a></p>
+
+<p>CSS 命名规则可以参考 <a href="http://nec.netease.com/standard/css-name.html" title="CSS规范 - 命名规则" target="_blank">传送门</a></p>
+
+<h4 id="元素竖向的百分比设定是相对于容器的高度吗">元素竖向的百分比设定是相对于容器的高度吗？</h4>
+
+<p>如果是 height 的话，是相对于容器高度，如果是 padding-height，margin-height 则是相对于容器的宽度</p>
+
+<p>具体可以参考 <a href="https://segmentfault.com/a/1190000012955996" title="css 元素的竖向百分比设定是相对于容器的高度吗？" target="_blank">传送门</a></p>
+
+<h4 id="全屏滚动的原理是什么-用到了-css-的那些属性">全屏滚动的原理是什么？用到了 CSS 的那些属性？</h4>
+
+<p>原理：有点类似于轮播，整体的元素一直排列下去，假设有 5 个需要展示的全屏页面，那么高度是 500%，只是展示 100%，剩下的可以通过 transform 进行 y 轴定位，也可以通过 margin-top 实现</p>
+
+<p>用到的 css 属性有</p>
+
+<p>overflow: hidden; transition: all 1000ms ease;</p>
+
+<p>具体实现可以参考 <a href="https://blog.csdn.net/Rita_jing/article/details/78236768" title="全屏滚动的原理及实现" target="_blank">传送门</a></p>
+
+<h4 id="什么是响应式设计-响应式设计的基本原理是什么-如何兼容低版本的-ie">什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的 IE？</h4>
+
+<p>响应式网站设计(Responsive Web design)是一个网站能够兼容多个终端，而不是为每一个终端做一个特定的版本</p>
+
+<p>基本原理是通过媒体查询检测不同的设备屏幕尺寸做处理（@media）</p>
+
+<p>页面头部必须有 meta 声明的 viewport</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no&#34;</span><span class="p">/&gt;</span></code></pre></div>
+<h4 id="视差滚动效果-如何给每页做不同的动画-回到顶部-向下滑动要再次出现-和只出现一次分别怎么做">视差滚动效果，如何给每页做不同的动画？（回到顶部，向下滑动要再次出现，和只出现一次分别怎么做？）</h4>
+
+<p>视差滚动（Parallax Scrolling）就是这样的效果之一。这种技术通过在网页向下滚动的时候，控制背景的移动速度比前景的移动速度慢来创建出令人惊叹的 3D 效果</p>
+
+<ul>
+<li><p>CSS3 实现
+优点：开发时间短、性能和开发效率比较好，缺点是不能兼容到低版本的浏览器</p></li>
+
+<li><p>jquery 实现
+通过控制不同层滚动速度，计算每一层的时间，控制滚动效果</p></li>
+</ul>
+
+<p>优点：能兼容到各个版本的，效果可控性好</p>
+
+<p>缺点：开发起来对制作者要求高</p>
+
+<ul>
+<li>插件实现方式
+例如：parallax-scrolling，兼容性十分好</li>
+</ul>
+
+<h4 id="你对-line-height-是如何理解的">你对 line-height 是如何理解的？</h4>
+
+<p>具体可以参考 <a href="https://www.zhangxinxu.com/wordpress/2009/11/css%E8%A1%8C%E9%AB%98line-height%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8F%8A%E5%BA%94%E7%94%A8/" title="css 行高 line-height 的一些深入理解及应用" target="_blank">传送门</a></p>
+
+<h4 id="overflow-scroll-时不能平滑滚动的问题怎么处理">overflow: scroll; 时不能平滑滚动的问题怎么处理？</h4>
+
+<p>通过定义下面的样式</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">overflow</span><span class="o">:</span> <span class="nt">scroll</span><span class="o">;</span>
+<span class="nt">-webkit-overflow-scrolling</span><span class="o">:</span> <span class="nt">touch</span><span class="o">;</span></code></pre></div>
+<p>具体可以参考 <a href="https://www.jianshu.com/p/1f4693d0ad2d" title="解决页面使用 overflow: scroll; 在 iOS 上滑动卡顿的问题" target="_blank">传送门</a></p>
+
+<h4 id="有一个高度自适应的-div-里面有两个-div-一个高度-100px-希望另一个填满剩下的高度">有一个高度自适应的 div，里面有两个 div，一个高度 100px，希望另一个填满剩下的高度</h4>
+
+<ul>
+<li>box-sizing 方案</li>
+</ul>
+
+<p>外层 box-sizing: border-box; 同时设置 padding: 100px 0 0;</p>
+
+<p>内层 100px 高的元素向上移动 100px，或使用 absolute 定位防止占据空间</p>
+
+<p>另一个元素直接 height: 100%;</p>
+
+<ul>
+<li>使用 flex 布局</li>
+<li>使用绝对定位（position: absolute;）</li>
+</ul>
+
+<p>具体可以参考 <a href="https://segmentfault.com/q/1010000000762512" title="有一个高度自适应的 div，里面有两个 div，一个高度 100px，希望另一个填满剩下的高度" target="_blank">传送门</a></p>
+
+<h4 id="png-jpg-gif-这些图片格式解释一下-分别什么时候用-有没有了解过-webp">png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过 webp？</h4>
+
+<p>具体可以参考 <a href="https://www.zhihu.com/question/20028452" title="图片格式 jpg、png、gif 各有什么优缺点？什么情况下用什么格式的图片呢？" target="_blank">传送门</a></p>
+
+<h4 id="box-sizing">box-sizing</h4>
+
+<p>CSS 中的 box-sizing 属性定义了 user agent 应该如何计算一个元素的总宽度和总高度。可以更改用于计算元素宽度和高度的默认的 CSS 盒子模型。可以使用此属性来模拟不正确支持 CSS 盒子模型规范的浏览器的行为</p>
+
+<p>在 CSS 盒子模型的默认定义里，你对一个元素所设置的 width 与 height 只会应用到这个元素的内容区。如果这个元素有任何的 border 或 padding ，绘制到屏幕上时的盒子宽度和高度会加上设置的边框和内边距值。这意味着当你调整一个元素的宽度和高度时需要时刻注意到这个元素的边框和内边距。当我们实现响应式布局时，这个特点尤其烦人</p>
+
+<p>box-sizing 属性可以被用来调整这些表现</p>
+
+<ul>
+<li>content-box 是默认值。如果你设置一个元素的宽为 100px，那么这个元素的内容区会有 100px 宽，并且任何边框和内边距的宽度都会被增加到最后绘制出来的元素宽度中</li>
+<li>border-box 告诉浏览器去理解你设置的边框和内边距的值是包含在 width 内的。也就是说，如果你将一个元素的 width 设为 100px，那么这 100px 会包含其它的 border 和 padding，内容区的实际宽度会是 width 减去 border + padding 的计算值。大多数情况下这使得我们更容易的去设定一个元素的宽高</li>
+</ul>
+
+<p>一些专家甚至建议所有的 Web 开发者们将所有的元素的 box-sizing 都设为 border-box</p>
+
+<p>具体可以参考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/box-sizing" title="box-sizing" target="_blank">传送门</a></p>
+
+<h4 id="style-标签写在-body-后与-body-前有什么区别">style 标签写在 body 后与 body 前有什么区别？</h4>
+
+<p>FOUC：flash of unstyled content 浏览器样式闪烁，参考 <a href="https://juejin.im/entry/58f867045c497d0058e2ff3a" title="前端魔法堂：解秘 FOUC" target="_blank">传送门</a></p>
+
+<p>和浏览器的渲染机制有关，参考 <a href="https://blog.csdn.net/wozaixiaoximen/article/details/50640954##1" title="浏览器的渲染机制" target="_blank">传送门</a></p>
+
+<h4 id="rem-布局的优缺点">rem 布局的优缺点</h4>
+
+<p>参考 <a href="https://www.cnblogs.com/qieguo/p/5386565.html" title="用 rem 实现 WebApp 自适应的优劣分析" target="_blank">传送门 1</a> <a href="https://segmentfault.com/a/1190000015867354" title="对于页面适配，你应该使用 px 还是 rem" target="_blank">传送门 2</a> <a href="https://yanhaijing.com/css/2017/09/29/principle-of-rem-layout/" title="Rem 布局的原理解析" target="_blank">传送门 3</a></p>
 
             </div>
         </article>
