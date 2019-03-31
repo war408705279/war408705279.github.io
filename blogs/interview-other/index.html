@@ -51,9 +51,9 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
  首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度">
 
 
-<meta itemprop="datePublished" content="2019-03-17T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-17T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="573">
+<meta itemprop="datePublished" content="2019-03-31T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-31T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1630">
 
 
 
@@ -72,7 +72,7 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 
 
 
-<meta property="article:published_time" content="2019-03-17 00:00:00 &#43;0800 CST" />
+<meta property="article:published_time" content="2019-03-31 00:00:00 &#43;0800 CST" />
 
 
 
@@ -227,6 +227,8 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 
 <h4 id="浏览器内核">浏览器内核</h4>
 
+<p>说明一：</p>
+
 <ul>
 <li>IE 浏览器：Trident（IE 内核）</li>
 <li>火狐浏览器：Gecko，特点是代码完全公开</li>
@@ -234,6 +236,27 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 <li>Safari 浏览器：Webkit 内核，Webkit 内核是 Chrome 内核的原型</li>
 <li>Chrome 浏览器：采用 Blink 内核，是 Google 和 Opera Software 开发的浏览器排版引擎</li>
 </ul>
+
+<p>说明二：</p>
+
+<ul>
+<li>Trident 内核：IE，MaxThon，TT，The World，360，搜狗浏览器等 [又称 MSHTML]</li>
+<li>Gecko 内核：Netscape6 及以上版本，FF，MozillaSuite / SeaMonkey 等</li>
+<li>Presto 内核：Opera7 及以上 [Opera 内核原为：Presto，现为：Blink]</li>
+<li>Webkit 内核：Safari，Chrome等 [Chrome 的：Blink（WebKit 的分支）]</li>
+</ul>
+
+<p>详细文章：<a href="http://www.cnblogs.com/fullhouse/archive/2011/12/19/2293455.html" title="浏览器内核的解析和对比" target="_blank">传送门</a></p>
+
+<h4 id="介绍一下你对浏览器内核的理解">介绍一下你对浏览器内核的理解？</h4>
+
+<p>主要分成两部分：渲染引擎（layout engineer 或 Rendering Engine）和 JS 引擎</p>
+
+<p>渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核</p>
+
+<p>JS 引擎则：解析和执行 javascript 来实现网页的动态效果</p>
+
+<p>最开始渲染引擎和 JS 引擎并没有区分的很明确，后来 JS 引擎越来越独立，内核就倾向于只指渲染引擎</p>
 
 <h4 id="ie6-bug-的解决方法">IE6 BUG 的解决方法</h4>
 
@@ -500,6 +523,540 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 </ul>
 
 <p>组件被移除之前被调用，可以用于做一些清理工作，在 componentDidMount 方法中添加的所有任务都需要在该方法中撤销，比如创建的定时器或添加的事件监听器</p>
+
+<h4 id="请描述一下-cookies-sessionstorage-和-localstorage-的区别">请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h4>
+
+<p>cookie 是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）</p>
+
+<p>cookie 数据始终在同源的 http 请求中携带（即使不需要），记会在浏览器和服务器间来回传递</p>
+
+<p>sessionStorage 和 localStorage 不会自动把数据发给服务器，仅在本地保存</p>
+
+<p>存储大小：</p>
+
+<ul>
+<li>cookie 数据大小不能超过 4k</li>
+<li>sessionStorage 和 localStorage 虽然也有存储大小的限制，但比 cookie 大得多，可以达到 5M 或更大</li>
+</ul>
+
+<p>有期时间：</p>
+
+<ul>
+<li>localStorage 存储持久数据，浏览器关闭后数据不丢失除非主动删除数据</li>
+<li>sessionStorage 数据在当前浏览器窗口关闭后自动删除</li>
+<li>cookie 设置的 cookie 过期时间之前一直有效，即使窗口或浏览器关闭</li>
+</ul>
+
+<h4 id="什么是-quirks-模式">什么是 Quirks 模式</h4>
+
+<p>简单来说，Quirks Mode 就是浏览器为了兼容很早之前针对旧版本浏览器设计、并未严格遵循 W3C 标准的网页而产生的一种页面渲染模式</p>
+
+<p>Quirks Mode 是一种浏览器（像 IE，Firefox，Opera）操作模式。 从根本上说，怪异模式（也称之为兼容模式）意味着一个相对新的浏览器故意模拟许多在旧浏览器中存在的 bug，特别是在 IE4 和 IE5 中</p>
+
+<p>更多可以查看 <a href="https://www.jianshu.com/p/86be91568847" title="Quirks 模式是什么？它和 Standards 模式有什么区别" target="_blank">传送门</a></p>
+
+<h4 id="如何实现浏览器内多个标签页之间的通信-阿里">如何实现浏览器内多个标签页之间的通信?（阿里）</h4>
+
+<p>WebSocket、SharedWorker</p>
+
+<p>也可以调用 localstorge、cookies 等本地存储方式</p>
+
+<p>localstorge 另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件</p>
+
+<p>我们通过监听事件，控制它的值来进行页面信息通信</p>
+
+<p>注意 Quirks（怪癖模式，诡异模式，怪异模式）：Safari 在<strong>无痕模式</strong>下设置 localstorge 值时会抛出 QuotaExceededError 的异常</p>
+
+<h4 id="websocket-如何兼容低浏览器-阿里">webSocket 如何兼容低浏览器？（阿里）</h4>
+
+<ul>
+<li>Adobe Flash Socket</li>
+<li>ActiveX HTMLFile（IE）</li>
+<li>基于 multipart 编码发送 XHR</li>
+<li>基于长轮询的 XHR</li>
+</ul>
+
+<h4 id="如何在页面上实现一个圆形的可点击区域">如何在页面上实现一个圆形的可点击区域？</h4>
+
+<ul>
+<li>map + area 或者 svg</li>
+<li>border-radius</li>
+<li>纯 js 实现 需要求一个点在不在圆上简单算法、获取鼠标坐标等等</li>
+</ul>
+
+<h4 id="网页验证码是干嘛的-是为了解决什么安全问题">网页验证码是干嘛的，是为了解决什么安全问题</h4>
+
+<p>区分用户是计算机还是人的公共全自动程序。可以防止恶意破解密码、刷票、论坛灌水</p>
+
+<p>有效防止黑客对某一个特定注册用户用特定程序暴力破解方式进行不断的登陆尝试</p>
+
+<h3 id="前端框架">前端框架</h3>
+
+<h4 id="react-使用场景">React 使用场景？</h4>
+
+<p>逻辑复杂单页应用，偏中后台管理系统，纯展示性的 UI 页面不合适的时候使用 React</p>
+
+<h4 id="描述一下-react-生命周期">描述一下 React 生命周期</h4>
+
+<p>渲染过程调用到的生命周期函数，主要几个要知道</p>
+
+<ul>
+<li>constructor</li>
+<li>getInitialState</li>
+<li>getDefaultProps</li>
+<li>componentWillMount</li>
+<li>render</li>
+<li>componentDidMount</li>
+</ul>
+
+<p>更新过程</p>
+
+<ul>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate</li>
+</ul>
+
+<p>卸载过程</p>
+
+<ul>
+<li>componentWillUnmount</li>
+</ul>
+
+<h4 id="实现组件有哪些方式">实现组件有哪些方式？</h4>
+
+<ul>
+<li>React.createClass 使用 API 来定义组件</li>
+<li>React ES6 class component 用 ES6 的 class 来定义组件</li>
+<li>Functional stateless component 通过函数定义无状态组件</li>
+</ul>
+
+<h4 id="应该在-react-生命周期的什么阶段发出-ajax-请求-为什么">应该在 React 生命周期的什么阶段发出 Ajax 请求，为什么？</h4>
+
+<p>Ajax 请求应在 componentDidMount 函数中进行请求</p>
+
+<h4 id="shouldcomponentupdate-函数有什么作用">shouldComponentUpdate 函数有什么作用？</h4>
+
+<p>shouldComponentUpdate 是一个允许我们自行决定某些组件（以及他们的子组件）是否进行更新的生命周期函数，reconciliation 的最终目的是尽可能以最有效的方式去根据新的 state 更新 UI</p>
+
+<p>如果你已经知道 UI 的哪些状态无需进行改变，就没必要去让 React 去判断它是否该改变。让 shouldComponentUpdate 返回 false, React 就会让当前的组件和其子组件保持不变</p>
+
+<h4 id="当组件的-setstate-函数被调用之后-发生了什么">当组件的 setState 函数被调用之后，发生了什么？</h4>
+
+<p>React 会做的第一件事就是把你传递给 setState 的参数对象合并到组件原先的 state。这个事件会导致一个 reconciliation（调和）的过程。reconciliation 的最终目标就是，尽可能以最高效的方法，去基于新的 state 来更新 UI。为了达到这个目的，React 会构建一个 React 元素树（你可以把这个想象成一个表示 UI 的一个对象）。一旦这个树构建完毕，React 为了根据新的 state 去决定 UI 要怎么进行改变，它会找出这棵新树和旧树的不同之处。React 能够相对精确地找出哪些位置发生了改变以及如何发生了什么变化，并且知道如何只通过必要的更新来最小化重渲染</p>
+
+<h4 id="为什么循环产生的组件中要利用上-key-这个特殊的-prop">为什么循环产生的组件中要利用上 key 这个特殊的 prop？</h4>
+
+<p>keys 负责帮助 React 跟踪列表中哪些元素被改变 / 添加 / 移除。React 利用子元素的 key 在比较两棵树的时候，快速得知一个元素是新的还是刚刚被移除。没有 keys，React 也就不知道当前哪一个的 item 被移除了</p>
+
+<h4 id="refs-是什么">refs 是什么？</h4>
+
+<p>Refs 是能访问 DOM 元素或组件实例的一个函数</p>
+
+<h4 id="什么时候应该选择用-class-实现一个组件-什么时候用一个函数实现一个组件">什么时候应该选择用 class 实现一个组件，什么时候用一个函数实现一个组件？</h4>
+
+<p>组件用到了 state 或者用了生命周期函数，那么就该使用 Class component。其他情况下，应使用 Functional component</p>
+
+<h4 id="并不是父子关系的组件-如何实现相互的数据通信">并不是父子关系的组件，如何实现相互的数据通信？</h4>
+
+<p>使用父组件，通过 props 将变量传入子组件（如通过 refs，父组件获取一个子组件的方法，简单包装后，将包装后的方法通过 props 传入另一个子组件）</p>
+
+<h4 id="用过-react-技术栈中哪些数据流管理库">用过 React 技术栈中哪些数据流管理库？</h4>
+
+<p>Redux、Dva、mobx 等</p>
+
+<h4 id="页面重构怎么操作">页面重构怎么操作？</h4>
+
+<p>网站重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为</p>
+
+<p>也就是说是在不改变 UI 的情况下，对网站进行优化，在扩展的同时保持一致的 UI</p>
+
+<p>对于传统的网站来说重构通常是：</p>
+
+<ul>
+<li>表格（table）布局改为 DIV + CSS</li>
+<li>使网站前端兼容于现代浏览器（针对于不合规范的 CSS、如对 IE6 有效的兼容）</li>
+<li>对于移动平台的优化</li>
+<li>针对于 SEO 进行优化</li>
+<li>深层次的网站重构应该考虑的方面</li>
+<li>减少代码间的耦合</li>
+<li>让代码保持弹性</li>
+<li>严格按规范编写代码</li>
+<li>设计可扩展的 API</li>
+<li>代替旧有的框架、语言（如 VB）</li>
+<li>增强用户体验</li>
+<li>通常来说对于速度的优化也包含在重构中</li>
+<li>压缩 JS、CSS、image 等前端资源（通常是由服务器来解决）</li>
+<li>程序的性能优化（如数据读写）</li>
+<li>采用 CDN 来加速资源加载</li>
+<li>对于 JS DOM 的优化</li>
+<li>HTTP 服务器的文件缓存</li>
+</ul>
+
+<h4 id="什么叫优雅降级和渐进增强">什么叫优雅降级和渐进增强？</h4>
+
+<p>优雅降级：Web 站点在所有新式浏览器中都能正常工作，如果用户使用的是老式浏览器，则代码会针对旧版本的 IE 进行降级处理了，使之在旧式浏览器上以某种形式降级体验却不至于完全不能用，如：border-shadow</p>
+
+<p>渐进增强：从被所有浏览器支持的基本功能开始，逐步地添加那些只有新版本浏览器才支持的功能，向页面增加不影响基础浏览器的额外样式和功能的。当浏览器支持时，它们会自动地呈现出来并发挥作用。如：默认使用 flash 上传，但如果浏览器支持 HTML5 的文件上传功能，则使用 HTML5 实现更好的体验</p>
+
+<h4 id="是否了解公钥加密和私钥加密">是否了解公钥加密和私钥加密</h4>
+
+<p>一般情况下是指私钥用于对数据进行签名，公钥用于对签名进行验证</p>
+
+<p>HTTP 网站在浏览器端用公钥加密敏感数据，然后在服务器端再用私钥解密</p>
+
+<h4 id="web-应用从服务器主动推送-data-到客户端有那些方式">WEB 应用从服务器主动推送 Data 到客户端有那些方式？</h4>
+
+<ul>
+<li>HTML5 提供的 Websocket</li>
+<li>不可见的 iframe</li>
+<li>WebSocket 通过 Flash</li>
+<li>XHR 长时间连接</li>
+<li>XHR Multipart Streaming</li>
+<li><code>&lt;script&gt;</code>标签的长时间连接（可跨域）</li>
+</ul>
+
+<h4 id="对-node-的优点和缺点提出了自己的看法">对 Node 的优点和缺点提出了自己的看法？</h4>
+
+<ul>
+<li><p>优点：因为 Node 是基于事件驱动和无阻塞的，所以非常适合处理并发请求，因此构建在 Node 上的代理服务器相比其他技术实现（如 Ruby）的服务器表现要好得多。此外，与 Node 代理服务器交互的客户端代码是由 Javascript 语言编写的，因此客户端和服务器端都用同一种语言编写，这是非常美妙的事情</p></li>
+
+<li><p>缺点：Node 是一个相对新的开源项目，所以不太稳定，它总是一直在变，而且缺少足够多的第三方库支持。看起来，就像是 Ruby/Rails 当年的样子</p></li>
+</ul>
+
+<h4 id="你有用过哪些前端性能优化的方法">你有用过哪些前端性能优化的方法？</h4>
+
+<ul>
+<li>减少 http 请求次数：CSS Sprites，JS、CSS 源码压缩、图片大小控制合适；网页 Gzip，CDN 托管，data 缓存，图片服务器</li>
+<li>前端模板 + JS + 数据，减少由于 HTML 标签导致的带宽浪费，前端用变量保存 AJAX 请求结果，每次操作本地变量，不用请求，减少请求次数</li>
+<li>用 innerHTML 代替 DOM 操作，减少 DOM 操作次数，优化 Javascript 性能</li>
+<li>当需要设置的样式很多时设置 className 而不是直接操作 style</li>
+<li>少用全局变量、缓存 DOM 节点查找的结果。减少 IO 读取操作</li>
+<li>避免使用 CSS Expression（css 表达式)，又称 Dynamic properties（动态属性）</li>
+<li>图片预加载，将样式表放在顶部，将脚本放在底部，加上时间戳</li>
+<li>避免在页面的主体布局中使用 table，table 要等其中的内容完全下载之后才会显示出来，显示比 div + css 布局慢</li>
+</ul>
+
+<p>对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘 IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如 join 查询），减少磁盘 IO 指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法 &ldquo;优化&rdquo; 的</p>
+
+<h4 id="http-状态码有那些-分别代表是什么意思">HTTP 状态码有那些？分别代表是什么意思？</h4>
+
+<p>简单版</p>
+
+<ul>
+<li>100 Continue 继续，一般在发送 post 请求时，已发送了 http header 之后服务端将返回此信息，表示确认，之后发送具体参数信息</li>
+<li>200 OK 正常返回信息</li>
+<li>201 Created 请求成功并且服务器创建了新的资源</li>
+<li>202 Accepted 服务器已接受请求，但尚未处理</li>
+<li>301 Moved Permanently 请求的网页已永久移动到新位置</li>
+<li>302 Found 临时性重定向</li>
+<li>303 See Other 临时性重定向，且总是使用 GET 请求新的 URI</li>
+<li>304 Not Modified 自从上次请求后，请求的网页未修改过</li>
+<li>400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求</li>
+<li>401 Unauthorized 请求未授权</li>
+<li>403 Forbidden 禁止访问</li>
+<li>404 Not Found 找不到如何与 URI 相匹配的资源</li>
+<li>500 Internal Server Error 最常见的服务器端错误</li>
+<li>503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）</li>
+</ul>
+
+<p>完整版</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">1</span>** （信息类）：表示接收到请求并且继续处理
+
+  <span class="m">100</span> — 客户必须继续发出请求
+
+  <span class="m">101</span> — 客户要求服务器根据请求转换 HTTP 协议版本
+
+<span class="m">2</span>** （响应成功）：表示动作被成功接收、理解和接受
+
+  <span class="m">200</span> — 表明该请求被成功地完成，所请求的资源发送回客户端
+
+  <span class="m">201</span> — 提示知道新文件的 URL
+
+  <span class="m">202</span> — 接受和处理、但处理未完成
+
+  <span class="m">203</span> — 返回信息不确定或不完整
+
+  <span class="m">204</span> — 请求收到，但返回信息为空
+
+  <span class="m">205</span> — 服务器完成了请求，用户代理必须复位当前已经浏览过的文件
+
+  <span class="m">206</span> — 服务器已经完成了部分用户的 GET 请求
+
+<span class="m">3</span>** （重定向类）：为了完成指定的动作，必须接受进一步处理
+
+  <span class="m">300</span> — 请求的资源可在多处得到
+
+  <span class="m">301</span> — 本网页被永久性转移到另一个 URL
+
+  <span class="m">302</span> — 请求的网页被转移到一个新的地址，但客户访问仍继续通过原始 URL 地址，重定向，新的 URL 会在 response 中的 Location 中返回，浏览器将会使用新的 URL 发出新的 Request
+
+  <span class="m">303</span> — 建议客户访问其他 URL 或访问方式
+
+  <span class="m">304</span> — 自从上次请求后，请求的网页未修改过，服务器返回此响应时，不会返回网页内容，代表上次的文档已经被缓存了，还可以继续使用
+
+  <span class="m">305</span> — 请求的资源必须从服务器指定的地址得到
+
+  <span class="m">306</span> - 前一版本 HTTP 中使用的代码，现行版本中不再使用
+
+  <span class="m">307</span> — 申明请求的资源临时性删除
+
+<span class="m">4</span>** （客户端错误类）：请求包含错误语法或不能正确执行
+
+  <span class="m">400</span> — 客户端请求有语法错误，不能被服务器所理解
+
+  <span class="m">401</span> — 请求未经授权，这个状态代码必须和 WWW-Authenticate 报头域一起使用
+
+  HTTP <span class="m">401</span>.1 - 未授权：登录失败
+
+    HTTP <span class="m">401</span>.2 - 未授权：服务器配置问题导致登录失败
+
+    HTTP <span class="m">401</span>.3 - ACL 禁止访问资源
+
+    HTTP <span class="m">401</span>.4 - 未授权：授权被筛选器拒绝
+
+    HTTP <span class="m">401</span>.5 - 未授权：ISAPI 或 CGI 授权失败
+
+  <span class="m">402</span> — 保留有效 ChargeTo 头响应
+
+  <span class="m">403</span> — 禁止访问，服务器收到请求，但是拒绝提供服务
+
+  HTTP <span class="m">403</span>.1 禁止访问：禁止可执行访问
+
+    HTTP <span class="m">403</span>.2 - 禁止访问：禁止读访问
+
+    HTTP <span class="m">403</span>.3 - 禁止访问：禁止写访问
+
+    HTTP <span class="m">403</span>.4 - 禁止访问：要求 SSL
+
+    HTTP <span class="m">403</span>.5 - 禁止访问：要求 SSL <span class="m">128</span>
+
+    HTTP <span class="m">403</span>.6 - 禁止访问：IP 地址被拒绝
+
+    HTTP <span class="m">403</span>.7 - 禁止访问：要求客户证书
+
+    HTTP <span class="m">403</span>.8 - 禁止访问：禁止站点访问
+
+    HTTP <span class="m">403</span>.9 - 禁止访问：连接的用户过多
+
+    HTTP <span class="m">403</span>.10 - 禁止访问：配置无效
+
+    HTTP <span class="m">403</span>.11 - 禁止访问：密码更改
+
+    HTTP <span class="m">403</span>.12 - 禁止访问：映射器拒绝访问
+
+    HTTP <span class="m">403</span>.13 - 禁止访问：客户证书已被吊销
+
+    HTTP <span class="m">403</span>.15 - 禁止访问：客户访问许可过多
+
+    HTTP <span class="m">403</span>.16 - 禁止访问：客户证书不可信或者无效
+
+    HTTP <span class="m">403</span>.17 - 禁止访问：客户证书已经到期或者尚未生效
+
+  <span class="m">404</span> — 一个 <span class="m">404</span> 错误表明可连接服务器，但服务器无法取得所请求的网页，请求资源不存在。eg：输入了错误的 URL
+
+  <span class="m">405</span> — 用户在 Request-Line 字段定义的方法不允许
+
+  <span class="m">406</span> - 根据用户发送的 Accept 头，请求资源不可访问
+
+  <span class="m">407</span> — 类似 <span class="m">401</span>，用户必须首先在代理服务器上得到授权
+
+  <span class="m">408</span> — 客户端没有在用户指定的时间内完成请求
+
+  <span class="m">409</span> — 对当前资源状态，请求不能完成
+
+  <span class="m">410</span> — 服务器上不再有此资源且无进一步的参考地址
+
+  <span class="m">411</span> — 服务器拒绝用户定义的 Content-Length 属性请求
+
+  <span class="m">412</span> — 一个或多个请求头字段在当前请求中错误
+
+  <span class="m">413</span> — 请求的资源大于服务器允许的大小
+
+  <span class="m">414</span> — 请求的资源 URL 长于服务器允许的长度
+
+  <span class="m">415</span> — 请求资源不支持请求项目格式
+
+  <span class="m">416</span> — 请求中包含 Range 请求头字段，在当前请求资源范围内没有 Range 指示值，请求也不包含 If-Range 请求头字段
+
+  <span class="m">417</span> — 服务器不满足请求 Expect 头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求
+
+<span class="m">5</span>** （服务端错误类）：服务器不能正确执行一个正确的请求
+
+  HTTP <span class="m">500</span> - 服务器遇到错误，无法完成请求
+
+    HTTP <span class="m">500</span>.100 - 内部服务器错误 - ASP 错误
+
+    HTTP <span class="m">500</span>-11 服务器关闭
+
+    HTTP <span class="m">500</span>-12 应用程序重新启动
+
+    HTTP <span class="m">500</span>-13 - 服务器太忙
+
+    HTTP <span class="m">500</span>-14 - 应用程序无效
+
+    HTTP <span class="m">500</span>-15 - 不允许请求 global.asa
+
+    Error <span class="m">501</span> - 未实现
+
+  HTTP <span class="m">502</span> - 网关错误
+
+  HTTP <span class="m">503</span> - 由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常</code></pre></div>
+<h4 id="一个页面从输入-url-到页面加载显示完成-这个过程中都发生了什么-流程说的越详细越好">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</h4>
+
+<p>注：这题胜在区分度高，知识点覆盖广，再不懂的人，也能答出几句，而高手可以根据自己擅长的领域自由发挥，从 URL 规范、HTTP 协议、DNS、CDN、数据库查询到浏览器流式解析、CSS 规则构建、layout、paint、onload/domready、JS 执行、JS API 绑定等等</p>
+
+<p>详细版：</p>
+
+<ul>
+<li>浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理</li>
+<li>调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法</li>
+<li>通过 DNS 解析获取网址的 IP 地址，设置 UA 等信息发出第二个 GET 请求</li>
+<li>进行 HTTP 协议会话，客户端发送报头（请求报头）</li>
+<li>进入到 web 服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器</li>
+<li>进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理</li>
+<li>处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回 304</li>
+<li>浏览器开始下载 HTML 文档（响应报头，状态码 200），同时使用缓存</li>
+<li>文档树建立，根据标记请求所需指定 MIME 类型的文件（比如 css、js），同时设置了 cookie</li>
+<li>页面开始渲染 DOM，JS 根据 DOM API 操作 DOM，执行事件绑定等，页面显示完成</li>
+</ul>
+
+<p>简洁版：</p>
+
+<ul>
+<li>浏览器根据请求的 URL 交给 DNS 域名解析，找到真实 IP，向服务器发起请求</li>
+<li>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）</li>
+<li>浏览器对加载到的资源（HTML、JS、CSS 等）进行语法解析，建立相应的内部数据结构（如 HTML 的 DOM）</li>
+</ul>
+
+<h4 id="对前端工程师这个职位是怎么样理解的-它的前景会怎么样">对前端工程师这个职位是怎么样理解的？它的前景会怎么样？</h4>
+
+<p>前端是最贴近用户的程序员，比后端、数据库、产品经理、运营、安全都近</p>
+
+<ul>
+<li>实现界面交互</li>
+<li>提升用户体验</li>
+<li>有了 Node.js，前端可以实现服务端的一些事情</li>
+</ul>
+
+<p>前端是最贴近用户的程序员，前端的能力就是能让产品从 90 分进化到 100 分，甚至更好</p>
+
+<ul>
+<li>参与项目，快速高质量完成实现效果图，精确到 1px</li>
+<li>与团队成员，UI 设计，产品经理的沟通</li>
+<li>做好的页面结构，页面重构和用户体验</li>
+<li>处理 hack，兼容、写出优美的代码格式</li>
+<li>针对服务器的优化、拥抱最新前端技术</li>
+</ul>
+
+<h4 id="平时如何管理你的项目">平时如何管理你的项目？</h4>
+
+<p>大致遵循以下几点</p>
+
+<ul>
+<li>先期团队必须确定好全局样式（global.css），编码模式（utf-8）等</li>
+<li>编写习惯必须一致（例如都是采用继承式的写法，单样式都写成一行）</li>
+<li>标注样式编写人，各模块都及时标注（标注关键样式调用的地方）</li>
+<li>页面进行标注（例如 页面 模块 开始和结束）</li>
+<li>CSS 跟 HTML 分文件夹并行存放，命名都得统一（例如 style.css）</li>
+<li>JS 分文件夹存放 命名以该 JS 功能为准的英文翻译</li>
+<li>图片采用整合的 images.png png8 格式文件使用 尽量整合在一起使用方便将来的管理</li>
+</ul>
+
+<h4 id="移动端-android-ios-怎么做好用户体验">移动端（Android IOS）怎么做好用户体验？</h4>
+
+<ul>
+<li>清晰的视觉纵线</li>
+<li>信息的分组、极致的减法</li>
+<li>利用选择代替输入</li>
+<li>标签及文字的排布方式</li>
+<li>依靠明文确认密码</li>
+<li>合理的键盘利用</li>
+</ul>
+
+<h3 id="其他">其他</h3>
+
+<p>一些问题，持续更新答案</p>
+
+<h4 id="react-router-路由的实现原理">React-router 路由的实现原理？</h4>
+
+<h4 id="说说-react-native-weex-框架的实现原理">说说 React Native，Weex 框架的实现原理？</h4>
+
+<h4 id="受控组件-controlled-component-与非受控组件-uncontrolled-component-的区别">受控组件（Controlled Component）与非受控组件（Uncontrolled Component）的区别</h4>
+
+<h4 id="react-为什么自己定义一套事件体系呢-与浏览器原生事件体系有什么关系">React 为什么自己定义一套事件体系呢，与浏览器原生事件体系有什么关系？</h4>
+
+<h4 id="什么是-hoc-higher-order-component-适用于什么场景">什么是 HoC（Higher-Order Component）？适用于什么场景？</h4>
+
+<p>高阶组件就是一个 React 组件包裹着另外一个 React 组件</p>
+
+<h4 id="redux-是如何做到可预测呢">Redux 是如何做到可预测呢？</h4>
+
+<h4 id="redux-将-react-组件划分为哪两种">Redux 将 React 组件划分为哪两种？</h4>
+
+<h4 id="redux-是如何将-state-注入到-react-组件上的">Redux 是如何将 state 注入到 React 组件上的？</h4>
+
+<h4 id="请描述一次完整的-redux-数据流">请描述一次完整的 Redux 数据流</h4>
+
+<h4 id="react-的批量更新机制-batchupdates">React 的批量更新机制 BatchUpdates？</h4>
+
+<h4 id="react-与-vue-各自的组件更新进行对比-它们有哪些区别">React 与 Vue，各自的组件更新进行对比，它们有哪些区别？</h4>
+
+<h4 id="设计模式-知道什么是-singleton-factory-strategy-decrator-么">设计模式 知道什么是 singleton, factory, strategy, decrator 么？</h4>
+
+<h4 id="列举-ie-与其他浏览器不一样的特性">列举 IE 与其他浏览器不一样的特性？</h4>
+
+<p>事件不同之处：</p>
+
+<p>触发事件的元素被认为是目标（target）。而在 IE 中，目标包含在 event 对象的 srcElement 属性</p>
+
+<p>获取字符代码、如果按键代表一个字符（shift、ctrl、alt 除外），IE 的 keyCode 会返回字符代码（Unicode），DOM 中按键的代码和字符是分离的，要获取字符代码，需要使用 charCode 属性</p>
+
+<p>阻止某个事件的默认行为，IE 中阻止某个事件的默认行为，必须将 returnValue 属性设置为 false，Mozilla 中，需要调用 preventDefault(); 方法</p>
+
+<p>停止事件冒泡，IE 中阻止事件进一步冒泡，需要设置 cancelBubble 为 true，Mozzilla 中，需要调用 stopPropagation();</p>
+
+<h4 id="99-的网站都需要被重构是那本书上写的">99% 的网站都需要被重构是那本书上写的？</h4>
+
+<p>网站重构：应用 web 标准进行设计（第 2 版）</p>
+
+<p>BTW：这都是什么神仙问题</p>
+
+<h4 id="部分地区用户反应网站很卡-请问有哪些可能性的原因-以及解决方法">部分地区用户反应网站很卡，请问有哪些可能性的原因，以及解决方法？</h4>
+
+<h4 id="从打开-app-到刷新出内容-整个过程中都发生了什么-如果感觉慢-怎么定位问题-怎么解决">从打开 app 到刷新出内容，整个过程中都发生了什么，如果感觉慢，怎么定位问题，怎么解决？</h4>
+
+<h4 id="第一次访问页面中时弹出引导-用户关闭引导-之后再次进入页面时不希望出现引导-如何实现">第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现？</h4>
+
+<p>使用 <code>localStorage</code> 处理实现逻辑</p>
+
+<h4 id="你怎么看待-web-app-hybrid-app-native-app">你怎么看待 Web App 、hybrid App、Native App？</h4>
+
+<h4 id="你移动端前端开发的理解-和-web-前端开发的主要区别是什么">你移动端前端开发的理解？（和 Web 前端开发的主要区别是什么？）</h4>
+
+<h4 id="如何设计突发大规模并发架构">如何设计突发大规模并发架构？</h4>
+
+<h4 id="知道什么是-seo-并且怎么优化么-知道各种-meta-data-的含义么">知道什么是 SEO 并且怎么优化么? 知道各种 meta data 的含义么?</h4>
+
+<h4 id="你认为怎样才是全端工程师-full-stack-developer">你认为怎样才是全端工程师（Full Stack developer）？</h4>
+
+<h4 id="你有自己的技术博客吗-用了哪些技术">你有自己的技术博客吗，用了哪些技术？</h4>
+
+<h4 id="对前端安全有什么看法">对前端安全有什么看法？</h4>
+
+<h4 id="是否了解-web-注入攻击-说下原理-最常见的两种攻击-xss-和-csrf-了解到什么程度">是否了解 Web 注入攻击，说下原理，最常见的两种攻击（XSS 和 CSRF）了解到什么程度？</h4>
+
+<p>具体可以参考 <a href="https://juejin.im/entry/5b4b56fd5188251b1a7b2ac1" title="浅说 XSS 和 CSRF" target="_blank">传送门 1</a> <a href="https://segmentfault.com/a/1190000007660669" title="XSS 和 CSRF 两种跨站攻击" target="_blank">传送门 2</a></p>
+
+<h4 id="项目中遇到国哪些印象深刻的技术难题-具体是什么问题-怎么解决">项目中遇到国哪些印象深刻的技术难题，具体是什么问题，怎么解决？</h4>
+
+<h4 id="最近在学什么东西">最近在学什么东西？</h4>
+
+<h4 id="如何管理前端团队">如何管理前端团队?</h4>
+
+<h4 id="最近在学什么-能谈谈你未来-3-5-年给自己的规划吗">最近在学什么？能谈谈你未来 3，5 年给自己的规划吗？</h4>
 
             </div>
         </article>
