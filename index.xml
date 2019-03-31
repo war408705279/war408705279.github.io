@@ -6,9 +6,12 @@
     <description>Recent content on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>="self" type="application/rss+xml" />
     
     
     <item>
@@ -35,6 +38,20 @@ function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明</description>
 500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
 Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
  首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K+35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度</description>
+    </item>
+    
+    <item>
+      <title>学习网站推荐</title>
+      <link>https://war408705279.github.io/blogs/learn-website/</link>
+      <pubDate>Sun, 31 Mar 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/learn-website/</guid>
+      <description>前端学习网站推荐  极客标签：http://www.gbtags.com （传送门） 码农周刊：http://weekly.manong.io/issues （传送门） 前端周刊：http://www.feweekly.com/issues （传送门） 慕课网：http://www.imooc.com/ （传送门） div.io：http://div.io （传送门） Hacker News：https://news.ycombinator.com/news （传送门） InfoQ：http://www.infoq.com/ （传送门） w3cplus：http://www.w3cplus.com/ （传送门） Stack Overflow：http://stackoverflow.com/ （传送门） w3school：http://www.w3school.com.cn/ （传送门） mozilla：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript （传送门）  文档推荐  JQuery 基本原理 JavaScript 秘密花园 CSS 参考手册 JavaScript 标准参考教程 ECMAScript 6入门  备注 根据自己需要选择性阅读，面试题是对理论知识的总结，让自己学会应该如何表达
+格式和内容不断修改更新中
+在 github 项目的右上角，有三个按钮，分别是 watch、star、fork，新来的同学注意不要用错了，无休止的邮件提醒会给你造成不必要的信息干扰
+当你选择 Watching，表示你以后会关注这个项目的全部动态，以后只要这个项目发生变动，被别人提交了 pull request、被发起了 issue 等情况你都会收到邮件通知
+star 相当于是点赞或收藏，方便以后查找
+fork 表示你想要补充完善这个项目的内容</description>
     </item>
     
     <item>
