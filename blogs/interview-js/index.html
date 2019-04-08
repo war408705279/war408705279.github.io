@@ -43,9 +43,9 @@ call 的基本使用
 function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明">
 
 
-<meta itemprop="datePublished" content="2019-03-31T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-31T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="2410">
+<meta itemprop="datePublished" content="2019-04-08T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-08T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="2948">
 
 
 
@@ -60,7 +60,7 @@ function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明"/>
 
 
 
-<meta property="article:published_time" content="2019-03-31 00:00:00 &#43;0800 CST" />
+<meta property="article:published_time" content="2019-04-08 00:00:00 &#43;0800 CST" />
 
 
 
@@ -1179,29 +1179,277 @@ getElementById() // 通过元素 id，唯一性
 
 <h4 id="用原生-javascript-的实现过什么功能吗">用原生 JavaScript 的实现过什么功能吗？</h4>
 
+<p>可以用原生 JS 实现一个跨平台、兼容各个浏览器的绑定<code>鼠标单击事件</code></p>
+
+<p>可以看下面那个问题的🌰</p>
+
 <h4 id="写一个通用的事件侦听器函数">写一个通用的事件侦听器函数</h4>
+
+<p>看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">EventUtil</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// 根据情况分别使用 dom2 || IE || dom0 方式 来添加事件
+</span><span class="c1"></span>  <span class="nx">addHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s2">&#34;on&#34;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">[</span><span class="s2">&#34;on&#34;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="nx">handler</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+
+  <span class="c1">// 根据情况分别获取 DOM 或者 IE 中的事件对象，事件目标，阻止事件的默认行为
+</span><span class="c1"></span>  <span class="nx">getEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">event</span> <span class="o">?</span> <span class="nx">event</span><span class="o">:</span> <span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">getTarget</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">;</span>
+  <span class="p">},</span>
+  <span class="nx">preventDefault</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 根据情况分别使用 dom2 || IE || dom0 方式来删除事件
+</span><span class="c1"></span>  <span class="nx">removeHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span><span class="nx">type</span><span class="p">,</span><span class="nx">handler</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">removeHandler</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">.</span><span class="nx">detachEvent</span><span class="p">(</span><span class="s2">&#34;on&#34;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">element</span><span class="p">[</span><span class="s2">&#34;on&#34;</span> <span class="o">+</span> <span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 根据情况分别取消 DOM 或者 IE 中事件冒泡
+</span><span class="c1"></span>  <span class="nx">stopPropagation</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&#34;myBtn&#34;</span><span class="p">),</span>
+<span class="nx">handler</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;Clicked&#34;</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">EventUtil</span><span class="p">.</span><span class="nx">addHandler</span><span class="p">(</span><span class="nx">btn</span><span class="p">,</span> <span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+<span class="nx">EventUtil</span><span class="p">.</span><span class="nx">removeHandler</span><span class="p">(</span><span class="nx">btn</span><span class="p">,</span> <span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">);</span>
+</code></pre></div>
+<p>具体可以参考 <a href="https://www.jianshu.com/p/0a4bdf450fb3" title="写一个通用的事件侦听器函数" target="_blank">传送门</a></p>
 
 <h4 id="页面编码和被请求的资源编码如果不一致如何处理">页面编码和被请求的资源编码如果不一致如何处理？</h4>
 
+<p>比如：<code>http://www.yyy.com/a.html</code> 中嵌入了一个 <code>http://www.xxx.com/test.js</code></p>
+
+<p>a.html 的编码是 gbk 或 gb2312 的。而引入的 js 编码为 utf-8，那就需要在引入的时候</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://www.xxx.com/test.js&#34;</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<p>同理，如果你的页面是 utf-8 的，引入的 js 是 gbk 的，那么就需要加上 charset=&ldquo;gbk&rdquo;</p>
+
+<p>另有一种说法</p>
+
+<p>对于 ajax 请求传递的参数，如果是 get 请求方式，参数如果传递中文，在有些浏览器（例如 IE 浏览器和其他浏览器的 IE 兼容模式）会乱码，不同的浏览器对参数编码的处理方式不同，所以对于 get 请求的参数需要使用 <code>encodeURIComponent</code> 函数对参数进行编码处理，后台开发语言都有相应的解码 api。对于 post 请求不需要 进行编码</p>
+
 <h4 id="requirejs-的核心原理是什么-如何动态加载的-如何避免多次加载的-如何缓存的">requireJS 的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何缓存的？）</h4>
+
+<p>概念</p>
+
+<p>requireJS 是基于 AMD 模块加载规范，使用回调函数来解决模块加载的问题</p>
+
+<p>原理</p>
+
+<p>requireJS 是使用创建 script 元素（标签），通过指定 script 元素的 src 属性来实现加载模块的</p>
+
+<p>特点</p>
+
+<ul>
+<li>实现 js 文件的异步加载，避免网页失去响应</li>
+<li>管理模块之间的依赖，便于代码的编写和维护</li>
+</ul>
+
+<p>项目优化</p>
+
+<p>r.js 是基于 requireJS 模块化的基础上进一步的压缩和打包成一个 js，请求数大大减少，便于优化</p>
+
+<p>另一种说法</p>
+
+<p>核心是 js 的加载模块，通过正则匹配模块以及模块的依赖关系，保证文件加载的先后顺序，根据文件的路径对加载过的文件做了缓存</p>
 
 <h4 id="js-模块加载器的轮子怎么造-也就是如何实现一个模块加载器">JS 模块加载器的轮子怎么造，也就是如何实现一个模块加载器？</h4>
 
+<p>目前模块化的思想分为 CommonJS、AMD 和 CMD</p>
+
+<p>模块化的核心思想：</p>
+
+<ul>
+<li>拆分。将 js 代码按功能逻辑拆分成多个可复用的 js 代码文件（模块）</li>
+<li>加载。如何将模块进行加载执行和输出</li>
+<li>注入。能够将一个 js 模块的输出注入到另一个 js 模块中</li>
+<li>依赖管理。前端工程模块数量众多，需要来管理模块之间的依赖关系</li>
+</ul>
+
+<p>一个模块的加载可能存在以下几种可能的状态</p>
+
+<ul>
+<li>加载（load）状态，包括未加载（preload）状态、加载（loading）状态和加载完毕（loaded）状态</li>
+<li>正在加载依赖（pending）状态</li>
+<li>模块回调完成（finished）状态</li>
+</ul>
+
+<p>因此，需要为每个加载的模块加上状态标志（status），来识别目前模块的状态</p>
+
+<p>具体可以参考 <a href="https://juejin.im/post/59c31a0a6fb9a00a67614596" title="前端工程 - 从原理到轮子之 JS 模块化" target="_blank">传送门</a></p>
+
 <h4 id="谈一谈你对-ecmascript6-的了解">谈一谈你对 ECMAScript6 的了解？</h4>
 
-<p>具体可以参考 <a href="../ES6/ES6_introduce.md" title="ES6 概述">传送门</a></p>
+<p>具体可以参考 <a href="https://github.com/war408705279/mylibrary/blob/develop/ES6/ES6_introduce.md" title="ES6 概述" target="_blank">传送门</a></p>
 
 <h4 id="ecmascript6-怎么写-class-为什么会出现-class-这种东西">ECMAScript6 怎么写 class，为什么会出现 class 这种东西？</h4>
 
+<p>在没有 ES6 带来的 class 的时候，在编写 JavaScript 的时候很多时候会通过构造函数和原型链来添加方法属性，实现 class 的功能</p>
+
+<p>看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Box 是一个构造器
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">Box</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;circle&#39;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 可以通过 prototype 的方式来加一条实例方法
+</span><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hello</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// 对于私有属性（Static method），不能放在原型链上。可以直接放在构造函数上面
+</span><span class="c1"></span><span class="nx">Person</span><span class="p">.</span><span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="c1">// 通过 new 来创建
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">circle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Box</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>但是在 ES6 的规范中，可以使用 class 语法，ES6 的 class 可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 class 写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。上面的代码用 ES6 的 class 改写，就是下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">class</span> <span class="nx">Box</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&#34;corcle&#34;</span>
+  <span class="p">}</span>
+  <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;hello &#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="kr">static</span> <span class="nx">fn</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>上面代码定义了一个&rdquo;类&rdquo;，可以看到里面有一个 constructor 方法，这就是构造方法，而 this 关键字则代表实例对象</p>
+
+<p>需要注意
+- class 内的方法不需要 function 关键字，直接把函数定义放进去了就可以了
+- 另外，方法之间不需要逗号分隔，加了会报错
+- class 内部默认是严格模式</p>
+
+<p>需要注意这个和 JavaScript 中的对象写法是不一样的。而是看成是构造函数的写法。而且目前使用 typeof 来判断 class 的类型的时候返回的结果是 function</p>
+
+<p>constructor 方法是类的默认方法，通过 new 命令生成对象实例时，自动调用该方法。一个类必须有 constructor 方法，如果没有显式定义，一个空的 constructor 方法会被默认添加</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">class</span> <span class="nx">Box</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="c1">// 等同于
+</span><span class="c1"></span><span class="k">class</span> <span class="nx">Box</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>具体可以查看 <a href="https://segmentfault.com/a/1190000011783384" title="JavaScript 的 ES6 的 class 使用" target="_blank">传送门 1</a> <a href="https://juejin.im/entry/5975755e51882566ac45a000" title="ES6 中关于 class 的那些事儿" target="_blank">传送门 2</a></p>
+
 <h4 id="数组和对象有哪些原生方法-列举一下">数组和对象有哪些原生方法，列举一下？</h4>
+
+<p>数组</p>
+
+<ul>
+<li>forEach 遍历所有元素</li>
+<li>every 判断所有元素是否都符合条件</li>
+<li>some 判断是否有至少一个元素符合条件</li>
+<li>sort 排序</li>
+<li>map 对元素重新组装，生成新数组</li>
+<li>filter 过滤符合条件的元素</li>
+</ul>
+
+<p>对象</p>
+
+<ul>
+<li>for-in 遍历对象属性</li>
+</ul>
+
+<p>具体可以参考 <a href="https://blog.csdn.net/qq_39284848/article/details/78039613" title="JS 数组和对象的一些原生方法（常用 API）" target="_blank">传送门</a></p>
 
 <h4 id="js-怎么实现一个类-怎么实例化这个类">JS 怎么实现一个类。怎么实例化这个类？</h4>
 
+<p>大体上分为三种方法</p>
+
+<ul>
+<li>构造函数法</li>
+<li>Object.create() 法</li>
+<li>极简主义法</li>
+</ul>
+
+<p>具体可以参考 <a href="http://www.ruanyifeng.com/blog/2012/07/three_ways_to_define_a_javascript_class.html" title="Javascript定义类（class）的三种方法" target="_blank">传送门</a></p>
+
 <h4 id="javascript-中的作用域与变量声明提升">JavaScript 中的作用域与变量声明提升？</h4>
+
+<p>具体可以查看 <a href="https://github.com/war408705279/mylibrary/blob/develop/Interview/JS.md#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87" title="变量声明提升和函数声明提升" target="_blank">github 传送门</a></p>
 
 <h4 id="如何编写高性能的-javascript">如何编写高性能的 Javascript？</h4>
 
+<p>编写高性能 Javascript 需要注意的点还是挺多的，也有很多小技巧。下面只是列举出了一些写的不错的博文，更多的内容可以继续查找，或者在平时的工作学习中进行积累</p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/34780474" title="编写高性能 Javascript 代码的若干建议" target="_blank">传送门 1</a></p>
+
+<p><a href="https://juejin.im/post/5a26b9baf265da431e169fe9" title="看完离编写高性能的 JavaScript 又近了一步" target="_blank">传送门 2</a></p>
+
+<p><a href="https://juejin.im/post/5c716be8e51d452854144bb3" title="编写高性能的 JavaScript" target="_blank">传送门 3</a></p>
+
 <h4 id="那些操作会造成内存泄漏-1">那些操作会造成内存泄漏？</h4>
+
+<p>什么是内存泄漏</p>
+
+<p>内存泄漏是指一块被分配的内存既不能使用，又不能回收，直到浏览器进程结束。在 C++ 中，因为是手动管理内存，内存泄漏是经常出现的事情。而现在流行的 C# 和 Java 等语言采用了自动垃圾回收方法管理内存，正常使用的情况下几乎不会发生内存泄漏。浏览器中也是采用自动垃圾回收方法管理内存，但由于浏览器垃圾回收方法有 bug，因此会产生内存泄漏</p>
+
+<p>首先要了解 JS 的垃圾回收机制，然后再了解可能产生内存泄漏的操作</p>
+
+<p>JS 的垃圾回收机制 - GC</p>
+
+<p>Javascript 具有自动垃圾回收机制（GC：Garbage Collecation），也就是说，执行环境会负责管理代码执行过程中使用的内存。JavaScript 垃圾回收的机制很简单：找出不再使用的变量，然后释放掉其占用的内存，但是这个过程不是实时的，因为其开销比较大，所以垃圾回收系统（GC）会按照固定的时间间隔，周期性的执行。到底哪个变量是没有用的？所以垃圾收集器必须跟踪到底哪个变量没用，对于不再有用的变量打上标记，以备将来收回其内存。用于标记的无用变量的策略可能因实现而有所区别，通常情况下有两种实现方式：标记清除和引用计数</p>
+
+<ul>
+<li>标记清除</li>
+</ul>
+
+<p>JS 中最常用的垃圾回收方式就是标记清除。当变量进入环境时，例如，在函数中声明一个变量，就将这个变量标记为 &ldquo;进入环境&rdquo;。从逻辑上讲，永远不能释放进入环境的变量所占用的内存，因为只要执行流进入相应的环境，就可能会用到它们。而当变量离开环境时，则将其标记为 &ldquo;离开环境&rdquo;，看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 被标记，进入环境
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// 被标记，进入环境
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="nx">test</span><span class="p">();</span> <span class="c1">// 执行结束后，a 和 b 被标记为离开环境，进入回收
+</span></code></pre></div>
+<ul>
+<li>引用计数</li>
+</ul>
+
+<p>引用计数的含义是跟踪记录每个值被引用的次数。当声明了一个变量并将一个引用类型值（function object array）赋给该变量时，则这个值的引用次数就是 1。如果同一个值又被赋给另一个变量，则该值的引用次数加 1。相反，如果包含对这个值引用的变量又取得了另外一个值，则这个值的引用次数减 1。当这个值的引用次数变成 0 时，则说明没有办法再访问这个值了，因而就可以将其占用的内存空间回收回来。这样，当垃圾回收器下次再运行时，它就会释放那些引用次数为 0 的值所占用的内存，看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">test</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// a 的引用次数为 0
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span> <span class="c1">// a 的引用次数 +1，为 1
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span> <span class="c1">// a 的引用次数 +1，为 2
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">{};</span> <span class="c1">// a 的引用次数 -1，为 1
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div>
+<p>导致内存泄漏的操作可以查看 <a href="https://www.jianshu.com/p/763ba9562864" title="JS 哪些操作会造成内存泄漏？" target="_blank">传送门 1</a> <a href="http://www.ruanyifeng.com/blog/2017/04/memory-leak.html" title="JavaScript 内存泄漏教程" target="_blank">传送门 2</a></p>
 
 <h4 id="jquery-的源码看过吗-能不能简单概况一下它的实现原理">JQuery 的源码看过吗？能不能简单概况一下它的实现原理？</h4>
 
