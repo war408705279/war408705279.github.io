@@ -6,7 +6,7 @@
     <description>Recent content in Blogs on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 31 Mar 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>前端面试题 - JS</title>
       <link>https://war408705279.github.io/blogs/interview-js/</link>
-      <pubDate>Sun, 31 Mar 2019 00:00:00 +0800</pubDate>
+      <pubDate>Mon, 08 Apr 2019 00:00:00 +0800</pubDate>
       
       <guid>https://war408705279.github.io/blogs/interview-js/</guid>
       <description>前端 JS 面试题积累 JS 获取 URL 中的 Query 参数 getQueryString(name) { var reg = new RegExp(&amp;#39;(^|&amp;amp;)&amp;#39; + name + &amp;#39;=([^&amp;amp;]*)(&amp;amp;|$)&amp;#39;, &amp;#39;i&amp;#39;); var r = routerStore.location.search.substr(1).match(reg); if (r !== null) { return unescape(r[2]); } return null; } // 调用的时候传递 query 参数的 key 值进去  // 例如需要获取 url 中 id 对应的值  var id = getQueryString(&amp;#39;id&amp;#39;)  call() 和 apply() 的异同 call 和 apply 的基本作用都是改变对象执行的上下文
