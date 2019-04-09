@@ -5,7 +5,7 @@
 ##### 如何在博文中添加图片
 
 ```shell
-cd /code/my-blog/public
+cd /code/myblog/public
 
 mkdir images
 ```

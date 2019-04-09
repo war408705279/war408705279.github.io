@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="author" content="Zhazha ">
+<meta name="description" content="平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去。但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github &#43; Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
+*注*：以下步骤以在 macOS 上的操作为例，其它操作系统类似，只是一些工具和命令有区别
+注册一个 Github 账号 首先你要有一个 Github 账号，这里就不赘述了，毕竟注册 Github 的流程不复杂
+创建一个 repo 新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username
+例如我创建的 repo 就叫 war408705279.github.io
+安装 Hugo Hugo 安装的官方文档 传送门
+可以使用 Homebrew 进行快速的安装，命令如下
+# 安装 hugo brew install hugo # 查看 hugo 版本信息 hugo version 新建一个 Hugo 网站 cd 到你想保存 Hugo 网站的目录下，运行下面的命令
+cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹
+选择 Hugo 主题并克隆至本地目录 Hugo 一个比较棒的功能是可以让用户自定义博客主题"/>
+<meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://war408705279.github.io/blogs/hugo/" />
+
+
+    <title>
+        
+            如何使用 Git&#43;Hugo 搭建属于自己的博客网站 :: rm -rf *  — Welcome to my blog
+        
+    </title>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="https://war408705279.github.io/scss/main.min.099699ab246bf26f50616f7c9f00c79d46110459d1bd727b2d07d6fc09ece082.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://war408705279.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://war408705279.github.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://war408705279.github.io/favicon-16x16.png">
+<link rel="manifest" href="https://war408705279.github.io/site.webmanifest">
+<link rel="mask-icon" href="https://war408705279.github.io/safari-pinned-tab.svg" color="">
+<link rel="shortcut icon" href="https://war408705279.github.io/favicon.ico">
+<link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
+
+<meta itemprop="name" content="如何使用 Git&#43;Hugo 搭建属于自己的博客网站">
+<meta itemprop="description" content="平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去。但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github &#43; Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
+*注*：以下步骤以在 macOS 上的操作为例，其它操作系统类似，只是一些工具和命令有区别
+注册一个 Github 账号 首先你要有一个 Github 账号，这里就不赘述了，毕竟注册 Github 的流程不复杂
+创建一个 repo 新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username
+例如我创建的 repo 就叫 war408705279.github.io
+安装 Hugo Hugo 安装的官方文档 传送门
+可以使用 Homebrew 进行快速的安装，命令如下
+# 安装 hugo brew install hugo # 查看 hugo 版本信息 hugo version 新建一个 Hugo 网站 cd 到你想保存 Hugo 网站的目录下，运行下面的命令
+cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹
+选择 Hugo 主题并克隆至本地目录 Hugo 一个比较棒的功能是可以让用户自定义博客主题">
+
+
+<meta itemprop="datePublished" content="2019-04-09T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-09T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="603">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://war408705279.github.io"/>
+
+<meta name="twitter:title" content="如何使用 Git&#43;Hugo 搭建属于自己的博客网站"/>
+<meta name="twitter:description" content="平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去。但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github &#43; Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
+*注*：以下步骤以在 macOS 上的操作为例，其它操作系统类似，只是一些工具和命令有区别
+注册一个 Github 账号 首先你要有一个 Github 账号，这里就不赘述了，毕竟注册 Github 的流程不复杂
+创建一个 repo 新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username
+例如我创建的 repo 就叫 war408705279.github.io
+安装 Hugo Hugo 安装的官方文档 传送门
+可以使用 Homebrew 进行快速的安装，命令如下
+# 安装 hugo brew install hugo # 查看 hugo 版本信息 hugo version 新建一个 Hugo 网站 cd 到你想保存 Hugo 网站的目录下，运行下面的命令
+cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹
+选择 Hugo 主题并克隆至本地目录 Hugo 一个比较棒的功能是可以让用户自定义博客主题"/>
+
+
+
+<meta property="article:published_time" content="2019-04-09 00:00:00 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://war408705279.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ rm -rf *</span>
+            <span class="logo__cursor"></span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://war408705279.github.io/blogs/">博客</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/hugo/">如何使用 Git+Hugo 搭建属于自己的博客网站</a></h2>
+
+            
+
+            <div class="post-content">
+                
+
+<p>平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去。但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github + Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍</p>
+
+<p>*注*：以下步骤以在 macOS 上的操作为例，其它操作系统类似，只是一些工具和命令有区别</p>
+
+<h4 id="注册一个-github-账号">注册一个 Github 账号</h4>
+
+<p>首先你要有一个 Github 账号，这里就不赘述了，毕竟注册 Github 的流程不复杂</p>
+
+<h4 id="创建一个-repo">创建一个 repo</h4>
+
+<p>新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username</p>
+
+<p>例如我创建的 repo 就叫 war408705279.github.io</p>
+
+<h4 id="安装-hugo">安装 Hugo</h4>
+
+<p>Hugo 安装的官方文档 <a href="https://gohugo.io/getting-started/installing/" title="Hugo 安装的官方文档" target="_blank">传送门</a></p>
+
+<p>可以使用 Homebrew 进行快速的安装，命令如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 安装 hugo</span>
+brew install hugo
+
+<span class="c1"># 查看 hugo 版本信息</span>
+hugo version</code></pre></div>
+<h4 id="新建一个-hugo-网站">新建一个 Hugo 网站</h4>
+
+<p>cd 到你想保存 Hugo 网站的目录下，运行下面的命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /code
+
+hugo new site myblog</code></pre></div>
+<p>命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹</p>
+
+<h4 id="选择-hugo-主题并克隆至本地目录">选择 Hugo 主题并克隆至本地目录</h4>
+
+<p>Hugo 一个比较棒的功能是可以让用户自定义博客主题</p>
+
+<p>官方获取 themes 主题的地址 <a href="https://themes.gohugo.io" title="Hugo 官方主题" target="_blank">传送门</a></p>
+
+<p>目前我使用的主题是 hello-friend-ng <a href="https://themes.gohugo.io/hugo-theme-hello-friend-ng/" title="Hugo hello-friend-ng 主题" target="_blank">传送门</a></p>
+
+<p>将所选主题克隆至本地目录，运行下面的命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 进入网站目录，这个目录就是之前创建的那个目录</span>
+<span class="nb">cd</span> /code/myblog
+
+<span class="c1"># 在目录下创建 themes 文件夹</span>
+mkdir -p themes
+
+<span class="c1"># 进入 themes 目录</span>
+<span class="nb">cd</span> themes
+
+<span class="c1"># 将 hello-friend-ng 主题克隆至 hello-friend-ng 文件夹</span>
+git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend-ng</code></pre></div>
+<h4 id="编辑配置文件">编辑配置文件</h4>
+
+<p>现在准备工作就完成了，需要修改配置文件使主题生效，同时也可以通过配置文件自定义 title，目录 等</p>
+
+<p>配置文件为 /code/myblog 目录下的 config.toml 文件</p>
+
+<p>一般情况下，Hugo 主题页面中多会对该主题怎么进行配置予以说明，如果实在不知道怎么去配置，git clone 下来的 themes 代码里面有示例可以进行参考，类似我使用的主题，配置文件的示例就保存在 /code/myblog/themes/hello-friend-ng/exampleSite/config.toml 文件中</p>
+
+<p>下面这段配置是我目前正在使用的配置</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://war408705279.github.io&#34;</span>
+<span class="nx">title</span>   <span class="p">=</span> <span class="s2">&#34;rm -rf *&#34;</span>
+
+<span class="nx">DefaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+
+<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;hello-friend-ng&#34;</span>
+
+<span class="nx">pygmentsCodefences</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">pygmentsUseClasses</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">rssLimit</span>  <span class="p">=</span> <span class="mi">10</span>  <span class="c"># Maximum number of items in the RSS feed.</span>
+<span class="nx">copyright</span> <span class="p">=</span> <span class="s2">&#34;This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.&#34;</span> <span class="c"># This message is only used by the RSS template.</span>
+
+<span class="c"># googleAnalytics = &#34;&#34;</span>
+<span class="c"># disqusShortname = &#34;&#34;</span>
+
+<span class="nx">archetypeDir</span> <span class="p">=</span> <span class="s2">&#34;archetypes&#34;</span>
+<span class="nx">contentDir</span>   <span class="p">=</span> <span class="s2">&#34;content&#34;</span>
+<span class="nx">dataDir</span>      <span class="p">=</span> <span class="s2">&#34;data&#34;</span>
+<span class="nx">layoutDir</span>    <span class="p">=</span> <span class="s2">&#34;layouts&#34;</span>
+<span class="nx">publishDir</span>   <span class="p">=</span> <span class="s2">&#34;public&#34;</span>
+
+<span class="nx">buildDrafts</span>  <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">buildFuture</span>  <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">buildExpored</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">canonifyURLs</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="nx">enableRobotsTXT</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">enableGitInfo</span>   <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">enableEmoji</span>     <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">enableMissingTranslationPlaceholders</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">disableRSS</span>     <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">disableSitemap</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">disable404</span>     <span class="p">=</span> <span class="kc">false</span>
+<span class="nx">disableHugoGeneratorInject</span> <span class="p">=</span> <span class="kc">false</span>
+
+<span class="p">[</span><span class="nx">permalinks</span><span class="p">]</span>
+  <span class="nx">posts</span> <span class="p">=</span> <span class="s2">&#34;/posts/:year/:month/:title/&#34;</span>
+
+<span class="p">[</span><span class="nx">author</span><span class="p">]</span>
+  <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Zhazha&#34;</span>
+
+<span class="p">[</span><span class="nx">blackfriday</span><span class="p">]</span>
+  <span class="nx">hrefTargetBlank</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="p">[</span><span class="nx">taxonomies</span><span class="p">]</span>
+  <span class="nx">tag</span>      <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+  <span class="nx">category</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+
+<span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+  <span class="nx">dateform</span>        <span class="p">=</span> <span class="s2">&#34;Jan 2, 2006&#34;</span>
+  <span class="nx">dateformShort</span>   <span class="p">=</span> <span class="s2">&#34;Jan 2&#34;</span>
+  <span class="nx">dateformNum</span>     <span class="p">=</span> <span class="s2">&#34;2006-01-02&#34;</span>
+  <span class="nx">dateformNumTime</span> <span class="p">=</span> <span class="s2">&#34;2006-01-02 15:04 +0800&#34;</span>
+
+  <span class="c"># Metadata mostly used in document&#39;s head</span>
+  <span class="nx">description</span> <span class="p">=</span> <span class="s2">&#34;This is a blog belongs to Zhazha&#34;</span>
+  <span class="nx">keywords</span> <span class="p">=</span> <span class="s2">&#34;HTML5, Javascript, css, front-end, blog&#34;</span>
+  <span class="nx">images</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">]</span>
+
+  <span class="nx">homeSubtitle</span> <span class="p">=</span> <span class="s2">&#34;Welcome to my blog&#34;</span>
+
+  <span class="c"># Prefix of link to the git commit detail page. GitInfo must be enabled.</span>
+  <span class="c"># gitUrl = &#34;&#34;</span>
+
+  <span class="c"># Integrate Javascript files or stylesheets by adding the url to the external assets or by</span>
+  <span class="c"># linking local files with their path relative to the static folder, e.g. &#34;css/styles.css&#34;</span>
+  <span class="nx">customCSS</span> <span class="p">=</span> <span class="p">[]</span>
+  <span class="nx">customJS</span>  <span class="p">=</span> <span class="p">[]</span>
+
+  <span class="c"># Toggle this option need to rebuild SCSS, requires extended version of Hugo</span>
+  <span class="nx">justifyContent</span> <span class="p">=</span> <span class="kc">false</span>  <span class="c"># Set &#34;text-align: justify&#34; to .content.</span>
+
+  <span class="c"># Directory name of your blog content (default is `content/posts`)</span>
+  <span class="nx">contentTypeName</span> <span class="p">=</span> <span class="s2">&#34;blogs&#34;</span>
+  <span class="c"># Default theme &#34;light&#34; or &#34;dark&#34;</span>
+  <span class="nx">defaultTheme</span> <span class="p">=</span> <span class="s2">&#34;dark&#34;</span>
+
+  <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">logo</span><span class="p">]</span>
+    <span class="nx">logoText</span>     <span class="p">=</span> <span class="s2">&#34;$ rm -rf *&#34;</span>
+    <span class="nx">logoHomeLink</span> <span class="p">=</span> <span class="s2">&#34;/&#34;</span>
+
+  <span class="c"># Social icons</span>
+
+  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;email&#34;</span>
+    <span class="nx">url</span>  <span class="p">=</span> <span class="s2">&#34;mailto:jiayizhen@qiniu.com&#34;</span>
+
+  <span class="p">[[</span><span class="nx">params</span><span class="p">.</span><span class="nx">social</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;github&#34;</span>
+    <span class="nx">url</span>  <span class="p">=</span> <span class="s2">&#34;https://github.com/war408705279/&#34;</span>
+
+<span class="p">[</span><span class="nx">languages</span><span class="p">]</span>
+  <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">]</span>
+    <span class="nx">subtitle</span>  <span class="p">=</span> <span class="s2">&#34;Welcome to my blog&#34;</span>
+    <span class="nx">weight</span>    <span class="p">=</span> <span class="mi">1</span>
+    <span class="nx">copyright</span> <span class="p">=</span> <span class="s1">&#39;&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;&#39;</span>
+
+<span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;blogs&#34;</span>
+    <span class="nx">name</span>       <span class="p">=</span> <span class="s2">&#34;博客&#34;</span>
+    <span class="nx">url</span>        <span class="p">=</span> <span class="s2">&#34;blogs/&#34;</span></code></pre></div>
+<h4 id="新建一篇文章">新建一篇文章</h4>
+
+<p>进入网站文件夹的根目录</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /code/myblog</code></pre></div>
+<p>使用以下命令新建一篇文章</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">hugo new blogs/blog-test.md</code></pre></div>
+<p>运行上述命令后，会在 /code/myblog/content 目录下面创建一个 blogs 文件夹，并在该文件夹中创建 blog-test.md 文件。在后续创建文章的过程中，要注意路径和文件命名的问题，避免重复创建、路径错误等问题</p>
+
+<p>编辑新建的文章，添加内容并保存</p>
+
+<h4 id="本地预览网站效果">本地预览网站效果</h4>
+
+<p>在本地启动 Hugo server</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /code/myblog
+
+hugo server -D</code></pre></div>
+<p>可以看到本地服务启在 <a href="http://localhost:1313" target="_blank">http://localhost:1313</a></p>
+
+<p>如果你对编辑的结果满意，就可以准备发布了。如果不满意，可以继续对 config.toml 文件或你创建 md 的文件进行编辑，本地的 hugo server 是热更新的，每次你保存后就会自动更新</p>
+
+<h4 id="构建-hugo-网站">构建 Hugo 网站</h4>
+
+<p>运行下面的命令在本地构建 hugo 网站</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /code/myblog
+
+hugo</code></pre></div>
+<p>本地构建成功后，生成的文件保存在 /code/myblog/public 文件夹中，包含 html、css、js、图片文件等</p>
+
+<h4 id="将网站文件夹转换为-git-库">将网站文件夹转换为 Git 库</h4>
+
+<p>下面就是将本地目录和 Git 远程库关联起来</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 生成的 hugo 站点文件保存在 public 目录中，需要将 public 文件夹转换为 Git 库</span>
+<span class="nb">cd</span> /code/myblog/public
+
+<span class="c1"># 初始化 Git 库</span>
+git init
+
+<span class="c1"># 将本地目录和 Git 远程仓库关联</span>
+git remote add origin git@github.com:war408705279/war408705279.github.io.git</code></pre></div>
+<h4 id="将修改推至远程库">将修改推至远程库</h4>
+
+<p>关联成功后，会看到本地 Git 库和远程的 Git 仓库有差异，需要将修改推送到远程的 Git 仓库，运行下面的命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">git add .
+git commit -m <span class="s1">&#39;init blog page&#39;</span>
+git push origin master</code></pre></div>
+<p>推送成功后，你的 blog 网站就创建成功了，可以通过下面的链接访问</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 把 war408705279.github.io 这部分换成你的 Git repo 名字就可以了</span>
+https://war408705279.github.io/</code></pre></div>
+<p>如果想使用 HTTPS 以防止其他人窥探或篡改网站流量，在 GitHub 上打开相应的库，点击 Settings 勾选 Enforce HTTPS 即可，如下图所示</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/github_repo_enforce_https.png" alt="Github Repo 使用 HTTPS" title="Github Repo 使用 HTTPS" /></p>
+
+<h4 id="后续">后续</h4>
+
+<p>如果你想修改博客文章，或者增加新的博客文章，只需要重复下面几步就可以了</p>
+
+<ul>
+<li>新建一篇文章，编辑内容</li>
+<li>本地预览网站呈现效果</li>
+<li>构建 Hugo 网站</li>
+<li>提交修改至 Git 本地库</li>
+<li>将修改推至远程库</li>
+</ul>
+
+<h4 id="live-long-and-prosper">Live Long And Prosper</h4>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  			</div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2019</span>
+            
+                <span><a href="https://war408705279.github.io">Zhazha</a></span>
+            
+            <span><a href="https://github.com/war408705279/" target="_blank" rel="noopener">404 Not Found</a></span>
+            <span> <a href="https://war408705279.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+
+<script type="text/javascript" src="https://war408705279.github.io/js/bundle.f65a6fe80656eb86fce3f1228faa2ac0bf43b28d21eb91975f036839ed92dfd126cabb91223501623641f4ea67ac5d03882d0b8c744da38c637a1fdf8e9016c6.js" integrity="sha512-9lpv6AZW64b84/Eij6oqwL9Dso0h65GXXwNoOe2S39EmyruRIjUBYjZB9OpnrF0DiC0LjHRNo4xjeh/fjpAWxg=="></script>
+
+
+
+    </body>
+</html>
