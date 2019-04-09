@@ -39,10 +39,10 @@ cd 到你想保存 Hugo 网站的目录下，运行下面的命令
 ```shell
 cd /code
 
-hugo new site my-blog
+hugo new site myblog
 ```
 
-命令运行成功后会在当前目录（/code）下创建一个名为 my-blog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 my-blog 文件夹
+命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹
 
 #### 选择 Hugo 主题并克隆至本地目录
 
@@ -56,7 +56,7 @@ Hugo 一个比较棒的功能是可以让用户自定义博客主题
 
 ```shell
 # 进入网站目录，这个目录就是之前创建的那个目录
-cd /code/my-blog
+cd /code/myblog
 
 # 在目录下创建 themes 文件夹
 mkdir -p themes
@@ -188,7 +188,7 @@ disableHugoGeneratorInject = false
 进入网站文件夹的根目录
 
 ```shell
-cd /code/my-blog
+cd /code/myblog
 ```
 
 使用以下命令新建一篇文章
@@ -197,7 +197,7 @@ cd /code/my-blog
 hugo new blogs/blog-test.md
 ```
 
-运行上述命令后，会在 /code/my-blog/content 目录下面创建一个 blogs 文件夹，并在该文件夹中创建 blog-test.md 文件。在后续创建文章的过程中，要注意路径和文件命名的问题，避免重复创建、路径错误等问题
+运行上述命令后，会在 /code/myblog/content 目录下面创建一个 blogs 文件夹，并在该文件夹中创建 blog-test.md 文件。在后续创建文章的过程中，要注意路径和文件命名的问题，避免重复创建、路径错误等问题
 
 编辑新建的文章，添加内容并保存
 
@@ -206,7 +206,7 @@ hugo new blogs/blog-test.md
 在本地启动 Hugo server
 
 ```shell
-cd /code/my-blog
+cd /code/myblog
 
 hugo server -D
 ```
@@ -220,12 +220,12 @@ hugo server -D
 运行下面的命令在本地构建 hugo 网站
 
 ```shell
-cd /code/my-blog
+cd /code/myblog
 
 hugo
 ```
 
-本地构建成功后，生成的文件保存在 /code/my-blog/public 文件夹中，包含 html、css、js、图片文件等
+本地构建成功后，生成的文件保存在 /code/myblog/public 文件夹中，包含 html、css、js、图片文件等
 
 #### 将网站文件夹转换为 Git 库
 
@@ -233,7 +233,7 @@ hugo
 
 ```shell
 # 生成的 hugo 站点文件保存在 public 目录中，需要将 public 文件夹转换为 Git 库
-cd /code/my-blog/public
+cd /code/myblog/public
 
 # 初始化 Git 库
 git init
