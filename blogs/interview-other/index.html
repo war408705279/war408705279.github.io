@@ -51,7 +51,7 @@ JS 引擎则：解析和执行 javascript 来实现网页的动态效果">
 
 <meta itemprop="datePublished" content="2019-04-10T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-10T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="1008">
+<meta itemprop="wordCount" content="2252">
 
 
 
@@ -706,29 +706,399 @@ JS 引擎则：解析和执行 javascript 来实现网页的动态效果"/>
 
 <h4 id="react-router-路由的实现原理">React-router 路由的实现原理？</h4>
 
+<p>React Router 是一个基于 React 之上的强大路由库，它可以让你向应用中快速地添加视图和数据流，同时保持页面与 URL 间的同步。本文从两个方便来解析 react-router 实现原理。一：介绍 react-router 的依赖库 history；二：使用 history 库，实现一个简单的 react-router 路由</p>
+
+<p>history 介绍</p>
+
+<p>history 是一个 JavaScript 库，可让您在 JavaScript 运行的任何地方轻松管理会话历史记录。history 抽象出各种环境中的差异，并提供最小的 API ，使您可以管理历史堆栈，导航，确认导航以及在会话之间保持状态</p>
+
+<p>history 有三种实现方式：</p>
+
+<ul>
+<li>BrowserHistory：用于支持 HTML5 历史记录 API 的现代 Web 浏览器（请参阅跨浏览器兼容性）</li>
+<li>HashHistory：用于旧版 Web 浏览器</li>
+<li>MemoryHistory：用作参考实现，也可用于非 DOM 环境，如 React Native 或测试</li>
+</ul>
+
+<p>通过 history 实现简单 react-router</p>
+
+<p>看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">import</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">createHistory</span> <span class="nx">from</span> <span class="s1">&#39;history/createHashHistory&#39;</span><span class="p">;</span>
+<span class="k">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="nx">createHistory</span><span class="p">();</span> <span class="c1">// 创建 history 对象
+</span><span class="c1"></span><span class="cm">/**
+</span><span class="cm"> * 配置路由表
+</span><span class="cm"> * @type {{&#34;/&#34;: string}}
+</span><span class="cm"> */</span>
+<span class="k">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;/&#39;</span><span class="o">:</span> <span class="s1">&#39;page/home/index&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;/my&#39;</span><span class="o">:</span> <span class="s1">&#39;page/my/index&#39;</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="k">default</span> <span class="k">class</span> <span class="nx">Router</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">page</span><span class="o">:</span> <span class="kc">null</span> <span class="p">}</span>
+
+  <span class="kr">async</span> <span class="nx">route</span><span class="p">(</span><span class="nx">location</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">pathname</span> <span class="o">=</span> <span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">pagePath</span> <span class="o">=</span> <span class="nx">router</span><span class="p">[</span><span class="nx">pathname</span><span class="p">];</span>
+    <span class="c1">// 加 ./的原因 https://webpack.docschina.org/api/module-methods#import-
+</span><span class="c1"></span>    <span class="k">const</span> <span class="nx">Page</span> <span class="o">=</span> <span class="kr">await</span> <span class="k">import</span><span class="p">(</span><span class="sb">`./</span><span class="si">${</span><span class="nx">pagePath</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="c1">//获取路由对应的ui
+</span><span class="c1"></span>    <span class="c1">// 设置 ui
+</span><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="nx">Page</span><span class="o">:</span> <span class="nx">Page</span><span class="p">.</span><span class="k">default</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">initListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">//监听路由切换
+</span><span class="c1"></span>    <span class="nx">history</span><span class="p">.</span><span class="nx">listen</span><span class="p">((</span><span class="nx">location</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="c1">//切换路由后，更新ui
+</span><span class="c1"></span>      <span class="k">this</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="nx">location</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="nx">history</span><span class="p">.</span><span class="nx">location</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initListener</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="p">{</span> <span class="nx">Page</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">Page</span> <span class="o">&amp;&amp;</span> <span class="o">&lt;</span><span class="nx">Page</span> <span class="p">{...</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">}</span> <span class="err">/&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="说说-react-native-weex-框架的实现原理">说说 React Native，Weex 框架的实现原理？</h4>
+
+<p>React</p>
+
+<ul>
+<li>React 是由 Facebook 推出的一个 JavaScript 框架，主要用于前端开发</li>
+
+<li><p>React 采用组件化方式简化 Web 开发</p>
+
+<ul>
+<li>DOM：每个 HTML 界面可以看做一个 DOM</li>
+<li>原生的 Web 开发方式，HTML 一个文件，javaScript 一个文件，文件分开，就会导致修改起来比较麻烦</li>
+<li>可以把一组相关的 HTML 标签和 JavaScript 单独封装到一个组件类中，便于复用，方便开发</li>
+</ul></li>
+
+<li><p>React 可以高效的绘制界面</p>
+
+<ul>
+<li>原生的 Web，刷新界面（DOM），需要把整个界面刷新</li>
+<li>React 只会刷新部分界面，不会整个界面刷新</li>
+<li>因为 React 独创了 Virtual DOM 机制。Virtual DOM 是一个存在于内存中的 JavaScript 对象，它与 DOM 是一一对应的关系，当界面发送变化时，React 会利用 DOM Diff 算法，把有变化的 DOM 进行刷新</li>
+</ul></li>
+
+<li><p>React 是采用 JSX 语法，一种 JS 语法糖，方便快速开发</p></li>
+</ul>
+
+<p>常见的五种 App 开发模式</p>
+
+<p>常见的开发模式有 5 种（Native App，Web App，Hybrid App，Weex，React Native）</p>
+
+<ul>
+<li>Native App</li>
+</ul>
+
+<p>Native App：指使用原生 API 开发 App，比如 iOS 用 OC 语言开发</p>
+
+<p>优点：性能高</p>
+
+<p>缺点：开发维护成本高，养一个原生开发工程师需要很多钱，最重要 iOS 版本更新也成问题</p>
+
+<ul>
+<li>Web App</li>
+</ul>
+
+<p>Web App：指使用 HTML 开发的移动端网页 App，类似微信小程序，整个 App 都是网页</p>
+
+<p>优点：用户不需要安装，不会占用手机内存</p>
+
+<p>缺点：用户体验不好，不能离线，必须联网</p>
+
+<ul>
+<li>Hybrid App</li>
+</ul>
+
+<p>Hybrid App：混合开发模式，原生 Api + Html 共同开发，比如 iOS，用 html 写好界面，用 UIWebView 展示</p>
+
+<p>优点：界面复用性强，一个界面，iOS 和安卓都可以使用</p>
+
+<p>缺点：相对于原生，性能相对有所损害</p>
+
+<ul>
+<li>Weex</li>
+</ul>
+
+<p>Weex：基于 Vue（JS 框架）的语法开发的 App，底层会自动把 JS 代码解析成对应平台（iOS，安卓）的原生 API，本质还是原生 API 开发，只不过表面是用 Vue 开发</p>
+
+<p>优点：可以做到一套代码，跨平台执行，底层会自动判断当前是哪个平台，转换为对应平台的原生 API 代码
+缺点：开源较晚，互联网上相关资料还比较少，社区规模较小</p>
+
+<ul>
+<li>React Native</li>
+</ul>
+
+<p>React Native：基于 React 开发的 App</p>
+
+<p>优点：</p>
+
+<ul>
+<li>跨平台开发</li>
+<li>跳过 App Store 审核，远程更新代码，提高迭代频率和效率，既有 Native 的体验，又保留 React 的开发效率</li>
+</ul>
+
+<p>缺点：对于不熟悉前端开发的人员上手比较慢，不能真正意义上做到跨平台，使用后，对 App 体积增加</p>
+
+<p>相信大多数人了解完 React Native，越来越困惑了，那不是跟 Native 冲突了吗，Native 是用原生 Api 开发，但是 React Native 又是用 React 开发</p>
+
+<p>要想彻底搞明白，需要了解 React Native 底层实现原理</p>
+
+<p>React Native 原理</p>
+
+<p>React Native 原理其实跟 Weex 差不多，底层也会把 React 转换为原生 API</p>
+
+<p>React Native 和 Weex 区别在于跨平台上面，Weex 只要写一套代码，React Native 需要 iOS，安卓都写，说明 React Native 底层解析原生 API 是分开实现的，iOS 一套，安卓一套</p>
+
+<p>具体可以查看 <a href="https://www.jianshu.com/p/5cc61ec04b39" title="[React Native] 从源码一步一步解析它的实现原理" target="_blank">跳转</a></p>
 
 <h4 id="受控组件-controlled-component-与非受控组件-uncontrolled-component-的区别">受控组件（Controlled Component）与非受控组件（Uncontrolled Component）的区别</h4>
 
+<p>React 的核心组成之一就是能够维持内部状态的自治组件，不过当我们引入原生的 HTML 表单元素时（input, select, textarea 等），我们是否应该将所有的数据托管到 React 组件中还是将其仍然保留在 DOM 元素中呢？这个问题的答案就是受控组件与非受控组件的定义分割。受控组件（Controlled Component）代指那些交由 React 控制并且所有的表单数据统一存放的组件。譬如下面这段代码中 username 变量值并没有存放到 DOM 元素中，而是存放在组件状态数据中。任何时候我们需要改变 username 变量值时，应当调用 setState 函数进行修改</p>
+
+<p>看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">class</span> <span class="nx">ControlledForm</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">username</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+  <span class="p">}</span>
+  <span class="nx">updateUsername</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="nx">username</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+  <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{}</span>
+  <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span>
+          <span class="nx">type</span><span class="o">=</span><span class="s1">&#39;text&#39;</span>
+          <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">username</span><span class="p">}</span>
+          <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">updateUsername</span><span class="p">}</span> <span class="err">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s1">&#39;submit&#39;</span><span class="o">&gt;</span><span class="nx">Submit</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+      <span class="o">&lt;</span><span class="err">/form&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>而非受控组件（Uncontrolled Component）则是由 DOM 存放表单数据，并非存放在 React 组件中。可以使用 refs 来操控 DOM 元素</p>
+
+<p>看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">class</span> <span class="nx">UnControlledForm</span> <span class="k">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Input Value: &#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">input</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span>
+          <span class="nx">type</span><span class="o">=</span><span class="s1">&#39;text&#39;</span>
+          <span class="nx">ref</span><span class="o">=</span><span class="p">{(</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">}</span> <span class="err">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">type</span><span class="o">=</span><span class="s1">&#39;submit&#39;</span><span class="o">&gt;</span><span class="nx">Submit</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+      <span class="o">&lt;</span><span class="err">/form&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>非受控组件看上去更好实现，我们可以直接从 DOM 中抓取数据，而不需要添加额外的代码。不过实际开发中我们并不提倡使用非受控组件，因为实际情况下我们需要更多的考虑表单验证、选择性的开启或者关闭按钮点击、强制输入格式等功能支持，而此时我们将数据托管到 React 中有助于我们更好地以声明式的方式完成这些功能。引入 React 或者其他 MVVM 框架最初的原因就是为了将我们从繁重的直接操作 DOM 中解放出来</p>
+
+<p>具体可以查看 <a href="https://www.jianshu.com/p/ee91107861f2" title="Controlled Component 与 Uncontrolled Component 之间的区别是什么？" target="_blank">传送门</a></p>
+
 <h4 id="react-为什么自己定义一套事件体系呢-与浏览器原生事件体系有什么关系">React 为什么自己定义一套事件体系呢，与浏览器原生事件体系有什么关系？</h4>
+
+<p>React Event 的主要四个文件是 ReactBrowerEventEmitter.js（负责节点绑定的回调函数，该回调函数执行过程中构建合成事件对象，获取组件实例的绑定回调并执行，若有 state 变更，则重绘组件），ReactEventListener.js（负责事件注册和事件分发），ReactEventEmitter（负责事件的执行），EventPluginHub.js（负责事件的存储）和 ReactEventEmitterMixin.js</p>
+
+<p>React 的事件机制有 2 个特点</p>
+
+<ul>
+<li>使用事件委托机制，以队列的方式，从触发事件的组件向父组件回溯直到 document 节点，因此 React 组件上声明的事件最终绑定到了 document 上。由此减少了 DOM 操作，优化性能</li>
+<li>基于虚拟 DOM 实现 SyntheticEvent 合成事件</li>
+</ul>
+
+<p>具体可以查看 <a href="https://www.jianshu.com/p/784c77568680" title="React 的事件机制" target="_blank">传送门</a></p>
 
 <h4 id="什么是-hoc-higher-order-component-适用于什么场景">什么是 HoC（Higher-Order Component）？适用于什么场景？</h4>
 
 <p>高阶组件就是一个 React 组件包裹着另外一个 React 组件</p>
 
+<p>简而言之，高阶组件就是一个函数，且该函数接受一个组件作为参数，并返回一个新的组件，即给你一个组件，返回我一个新的组件</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">const</span> <span class="nx">EnhancedComponent</span> <span class="o">=</span> <span class="nx">higherOrderComponent</span><span class="p">(</span><span class="nx">WrappedComponent</span><span class="p">);</span>
+</code></pre></div>
+<p>高阶组件的概念非常的简单，使用起来也不是特别难，当然 HOC 可以传入多个参数，当我们有类似的组件，但是数据不同的时候我们就可以使用 HOC 这种形式复用组件</p>
+
+<p>具体可以查看 <a href="https://www.cnblogs.com/licript/p/10023275.html" title="React HOC" target="_blank">传送门</a></p>
+
 <h4 id="redux-是如何做到可预测呢">Redux 是如何做到可预测呢？</h4>
+
+<p>可预测性</p>
+
+<p>Redux 以多种方式提高了 Web 应用程序的可预测性。数据被合并到一个集中的位置：store。 组件不能直接修改 store 中的数据；相反，他们必须请求访问这些数据。此外，store 如何更新也有严格的规定</p>
+
+<p>因此，总是知道状态来自哪里（store），以及允许哪一个唯一实体触发更新（action）到该状态</p>
+
+<p>另一种看待 Redux 的方式是它提供了一个严格的 单向数据流</p>
+
+<p>单向数据流概述</p>
+
+<p>回顾 React 的核心功能之一，单向数据流，如下图所示</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/react-one-way-data.webp" alt="React 单向数据流" title="React 单向数据流" /></p>
+
+<p>在上图中，数据存储在父组件中。如果子组件也需要使用该数据，该数据可以向下传递给子组件。任何更新都向上发送给父组件，由父组件做出更新，更新后的数据再向下发送给子组件</p>
+
+<p>React 的单向数据流功能很强大，但是当处理深度嵌套的组件结构时，就会出现问题，对于深度嵌套的组件结构，数据必须途经所有中间组件才能向下传递到目标对象</p>
+
+<p>Redux 以多种方式提高可预测性</p>
+
+<ul>
+<li>它将大多数数据整合到一个位置</li>
+<li>组件必须请求访问数据</li>
+<li>store 中的数据流向一个方向</li>
+<li>store 更新有着严格的规则</li>
+</ul>
+
+<p>具体可以查看 <a href="https://www.jianshu.com/p/b075f687a843" title="Redux 如何改善预测性" target="_blank">传送门</a></p>
 
 <h4 id="redux-将-react-组件划分为哪两种">Redux 将 React 组件划分为哪两种？</h4>
 
+<p>React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）</p>
+
+<p>UI 组件有以下几个特征</p>
+
+<ul>
+<li>只负责 UI 的呈现，不带有任何业务逻辑</li>
+<li>没有状态（即不使用 this.state 这个变量）</li>
+<li>所有数据都由参数（this.props）提供</li>
+<li>不使用任何 Redux 的 API</li>
+</ul>
+
+<p>容器组件的特征恰恰相反</p>
+
+<ul>
+<li>负责管理数据和业务逻辑，不负责 UI 的呈现</li>
+<li>带有内部状态</li>
+<li>使用 Redux 的 API</li>
+</ul>
+
+<p>总之，只要记住一句话就可以了：UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑</p>
+
+<p>React-Redux 规定，所有的 UI 组件都由用户提供，容器组件则是由 React-Redux 自动生成。也就是说，用户负责视觉层，状态管理则是全部交给它</p>
+
+<p>具体可以参考 <a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html" title="Redux 入门教程（三）：React-Redux 的用法" target="_blank">传送门</a></p>
+
 <h4 id="redux-是如何将-state-注入到-react-组件上的">Redux 是如何将 state 注入到 React 组件上的？</h4>
+
+<p>具体可以参考 <a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html" title="Redux 入门教程（三）：React-Redux 的用法" target="_blank">传送门</a></p>
 
 <h4 id="请描述一次完整的-redux-数据流">请描述一次完整的 Redux 数据流</h4>
 
+<ul>
+<li>添加 Action，注意参数类型</li>
+<li>saga 处理异步请求，分别产生请求成功和失败的 Action</li>
+<li>reducer 根据事件名称，返回不同值</li>
+<li>具体页面，调用 Action</li>
+</ul>
+
+<p>具体可以参考 <a href="https://www.jianshu.com/p/1f3ca56027b1" title="一次完整的 Redux 数据流" target="_blank">传送门 1</a> <a href="https://www.jianshu.com/p/faee4de8e092" title="Redux 数据流" target="_blank">传送门 2</a></p>
+
 <h4 id="react-的批量更新机制-batchupdates">React 的批量更新机制 BatchUpdates？</h4>
+
+<p>具体可以参考 <a href="https://segmentfault.com/a/1190000014442208" title="从源码全面剖析 React 组件更新机制" target="_blank">传送门</a></p>
 
 <h4 id="react-与-vue-各自的组件更新进行对比-它们有哪些区别">React 与 Vue，各自的组件更新进行对比，它们有哪些区别？</h4>
 
+<p>React 组件的属性</p>
+
+<p>React 是一个单纯的 view 层框架，官方推荐使用 JSX 预发来维护组件的状态。通过 Props 和 state 来共同决定组件的表现</p>
+
+<ul>
+<li>Props，正如 prop 的英文意思[属性]一样，Props 中的数据主要用来定义和描述组件的属性，该数据是由父组件在声明 React 组件的时候设置，就好比我们给一个 img 标签设置一个 src 属性一样，我们可以给自定义的 React 组件设置许多属性。这些属性定义了 React 组件的表现形式，父组件可以通过修改 Props 中的属性来控制子组件的表现</li>
+<li>state，同样的，state 表示[状态]，那么 state 中的数据主要用来控制组件内部的状态。也就是说组件内部的变化，不需要同外部有交互的数据，都可以由组件自己通过 state 来控制</li>
+</ul>
+
+<p>React 虚拟树更新原则</p>
+
+<p>React 中应用虚拟 DOM 来更新快速更新 DOM，那么更新虚拟 DOM 的原则主要是以下几种：</p>
+
+<ul>
+<li>不同元素，如果更新前后是两种不同类型的 DOM 元素，那就没什么说的，直接销毁原来的节点，创建新的节点。（比如原来是 div，更新为 span）在这个过程中，原来节点的 componentWillUnmount 函数被触犯，新节点的 componentWillMount 和 componentDidMount 依次被触发。需要特别指出的是，当前更新节点的所有子节点都会被销毁重建，而不管子节点是否有更新。简单的来说，就是根变了，那么这个根上的所有叶子都要更新了</li>
+<li>相同元素，不同属性，当节点类型没有发生变化，而只是熟悉变化的话，React 就智能多了，只会更新变化的部分。好比是一个元素有多个 CSS 样式，如果只变化了一个样式，那么 React 也只更新一个。当元素不是叶子节点的时候，也就是一个组件元素的时候，会继续深入的去比较子元素来更新子元素</li>
+<li>子元素变动，当子元素有变动的时候，React 会更新子元素。子元素的变动指的是资源的类型 / 属性 / 位置等的变动。类型和属性的变动会触发更新，这个比较好理解。子元素的位置变动，指的是如果一个资源原来在第一位，更新后到第二位了，React 会认为这是一种变动，从而触发更新</li>
+<li>key 属性的重要作用
+这样看起来 React 也没有那么智能。那么这个时候就要引入一个很重要的 key 属性，React 通过给子组件一个 key 属性。来唯一标识一个子组件，如果更新前后的组件 key 值一样，并且除了位置之外其他属性没有变化，那么就不会触发更新</li>
+</ul>
+
+<p>Vue 的数据</p>
+
+<p>Vue 是一个传统意义上的 mvc 模型。通过实例化一个 vue 对象来绑定 dom 和 data 的关系，也就是绑定 view 和 model。通过对 model 中每个属性添加[反射]来完成监视器的注册。当 model 中的数据模型变化时，watcher 会重新计算，从而引发 view 层的更新</p>
+
+<p>这也就是理解了为什么 Vue 是单向数据流了</p>
+
+<p>Vue 的更新</p>
+
+<p>上面提到，vue 的更新是 model 中数据的变化引发在初始化时注入的 watcher 的变化，从而引起 view 层的更新。只要观察到数据变化，Vue 将开启一个队列，并缓冲在同一事件循环中发生的所有数据改变。如果同一个 watcher 被多次触发，只会一次推入到队列中</p>
+
+<p>根据以上特点，我们知道 vue 中的组件更新是有 model 数据的更新引起的，因为 view 和 model 在初始化时已经完成绑定，所以当 model 发生变化时，哪些 view 需要变化已经很明确了，所以就不需要像 React 那般去判断比对了</p>
+
+<p>具体可以参考</p>
+
+<p><a href="https://www.cnblogs.com/heyuqing/p/7526738.html" title="React 和 Vue 的组件更新比较" target="_blank">传送门 1</a></p>
+
+<p><a href="https://blog.csdn.net/wkyseo/article/details/79113260" title="Vue 与 React 的异同 - 组件" target="_blank">传送门 2</a></p>
+
+<p><a href="https://blog.csdn.net/tiangongkaiwu152368/article/details/81132884" title="Vue 与 React 两种框架的区别和优劣分析" target="_blank">传送门 3</a></p>
+
 <h4 id="设计模式-知道什么是-singleton-factory-strategy-decrator-么">设计模式 知道什么是 singleton, factory, strategy, decrator 么？</h4>
+
+<p>设计模式主要分三个类型：创建型、结构型和行为型</p>
+
+<p>其中创建型有</p>
+
+<ul>
+<li>Singleton，单例模式：保证一个类只有一个实例，并提供一个访问它的全局访问点</li>
+<li>Abstract Factory，抽象工厂：提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们的具体类</li>
+<li>Factory Method，工厂方法：定义一个用于创建对象的接口，让子类决定实例化哪一个类，Factory Method 使一个类的实例化延迟到了子类</li>
+<li>Builder，建造模式：将一个复杂对象的构建与他的表示相分离，使得同样的构建过程可以创建不同的表示</li>
+<li>Prototype，原型模式：用原型实例指定创建对象的种类，并且通过拷贝这些原型来创建新的对象</li>
+</ul>
+
+<p>行为型有</p>
+
+<ul>
+<li>Iterator，迭代器模式：提供一个方法顺序访问一个聚合对象的各个元素，而又不需要暴露该对象的内部表示</li>
+<li>Observer，观察者模式：定义对象间一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知自动更新</li>
+<li>Template Method，模板方法：定义一个操作中的算法的骨架，而将一些步骤延迟到子类中，TemplateMethod 使得子类可以不改变一个算法的结构即可以重定义该算法得某些特定步骤</li>
+<li>Command，命令模式：将一个请求封装为一个对象，从而使你可以用不同的请求对客户进行参数化，对请求排队和记录请求日志，以及支持可撤销的操作</li>
+<li>State，状态模式：允许对象在其内部状态改变时改变他的行为。对象看起来似乎改变了他的类</li>
+<li>Strategy，策略模式：定义一系列的算法，把他们一个个封装起来，并使他们可以互相替换，本模式使得算法可以独立于使用它们的客户</li>
+<li>Chain of Responsibility，职责链模式：使多个对象都有机会处理请求，从而避免请求的送发者和接收者之间的耦合关系</li>
+<li>Mediator，中介者模式：用一个中介对象封装一些列的对象交互</li>
+<li>Visitor，访问者模式：表示一个作用于某对象结构中的各元素的操作，它使你可以在不改变各元素类的前提下定义作用于这个元素的新操作</li>
+<li>Interpreter，解释器模式：给定一个语言，定义他的文法的一个表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子</li>
+<li>Memento，备忘录模式：在不破坏对象的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态</li>
+</ul>
+
+<p>结构型有</p>
+
+<ul>
+<li>Composite，组合模式：将对象组合成树形结构以表示部分整体的关系，Composite 使得用户对单个对象和组合对象的使用具有一致性</li>
+<li>Facade，外观模式：为子系统中的一组接口提供一致的界面，facade 提供了一高层接口，这个接口使得子系统更容易使用</li>
+<li>Proxy，代理模式：为其他对象提供一种代理以控制对这个对象的访问</li>
+<li>Adapter，适配器模式：将一类的接口转换成客户希望的另外一个接口，Adapter 模式使得原本由于接口不兼容而不能一起工作那些类可以一起工作</li>
+<li>Decrator，装饰模式：动态地给一个对象增加一些额外的职责，就增加的功能来说，Decorator 模式相比生成子类更加灵活</li>
+<li>Bridge，桥模式：将抽象部分与它的实现部分相分离，使他们可以独立的变化</li>
+<li>Flyweight，享元模式</li>
+</ul>
 
 <h4 id="列举-ie-与其他浏览器不一样的特性">列举 IE 与其他浏览器不一样的特性？</h4>
 
@@ -750,7 +1120,11 @@ JS 引擎则：解析和执行 javascript 来实现网页的动态效果"/>
 
 <h4 id="部分地区用户反应网站很卡-请问有哪些可能性的原因-以及解决方法">部分地区用户反应网站很卡，请问有哪些可能性的原因，以及解决方法？</h4>
 
+<p>TODO</p>
+
 <h4 id="从打开-app-到刷新出内容-整个过程中都发生了什么-如果感觉慢-怎么定位问题-怎么解决">从打开 app 到刷新出内容，整个过程中都发生了什么，如果感觉慢，怎么定位问题，怎么解决？</h4>
+
+<p>TODO</p>
 
 <h4 id="第一次访问页面中时弹出引导-用户关闭引导-之后再次进入页面时不希望出现引导-如何实现">第一次访问页面中时弹出引导，用户关闭引导，之后再次进入页面时不希望出现引导，如何实现？</h4>
 
@@ -758,21 +1132,267 @@ JS 引擎则：解析和执行 javascript 来实现网页的动态效果"/>
 
 <h4 id="你怎么看待-web-app-hybrid-app-native-app">你怎么看待 Web App 、hybrid App、Native App？</h4>
 
+<p>app 的分类</p>
+
+<p>大致可以分为这 3 种</p>
+
+<ul>
+<li>native app（原生 app）</li>
+<li>web app</li>
+<li>hybrid app（混合 app）</li>
+</ul>
+
+<p>如下图所示</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/native-web-hybrid-app.webp" alt="3 种 app" title="3 种 app" /></p>
+
+<p>三类 app 的定义</p>
+
+<ul>
+<li>native app</li>
+</ul>
+
+<p>中文名称为 &ldquo;原生 app&rdquo;</p>
+
+<p>来看一下百度百科的定义：基于智能手机本地操作系统如 iOS、Android、WP 并使用原生程式编写运行的第三方应用程序，一般开发的语言为 Java、C++ 等。在使用上的具体表现就是，手机桌面上的图标点进去基本就是 native app 了</p>
+
+<ul>
+<li>web app</li>
+</ul>
+
+<p>仍然看一下百度百科的定义：基于 web 的系统和应用，运行于网络和浏览器之上，目前多采用 h5 标准开发。在使用上的具体表现是，手机浏览器点击进入，会有一些应用的小图标，这些小图标在点击后，在浏览器里加载的页面跟你直接下载一个 app 后打开的页面是相同的，这些小图标代表的就是 web app</p>
+
+<ul>
+<li>hybrid app</li>
+</ul>
+
+<p>中文名称是 &ldquo;混合app&rdquo;</p>
+
+<p>顾名思义，就是 native app 与 web app 的混合。在 native app 里内置浏览器，合适的功能页面采用网页的形式呈现。比如京东的某些营销页面，今日头条的某些新闻页面、微信的腾讯新闻的内容页面等</p>
+
+<p>各类 app 的优缺点</p>
+
+<ul>
+<li>native app</li>
+</ul>
+
+<p>优点：</p>
+
+<ul>
+<li>提供最佳用户体验，最优质的用户界面，流畅的交互</li>
+<li>可以访问本地资源</li>
+<li>可以调用移动硬件设备，比如摄像头、麦克风等</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>开发成本高。每种移动操作系统都需要独立的开发项目，针对不同平台提供不同体验</li>
+<li>发布新版本慢。下载是用户控制的，很多用户不愿意下载更新（比如说，版本发布到了 3.0，但还是有很多 1.0 的用户，你可能就得继续维护 1.0 版本的 API）</li>
+
+<li><p>应用商店发布审核周期长。安卓平台大概要 1 - 3 天，而 iOS 平台需要的时间更长</p></li>
+
+<li><p>web app</p></li>
+</ul>
+
+<p>优点：</p>
+
+<ul>
+<li>不需要安装包，节约手机空间</li>
+<li>整体量级轻，开发成本低</li>
+<li>不需要用户进行手动更新，由应用开发者直接在后台更新，推送到用户面前的都是全新版本，更便于业务的开展</li>
+<li>基于浏览器，可以跨平台使用</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+<li>页面跳转费力，不稳定感更强。在网速受到限制时，很多时候出现卡顿或者卡死现象，交互效果受到限制</li>
+
+<li><p>安全性相对较低，数据容易泄露或者被劫持</p></li>
+
+<li><p>Hybrid app</p></li>
+</ul>
+
+<p>这类 app 集合了上面两种 app 各自的优势</p>
+
+<ul>
+<li>在实现更多功能的前提下，使得 app 安装包不至于过大</li>
+<li>在应用内部打开 web 网页，省去了跳转浏览器的麻烦</li>
+<li>主要功能区相对稳定下，增加的功能区采用 web 形式，使得迭代更加方便</li>
+<li>web 页面在用户设置不同的网络制式时会以不同的形式呈现（以微信朋友圈为例，在数据流量下，设置 APNS 为 WAP 时，微信订阅号内容将屏蔽图片和视频。这样就能为用户省去一部分流量，整个页面阅读就不那么友好了）</li>
+</ul>
+
+<p>另外，为什么有些原生 app 还会做 web app 呢？</p>
+
+<p>有这么几点原因</p>
+
+<ul>
+<li>数据可以被搜索引擎的爬虫抓到，并进行索引。如果产品只有一个 app，那么它的入口独立，但同时数据也是封闭的。如果用户从搜索引擎查找的话，是找不到相关信息的。所以做成 web app，可以被搜索引擎找到</li>
+<li>用户碎片时间使用，例如一些黏性不高的应用，比如移动搜索、网址导航等</li>
+</ul>
+
+<p>不同的页面情况选择不同的开发方式</p>
+
+<ul>
+<li>如果 app 中出现了大段文字（如新闻、攻略等），并且格式比较丰富（如加粗、字体多样等），采用 H5 较好。原因：原生开发对解析 json 字符串格式不是很友好</li>
+<li>如果讲究 app 反应速度（含页面切换流畅性），采用原生开发。原因：H5 本质上是网页，换网页的时候，基本要加载整个页面，就像一个浏览器打开一个新的网页一样，比较慢，而原生系统只需要加载变化的部分</li>
+<li>如果 app 对有无网络、网络优劣敏感（譬如有离线操作、在线操作），则采用原生开发。虽然 H5 可以做到，但是比较敏感</li>
+<li>如果 app 要频繁地调用硬件设备（比如摄像头、麦克风等），则采用原生开发，这样支持硬件更多，调用速度更快，H5 望尘莫及</li>
+<li>如果 app 用户常见页面频换（如淘宝首页的各种营销活动），采用 H5，维护起来更容易</li>
+<li>如果预算有限（H5 开发一套可在安卓、iOS、黑莓等跨平台使用）、不在乎用户体验、不在乎加载速度，肯定是 H5</li>
+</ul>
+
+<p>另外：</p>
+
+<ul>
+<li>短期活动，专题营销类的页面居多的，可以选择原生 app 搭建框架，详细页面采用 H5，便于活动的随时修改和管理</li>
+<li>主要业务流程方面，选择原生 app 开发，有更好的用户体验，也可以更方便的拓展其他功能</li>
+</ul>
+
+<p>具体可以参考 <a href="https://www.jianshu.com/p/24bf070a4dcb" title="web app 、native app、hybrid app 比较" target="_blank">传送门</a></p>
+
 <h4 id="你移动端前端开发的理解-和-web-前端开发的主要区别是什么">你移动端前端开发的理解？（和 Web 前端开发的主要区别是什么？）</h4>
+
+<p>前端是个很大的概念，我的理解是用户能够看到，直接接触到的层面都算是前端，比如 IOS 客户端界面，安卓客户端界面，网页界面，甚至 PC/MAC 桌面端软件界面；现在最常见的说法一般是指 Web 前端，也就是针对于网页端开发的工作</p>
+
+<p>也有个说法就是前端就是大前端嘛，如果你的工作真的那么赞的话，那就包括了 web，安卓，ios，甚至 pc mac 客户端的界面。但我觉得现在一般大家都还是有专攻的</p>
+
+<p>Web App 指的是 Web application，也就是以浏览器作为客户端的软件。比如你要写文档，一般会打开 Office 2012 之类的本地软件；但是你也可以选择在浏览器里输入一个网址，然后直接在里面写东西直接发布到 gist上；再比如用桌面客户端来收发邮件，但你也可以直接用浏览器登陆 gmail 亦或者 QQ 邮箱，直接把这个当客户端用。总之就是使用网页版代替本地软件</p>
+
+<p>Mobile Web App 当然就是指在手机端打开的 Web App</p>
+
+<p>移动客户端的开发类型主要包含下面三种</p>
+
+<ul>
+<li><p>Native App（原生 APP），也就是完全使用移动设备系统语言写的客户端，iPhone iPad 就是纯 Object-C，安卓就是纯 JAVA, 就是用户看到的界面啦体验到的交互啦都是原生的。这是性能最棒的开发方式，但灵活性就没下面的好</p></li>
+
+<li><p>Web App, 这个就是在移动浏览器里打开的，纯 HTML + CSS + JS，说白了就是个网页，只不过非常的富应用，比如手机浏览器访问的 GMAIL 之类。但说白了就是在浏览器里打开的页面。IOS 支持可以在桌面创建访问的快捷方式，但是说到底还是打开 Safari 跑。而且对设备硬件的接口什么的挺薄弱</p></li>
+
+<li><p>Hybrid App [HTML5 in mobile devices] 我觉得这个更为合适一些。实际上是使用原生写了一个容器，然后使用 HTML + CSS + JS 来实现用户界面和交互。Web App 的短处便可以克服（因为自己写的容器可以辅助暴露偏底层的接口，比如本地存储或者麦克风控制之类），同时比起纯原生的 java 或者 object-c 开发灵活性要高（更新可以更快更迅速，也不依赖于市场，因为说白了，就是自己下载更新网页资源。）实际上这种方式已经不限于移动端。豌豆荚其实是个 pc 端的 hybrid app，而且说实在的，桌面开发的性能就现在来说要比移动好很多</p></li>
+</ul>
+
+<p>具体可以参考 <a href="https://www.zhihu.com/question/20269059" title="移动前端开发和 Web 前端开发的区别是什么？" target="_blank">传送门</a></p>
 
 <h4 id="如何设计突发大规模并发架构">如何设计突发大规模并发架构？</h4>
 
+<p>抢购页面可以独立与商城系统外，可以临时性的在商城系统前添加 N 台机器，有序的将用户 &ldquo;放行&rdquo; 到商城系统内</p>
+
+<p>抢购商品页面纯静态化（做好 qps 压测评估），至于用户信息，通过 js 从 cookie 里取（临时且快速的方案，安全性不高，只要没黑客恶意搞，其实没什么问题的），如果不存在用户信息，通过 ajax 发送请求到用户中心生成用户 cookie（加载静态页面的时候就判断是否发送 ajax，别等到抢购时判断），如果存在，在抢购时直接获取 cookie 里的用户信息开始抢购。通过 js 从 cookie 里取信息可以大量的减少对商城主系统的依赖，防止造成主系统瘫痪</p>
+
+<p>抢购开始时用验证码防秒杀器，建议事先生成好几百个验证码，随机取一个，别等到抢购时临时生成，不然容易挂</p>
+
+<p>最难点，抢购减库存。防超卖，库存表和判重表建议单独搞台大服务器专门放这 2 个表，不然 50w 人开秒死都不知道怎么死的</p>
+
+<p>三个方向考虑吧。横向就是做分布式，通过添加 N 台机器，部署 N 套系统的方式来并发处理。这里面要考虑好 session 的一致性。纵向的话，就是把瓶颈部分做优化，使用内存来持久数据，减少 IO，还有合理的使用消息排队。这里可能要好好考虑内存与数据库一致性。还有就是业务方向</p>
+
 <h4 id="知道什么是-seo-并且怎么优化么-知道各种-meta-data-的含义么">知道什么是 SEO 并且怎么优化么? 知道各种 meta data 的含义么?</h4>
+
+<p>SEO 是英文 Search Engine Optimization 的缩写，转换为中文的 &ldquo;搜索引擎优化&rdquo;。简而言之，SEO 是指从自然搜索结果中获取网站流量的技术和过程。从某种意义上说，SEO 是用搜索引擎玩游戏的过程。SEM，搜索引擎营销，基于用户使用搜索引擎的方式，利用用户的机会尽可能多地检索信息，以向目标用户提供营销信息。在当前的企业网站营销中，SOM（SEO + SEM）模型变得越来越重要</p>
+
+<p>元标记主要是标题，关键字，描述或 TKD（title keywords description）</p>
+
+<p>data-* 属性用于存储页面或应用程序的私有自定义数据</p>
+
+<p>data-* 属性使我们能够在所有 HTML 元素上嵌入自定义数据属性</p>
+
+<p>页面的 JavaScript 可以利用存储的（自定义）数据来创建更好的用户体验（没有 Ajax 调用或服务器端数据库查询）</p>
+
+<p>简单地说，SEO 是搜索引擎，后者是描述标签</p>
+
+<p>SEO 的优势有如下几点</p>
+
+<ul>
+<li>做 SEO 能来客户。为什么要做 SEO？终极目标是能来带销售。从百度获取的流量比今日头条等媒体更精准，因为是用户主动发起，反应的是即时需求，转化率高</li>
+<li>流量精准，能变成付费用户的可能性大。因为根据相关的关键词，可以找到非常精准的流量。举个例子，一家北京饭店，在搜索词 &ldquo;北京美食&rdquo; 的内容里排到第一的话，会带来多少精准流量</li>
+<li>企业付出的成本比较低。只需要进行一些内容、网站上的优化，但是可能带来的流量不论质量还是数量都是非常之高的</li>
+<li>一劳永逸，长期有效。一旦占据了高位，就很难下去了。只要及时的进行优化，那么起码是会很长时间占据首位的</li>
+</ul>
+
+<p>百度的搜索内容是如何呈现的呢？</p>
+
+<ul>
+<li>首先百度的机器人会在网上对网站进行爬行和抓取，将网页内容和 HTML 代码收录到百度的数据库中</li>
+<li>第二步预处理，会对网页提取文字，分词，去停止词、消噪、去重，提取关键词建立索引，最终根据这些内容计算出网页的权重。网页权重决定了网页在搜索当中的排序</li>
+<li>第三步就是排名，百度会对数据库中的网页，根据计算出的权重进行排名，再进行一次过滤，也是最终体现在搜索结果页面的顺序了</li>
+</ul>
+
+<p>重点是：<em>权重值、关键词</em></p>
+
+<p>HTML 的 head 里有一个 meta 标签。那么它是什么呢？</p>
+
+<p>它是 &ldquo;关于文档的信息&rdquo;</p>
+
+<p>meta 的属性有两种，name 和 http-equiv</p>
+
+<p>name 属性用来描述网页的内容，以便搜索引擎查找。比如这个网页的 keywords。http-equiv 属性指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称 / 值对</p>
+
+<p>看下面的🌰</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;Content-Language&#34;</span> <span class="na">contect</span><span class="o">=</span><span class="s">&#34;zh-CN&#34;</span><span class="p">&gt;</span></code></pre></div>
+<p>用以说明主页制作所使用的文字以及语言</p>
+
+<p>更多关于元数据可以参考 <a href="http://www.ruanyifeng.com/blog/2007/03/metadata.html" title="元数据（MetaData）" target="_blank">传送门</a></p>
 
 <h4 id="你认为怎样才是全端工程师-full-stack-developer">你认为怎样才是全端工程师（Full Stack developer）？</h4>
 
+<p>Full Stack Engineer</p>
+
+<p>设计，后台开发，前端开发，移动开发，运营维护，PS，文案&hellip; 好像都会了，这算 Full Stack Engineer 了么？不，这只是踏上成为 Full Stack Engineer 的第一步</p>
+
+<p>你知道目前只是每个 stack 都懂一点，离 senior 或者 expert 还差得远，而要每个 stack 都做到极致，需要大量的时间和精力。精力有限，产品开发紧迫，力不从心啊，这条道路也太孤独，因为你不需要与任何人进行协作。难道要把一些 stack 的任务交给别人做么？这样算是放弃成为 Full Stack Engineer 么？不！这不是</p>
+
+<p>什么是 Engineer？「Engineers are versatile minds who create links between science, technology, and society」。Engineer 的本质工作是设计，开发出应用于大众的产品。一个真正的 Full Stack Engineer ，他从生活中发现问题，洞察需求，他设计解决方案，并开发出初始版本的产品。为了达到目标，他愿意去学习任何领域的技能和知识。同时他不追求一个人完成所有工作，如果有人可以比他在某方面做得更出色，便会十分热情的邀请他们加入</p>
+
+<p>最终他的职位也许不再是 Engineer ，他不再设计 UI ，不再写代码 &hellip; 他的工作不再是 design and building an app or product，因为他有更大更重要的任务要做 - design and building a team or a company which builds great products</p>
+
+<p>具体可以参考</p>
+
+<p><a href="https://www.jianshu.com/p/f77d7a01317c" title="怎样成为全栈工程师（Full Stack Developer）" target="_blank">传送门</a></p>
+
 <h4 id="你有自己的技术博客吗-用了哪些技术">你有自己的技术博客吗，用了哪些技术？</h4>
+
+<p><code>https://war408705279.github.io/</code></p>
+
+<p>使用了 hugo + Github + markdown</p>
 
 <h4 id="对前端安全有什么看法">对前端安全有什么看法？</h4>
 
+<p>&ldquo;安全&rdquo; 是个很大的话题，各种安全问题的类型也是种类繁多。如果我们把安全问题按照所发生的区域来进行分类的话，那么所有发生在后端服务器、应用、服务当中的安全问题就是 &ldquo;后端安全问题&rdquo;，所有发生在浏览器、单页面应用、Web 页面当中的安全问题则算是 &ldquo;前端安全问题&rdquo;。比如说，SQL 注入漏洞发生在后端应用中，是后端安全问题，跨站脚本攻击（XSS）则是前端安全问题，因为它发生在用户的浏览器里</p>
+
+<p>8 大前端安全问题</p>
+
+<p>按照上面的分类办法，总结出了 8 大典型的前端安全问题，它们分别是：</p>
+
+<ul>
+<li>老生常谈的 XSS</li>
+<li>警惕 iframe 带来的风险</li>
+<li>别被点击劫持了</li>
+<li>错误的内容推断</li>
+<li>防火防盗防猪队友：不安全的第三方依赖包</li>
+<li>用了 HTTPS 也可能掉坑里</li>
+<li>本地存储数据泄露</li>
+<li>缺失静态资源完整性校验</li>
+</ul>
+
+<p>具体可以查看</p>
+
+<p><a href="https://insights.thoughtworks.cn/eight-security-problems-in-front-end/" title="8 大前端安全问题（上）" target="_blank">传送门 1</a></p>
+
+<p><a href="https://insights.thoughtworks.cn/eight-security-problems-in-front-end-2/" title="8 大前端安全问题（下）" target="_blank">传送门 2</a></p>
+
 <h4 id="是否了解-web-注入攻击-说下原理-最常见的两种攻击-xss-和-csrf-了解到什么程度">是否了解 Web 注入攻击，说下原理，最常见的两种攻击（XSS 和 CSRF）了解到什么程度？</h4>
 
-<p>具体可以参考 <a href="https://juejin.im/entry/5b4b56fd5188251b1a7b2ac1" title="浅说 XSS 和 CSRF" target="_blank">传送门 1</a> <a href="https://segmentfault.com/a/1190000007660669" title="XSS 和 CSRF 两种跨站攻击" target="_blank">传送门 2</a></p>
+<p>具体可以参考</p>
+
+<p><a href="https://juejin.im/entry/5b4b56fd5188251b1a7b2ac1" title="浅说 XSS 和 CSRF" target="_blank">传送门 1</a></p>
+
+<p><a href="https://segmentfault.com/a/1190000007660669" title="XSS 和 CSRF 两种跨站攻击" target="_blank">传送门 2</a></p>
+
+<h3 id="开放问题">开放问题</h3>
+
+<p>开放问题，没有标准答案，结合自身的实际情况回答即可</p>
+
+<p>这里就不给答案了，大家可以思考一下~</p>
 
 <h4 id="项目中遇到国哪些印象深刻的技术难题-具体是什么问题-怎么解决">项目中遇到国哪些印象深刻的技术难题，具体是什么问题，怎么解决？</h4>
 
