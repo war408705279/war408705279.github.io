@@ -6,10 +6,39 @@
     <description>Recent content on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 09 Apr 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>前端面试题 - 其他</title>
+      <link>https://war408705279.github.io/blogs/interview-other/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/interview-other/</guid>
+      <description>浏览器内核 说明一：
+ IE 浏览器：Trident（IE 内核） 火狐浏览器：Gecko，特点是代码完全公开 Opera 浏览器：前期采用 Presto 内核，现已改用 Google Chrome 的 Blink 内核 Safari 浏览器：Webkit 内核，Webkit 内核是 Chrome 内核的原型 Chrome 浏览器：采用 Blink 内核，是 Google 和 Opera Software 开发的浏览器排版引擎  说明二：
+ Trident 内核：IE，MaxThon，TT，The World，360，搜狗浏览器等 [又称 MSHTML] Gecko 内核：Netscape6 及以上版本，FF，MozillaSuite / SeaMonkey 等 Presto 内核：Opera7 及以上 [Opera 内核原为：Presto，现为：Blink] Webkit 内核：Safari，Chrome等 [Chrome 的：Blink（WebKit 的分支）]  详细文章：传送门
+介绍一下你对浏览器内核的理解？ 主要分成两部分：渲染引擎（layout engineer 或 Rendering Engine）和 JS 引擎
+渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核
+JS 引擎则：解析和执行 javascript 来实现网页的动态效果</description>
+    </item>
+    
+    <item>
+      <title>前端面试题 - 请求</title>
+      <link>https://war408705279.github.io/blogs/interview-request/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/interview-request/</guid>
+      <description>http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
+200-299：用于表示请求成功
+300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
+400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
+500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
+Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
+ 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K+35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度</description>
+    </item>
     
     <item>
       <title>如何使用 Git&#43;Hugo 搭建属于自己的博客网站</title>
@@ -38,21 +67,6 @@ cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）
       <description>前端 JS 面试题积累 JS 获取 URL 中的 Query 参数 getQueryString(name) { var reg = new RegExp(&amp;#39;(^|&amp;amp;)&amp;#39; + name + &amp;#39;=([^&amp;amp;]*)(&amp;amp;|$)&amp;#39;, &amp;#39;i&amp;#39;); var r = routerStore.location.search.substr(1).match(reg); if (r !== null) { return unescape(r[2]); } return null; } // 调用的时候传递 query 参数的 key 值进去  // 例如需要获取 url 中 id 对应的值  var id = getQueryString(&amp;#39;id&amp;#39;)  call() 和 apply() 的异同 call 和 apply 的基本作用都是改变对象执行的上下文
 call 的基本使用
 function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明</description>
-    </item>
-    
-    <item>
-      <title>前端面试题 - 其他</title>
-      <link>https://war408705279.github.io/blogs/interview-other/</link>
-      <pubDate>Sun, 31 Mar 2019 00:00:00 +0800</pubDate>
-      
-      <guid>https://war408705279.github.io/blogs/interview-other/</guid>
-      <description>前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
-200-299：用于表示请求成功
-300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
-400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
-500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
-Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
- 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K+35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度</description>
     </item>
     
     <item>
