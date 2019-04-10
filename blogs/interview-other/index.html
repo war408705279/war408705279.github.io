@@ -5,13 +5,12 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="author" content="Zhazha ">
-<meta name="description" content="前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
-200-299：用于表示请求成功
-300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
-400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
-500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
-Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
- 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度"/>
+<meta name="description" content="浏览器内核 说明一：
+ IE 浏览器：Trident（IE 内核） 火狐浏览器：Gecko，特点是代码完全公开 Opera 浏览器：前期采用 Presto 内核，现已改用 Google Chrome 的 Blink 内核 Safari 浏览器：Webkit 内核，Webkit 内核是 Chrome 内核的原型 Chrome 浏览器：采用 Blink 内核，是 Google 和 Opera Software 开发的浏览器排版引擎  说明二：
+ Trident 内核：IE，MaxThon，TT，The World，360，搜狗浏览器等 [又称 MSHTML] Gecko 内核：Netscape6 及以上版本，FF，MozillaSuite / SeaMonkey 等 Presto 内核：Opera7 及以上 [Opera 内核原为：Presto，现为：Blink] Webkit 内核：Safari，Chrome等 [Chrome 的：Blink（WebKit 的分支）]  详细文章：传送门
+介绍一下你对浏览器内核的理解？ 主要分成两部分：渲染引擎（layout engineer 或 Rendering Engine）和 JS 引擎
+渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核
+JS 引擎则：解析和执行 javascript 来实现网页的动态效果"/>
 <meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://war408705279.github.io/blogs/interview-other/" />
@@ -42,18 +41,17 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 <link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
 
 <meta itemprop="name" content="前端面试题 - 其他">
-<meta itemprop="description" content="前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
-200-299：用于表示请求成功
-300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
-400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
-500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
-Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
- 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度">
+<meta itemprop="description" content="浏览器内核 说明一：
+ IE 浏览器：Trident（IE 内核） 火狐浏览器：Gecko，特点是代码完全公开 Opera 浏览器：前期采用 Presto 内核，现已改用 Google Chrome 的 Blink 内核 Safari 浏览器：Webkit 内核，Webkit 内核是 Chrome 内核的原型 Chrome 浏览器：采用 Blink 内核，是 Google 和 Opera Software 开发的浏览器排版引擎  说明二：
+ Trident 内核：IE，MaxThon，TT，The World，360，搜狗浏览器等 [又称 MSHTML] Gecko 内核：Netscape6 及以上版本，FF，MozillaSuite / SeaMonkey 等 Presto 内核：Opera7 及以上 [Opera 内核原为：Presto，现为：Blink] Webkit 内核：Safari，Chrome等 [Chrome 的：Blink（WebKit 的分支）]  详细文章：传送门
+介绍一下你对浏览器内核的理解？ 主要分成两部分：渲染引擎（layout engineer 或 Rendering Engine）和 JS 引擎
+渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核
+JS 引擎则：解析和执行 javascript 来实现网页的动态效果">
 
 
-<meta itemprop="datePublished" content="2019-03-31T00:00:00&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-31T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="1630">
+<meta itemprop="datePublished" content="2019-04-10T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-10T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1008">
 
 
 
@@ -62,17 +60,16 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 <meta name="twitter:image" content="https://war408705279.github.io"/>
 
 <meta name="twitter:title" content="前端面试题 - 其他"/>
-<meta name="twitter:description" content="前后端请求相关面试题积累 http 状态码 100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作
-200-299：用于表示请求成功
-300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求
-400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）
-500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用
-Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同  GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的
- 首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K&#43;35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度"/>
+<meta name="twitter:description" content="浏览器内核 说明一：
+ IE 浏览器：Trident（IE 内核） 火狐浏览器：Gecko，特点是代码完全公开 Opera 浏览器：前期采用 Presto 内核，现已改用 Google Chrome 的 Blink 内核 Safari 浏览器：Webkit 内核，Webkit 内核是 Chrome 内核的原型 Chrome 浏览器：采用 Blink 内核，是 Google 和 Opera Software 开发的浏览器排版引擎  说明二：
+ Trident 内核：IE，MaxThon，TT，The World，360，搜狗浏览器等 [又称 MSHTML] Gecko 内核：Netscape6 及以上版本，FF，MozillaSuite / SeaMonkey 等 Presto 内核：Opera7 及以上 [Opera 内核原为：Presto，现为：Blink] Webkit 内核：Safari，Chrome等 [Chrome 的：Blink（WebKit 的分支）]  详细文章：传送门
+介绍一下你对浏览器内核的理解？ 主要分成两部分：渲染引擎（layout engineer 或 Rendering Engine）和 JS 引擎
+渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入 CSS 等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核
+JS 引擎则：解析和执行 javascript 来实现网页的动态效果"/>
 
 
 
-<meta property="article:published_time" content="2019-03-31 00:00:00 &#43;0800 CST" />
+<meta property="article:published_time" content="2019-04-10 00:00:00 &#43;0800 CST" />
 
 
 
@@ -141,89 +138,6 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 
             <div class="post-content">
                 
-
-<h3 id="前后端请求相关面试题积累">前后端请求相关面试题积累</h3>
-
-<h4 id="http-状态码">http 状态码</h4>
-
-<p>100-199：用于指定客户端相应的某些动作，服务器接收到请求，需要请求者继续执行操作</p>
-
-<p>200-299：用于表示请求成功</p>
-
-<p>300-399：用于已经移动的文件并且常被包含在定位头信息中指定新的地址信息。重定向，需要进一步的操作以完成请求</p>
-
-<p>400-499：用于指出客户端的错误，请求包含语法 错误或无法完成请求。400 - 客户端请求语法有错误，服务器无法理解；401 - 当前请求需要用户验证；403 - 服务器理解请求客户端的请求，但是拒绝执行此请求；404 - 服务器无法根据客户端的请求找到资源（网页）</p>
-
-<p>500-599：服务器端错误。500 - 服务器内部错误，无法完成请求；501 - 服务器不支持请求的功能；502 - 充当网关或代理的服务器，从远端服务器接收到了一个无效的请求；503 - 服务不可用</p>
-
-<h4 id="ajax-中-get-和-post-方法的区别">Ajax 中 GET 和 POST 方法的区别</h4>
-
-<h5 id="get-和-post-都是向服务器发送的一种请求-只是发送机制不同">GET 和 POST 都是向服务器发送的一种请求，只是发送机制不同</h5>
-
-<ul>
-<li><p>GET 请求会将参数跟在 URL 后进行传递，而 POST 请求则是作为 HTTP 消息的实体内容发送给 WEB 服务器。当然在 Ajax 请求中，这种区别对用户是不可见的</p></li>
-
-<li><p>首先是 GET 方式提交的数据最多只能是 1024 字节，因为 GET 是通过 URL 提交数据，那么 GET 可提交的数据量就跟 URL 的长度有直接关系了。而实际上，URL 不存在参数上限的问题，HTTP 协议规范没有对 URL 长度进行限制。*这个限制是特定的浏览器及服务器对它的限制*。IE 对 URL 长度的限制是 2083 字节（2K+35）。对于其他浏览器，如 Netscape、FireFox 等，理论上没有长度限制，其限制取决于操作系统的支持。注意这是限制是整个 URL 长度，而不仅仅是你的参数值数据长度</p></li>
-
-<li><p>GET 方式请求的数据会被浏览器缓存起来，因此其他人就可以从浏览器的历史记录中读取到这些数据，例如账号和密码等。在某种情况下，GET 方式会带来严重的安全问题。而 POST 方式相对来说就可以避免这些问题</p></li>
-</ul>
-
-<h5 id="get-请求和-post-请求在服务器端的区别">GET 请求和 POST 请求在服务器端的区别</h5>
-
-<ul>
-<li><p>在客户端使用 GET 请求时，服务器端使用 Request.QueryString 来获取参数，而客户端使用 POST 请求时，服务器端使用 Request.Form 来获取参数</p></li>
-
-<li><p>HTTP 标准包含这两种方法是为了达到不同的目的。POST 用于创建资源，资源的内容会被编入 HTTP 请示的内容中。例如，处理订货表单、在数据库中加入新数据行等
-当请求无副作用时（如进行搜索），便可使用 GET 方法；当请求有副作用时（如添加数据行），则用 POST 方法。一个比较实际的问题是：GET 方法可能会产生很长的 URL，或许会超过某些浏览器与服务器对 URL 长度的限制</p></li>
-</ul>
-
-<h5 id="若符合下列任一情况-则用-post-方法">若符合下列任一情况，则用 POST 方法</h5>
-
-<ul>
-<li>请求的结果有持续性的副作用，例如，数据库内添加新的数据行</li>
-<li>若使用 GET 方法，则表单上收集的数据可能让 URL 过长</li>
-<li>要传送的数据不是采用 7 位的 ASCII 编码</li>
-</ul>
-
-<h5 id="若符合下列任一情况-则用-get-方法">若符合下列任一情况，则用 GET 方法</h5>
-
-<ul>
-<li>请求是为了查找资源，HTML 表单数据仅用来帮助搜索</li>
-<li>请求结果无持续性的副作用</li>
-<li>收集的数据及 HTML 表单内的输入字段名称的总长不超过 1024个 字符</li>
-</ul>
-
-<h4 id="http-类型">HTTP 类型</h4>
-
-<p>HTTP 协议类型有 8 种，分别是</p>
-
-<ul>
-<li><p>OPTIONS：返回服务器针对特定资源所支持的 HTTP 请求方法。也可以利用向 Web 服务器发送 * 的请求来测试服务器的功能性</p></li>
-
-<li><p>HEAD：向服务器索要与 GET 请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息</p></li>
-
-<li><p>GET：向特定的资源发出请求</p></li>
-
-<li><p>POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的创建和 / 或已有资源的修改</p></li>
-
-<li><p>PUT：向指定资源位置上传其最新内容</p></li>
-
-<li><p>DELETE：请求服务器删除 Request-URI 所标识的资源</p></li>
-
-<li><p>TRACE：回显服务器收到的请求，主要用于测试或诊断</p></li>
-
-<li><p>CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器</p></li>
-</ul>
-
-<h4 id="put-和-post-的区别">PUT 和 POST 的区别</h4>
-
-<p>PUT 和 POST 的技术实现上应该是没有很大区别的。但在于协议上语义是很大区别</p>
-
-<p>PUT 的方法就是其字面表意，将 client 的资源放在请求 URI 上。对于服务器到底是*创建*还是*更新*，由服务器返回的 HTTP Code 来区别。如果用 PUT 来达到更改资源，需要 client 提交资源全部信息，如果只有部分信息，不应该使用 PUT（因为服务器使用 client 提交的对象整体替换服务器的资源）</p>
-
-<p>基本上不能方便的归纳为*增删改*之类的行为，都可以使用 POST 方法。另外可以使用 POST 去实现<em>部分更新资源</em></p>
-
-<h3 id="前端其他相关面试题积累">前端其他相关面试题积累</h3>
 
 <h4 id="浏览器内核">浏览器内核</h4>
 
@@ -740,196 +654,6 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 </ul>
 
 <p>对普通的网站有一个统一的思路，就是尽量向前端优化、减少数据库操作、减少磁盘 IO。向前端优化指的是，在不影响功能和体验的情况下，能在浏览器执行的不要在服务端执行，能在缓存服务器上直接返回的不要到应用服务器，程序能直接取得的结果不要到外部取得，本机内能取得的数据不要到远程取，内存能取到的不要到磁盘取，缓存中有的不要去数据库查询。减少数据库操作指减少更新次数、缓存结果减少查询次数、将数据库执行的操作尽可能的让你的程序完成（例如 join 查询），减少磁盘 IO 指尽量不使用文件系统作为缓存、减少读写文件次数等。程序优化永远要优化慢的部分，换语言是无法 &ldquo;优化&rdquo; 的</p>
-
-<h4 id="http-状态码有那些-分别代表是什么意思">HTTP 状态码有那些？分别代表是什么意思？</h4>
-
-<p>简单版</p>
-
-<ul>
-<li>100 Continue 继续，一般在发送 post 请求时，已发送了 http header 之后服务端将返回此信息，表示确认，之后发送具体参数信息</li>
-<li>200 OK 正常返回信息</li>
-<li>201 Created 请求成功并且服务器创建了新的资源</li>
-<li>202 Accepted 服务器已接受请求，但尚未处理</li>
-<li>301 Moved Permanently 请求的网页已永久移动到新位置</li>
-<li>302 Found 临时性重定向</li>
-<li>303 See Other 临时性重定向，且总是使用 GET 请求新的 URI</li>
-<li>304 Not Modified 自从上次请求后，请求的网页未修改过</li>
-<li>400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求</li>
-<li>401 Unauthorized 请求未授权</li>
-<li>403 Forbidden 禁止访问</li>
-<li>404 Not Found 找不到如何与 URI 相匹配的资源</li>
-<li>500 Internal Server Error 最常见的服务器端错误</li>
-<li>503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）</li>
-</ul>
-
-<p>完整版</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="m">1</span>** （信息类）：表示接收到请求并且继续处理
-
-  <span class="m">100</span> — 客户必须继续发出请求
-
-  <span class="m">101</span> — 客户要求服务器根据请求转换 HTTP 协议版本
-
-<span class="m">2</span>** （响应成功）：表示动作被成功接收、理解和接受
-
-  <span class="m">200</span> — 表明该请求被成功地完成，所请求的资源发送回客户端
-
-  <span class="m">201</span> — 提示知道新文件的 URL
-
-  <span class="m">202</span> — 接受和处理、但处理未完成
-
-  <span class="m">203</span> — 返回信息不确定或不完整
-
-  <span class="m">204</span> — 请求收到，但返回信息为空
-
-  <span class="m">205</span> — 服务器完成了请求，用户代理必须复位当前已经浏览过的文件
-
-  <span class="m">206</span> — 服务器已经完成了部分用户的 GET 请求
-
-<span class="m">3</span>** （重定向类）：为了完成指定的动作，必须接受进一步处理
-
-  <span class="m">300</span> — 请求的资源可在多处得到
-
-  <span class="m">301</span> — 本网页被永久性转移到另一个 URL
-
-  <span class="m">302</span> — 请求的网页被转移到一个新的地址，但客户访问仍继续通过原始 URL 地址，重定向，新的 URL 会在 response 中的 Location 中返回，浏览器将会使用新的 URL 发出新的 Request
-
-  <span class="m">303</span> — 建议客户访问其他 URL 或访问方式
-
-  <span class="m">304</span> — 自从上次请求后，请求的网页未修改过，服务器返回此响应时，不会返回网页内容，代表上次的文档已经被缓存了，还可以继续使用
-
-  <span class="m">305</span> — 请求的资源必须从服务器指定的地址得到
-
-  <span class="m">306</span> - 前一版本 HTTP 中使用的代码，现行版本中不再使用
-
-  <span class="m">307</span> — 申明请求的资源临时性删除
-
-<span class="m">4</span>** （客户端错误类）：请求包含错误语法或不能正确执行
-
-  <span class="m">400</span> — 客户端请求有语法错误，不能被服务器所理解
-
-  <span class="m">401</span> — 请求未经授权，这个状态代码必须和 WWW-Authenticate 报头域一起使用
-
-  HTTP <span class="m">401</span>.1 - 未授权：登录失败
-
-    HTTP <span class="m">401</span>.2 - 未授权：服务器配置问题导致登录失败
-
-    HTTP <span class="m">401</span>.3 - ACL 禁止访问资源
-
-    HTTP <span class="m">401</span>.4 - 未授权：授权被筛选器拒绝
-
-    HTTP <span class="m">401</span>.5 - 未授权：ISAPI 或 CGI 授权失败
-
-  <span class="m">402</span> — 保留有效 ChargeTo 头响应
-
-  <span class="m">403</span> — 禁止访问，服务器收到请求，但是拒绝提供服务
-
-  HTTP <span class="m">403</span>.1 禁止访问：禁止可执行访问
-
-    HTTP <span class="m">403</span>.2 - 禁止访问：禁止读访问
-
-    HTTP <span class="m">403</span>.3 - 禁止访问：禁止写访问
-
-    HTTP <span class="m">403</span>.4 - 禁止访问：要求 SSL
-
-    HTTP <span class="m">403</span>.5 - 禁止访问：要求 SSL <span class="m">128</span>
-
-    HTTP <span class="m">403</span>.6 - 禁止访问：IP 地址被拒绝
-
-    HTTP <span class="m">403</span>.7 - 禁止访问：要求客户证书
-
-    HTTP <span class="m">403</span>.8 - 禁止访问：禁止站点访问
-
-    HTTP <span class="m">403</span>.9 - 禁止访问：连接的用户过多
-
-    HTTP <span class="m">403</span>.10 - 禁止访问：配置无效
-
-    HTTP <span class="m">403</span>.11 - 禁止访问：密码更改
-
-    HTTP <span class="m">403</span>.12 - 禁止访问：映射器拒绝访问
-
-    HTTP <span class="m">403</span>.13 - 禁止访问：客户证书已被吊销
-
-    HTTP <span class="m">403</span>.15 - 禁止访问：客户访问许可过多
-
-    HTTP <span class="m">403</span>.16 - 禁止访问：客户证书不可信或者无效
-
-    HTTP <span class="m">403</span>.17 - 禁止访问：客户证书已经到期或者尚未生效
-
-  <span class="m">404</span> — 一个 <span class="m">404</span> 错误表明可连接服务器，但服务器无法取得所请求的网页，请求资源不存在。eg：输入了错误的 URL
-
-  <span class="m">405</span> — 用户在 Request-Line 字段定义的方法不允许
-
-  <span class="m">406</span> - 根据用户发送的 Accept 头，请求资源不可访问
-
-  <span class="m">407</span> — 类似 <span class="m">401</span>，用户必须首先在代理服务器上得到授权
-
-  <span class="m">408</span> — 客户端没有在用户指定的时间内完成请求
-
-  <span class="m">409</span> — 对当前资源状态，请求不能完成
-
-  <span class="m">410</span> — 服务器上不再有此资源且无进一步的参考地址
-
-  <span class="m">411</span> — 服务器拒绝用户定义的 Content-Length 属性请求
-
-  <span class="m">412</span> — 一个或多个请求头字段在当前请求中错误
-
-  <span class="m">413</span> — 请求的资源大于服务器允许的大小
-
-  <span class="m">414</span> — 请求的资源 URL 长于服务器允许的长度
-
-  <span class="m">415</span> — 请求资源不支持请求项目格式
-
-  <span class="m">416</span> — 请求中包含 Range 请求头字段，在当前请求资源范围内没有 Range 指示值，请求也不包含 If-Range 请求头字段
-
-  <span class="m">417</span> — 服务器不满足请求 Expect 头字段指定的期望值，如果是代理服务器，可能是下一级服务器不能满足请求
-
-<span class="m">5</span>** （服务端错误类）：服务器不能正确执行一个正确的请求
-
-  HTTP <span class="m">500</span> - 服务器遇到错误，无法完成请求
-
-    HTTP <span class="m">500</span>.100 - 内部服务器错误 - ASP 错误
-
-    HTTP <span class="m">500</span>-11 服务器关闭
-
-    HTTP <span class="m">500</span>-12 应用程序重新启动
-
-    HTTP <span class="m">500</span>-13 - 服务器太忙
-
-    HTTP <span class="m">500</span>-14 - 应用程序无效
-
-    HTTP <span class="m">500</span>-15 - 不允许请求 global.asa
-
-    Error <span class="m">501</span> - 未实现
-
-  HTTP <span class="m">502</span> - 网关错误
-
-  HTTP <span class="m">503</span> - 由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常</code></pre></div>
-<h4 id="一个页面从输入-url-到页面加载显示完成-这个过程中都发生了什么-流程说的越详细越好">一个页面从输入 URL 到页面加载显示完成，这个过程中都发生了什么？（流程说的越详细越好）</h4>
-
-<p>注：这题胜在区分度高，知识点覆盖广，再不懂的人，也能答出几句，而高手可以根据自己擅长的领域自由发挥，从 URL 规范、HTTP 协议、DNS、CDN、数据库查询到浏览器流式解析、CSS 规则构建、layout、paint、onload/domready、JS 执行、JS API 绑定等等</p>
-
-<p>详细版：</p>
-
-<ul>
-<li>浏览器会开启一个线程来处理这个请求，对 URL 分析判断如果是 http 协议就按照 Web 方式来处理</li>
-<li>调用浏览器内核中的对应方法，比如 WebView 中的 loadUrl 方法</li>
-<li>通过 DNS 解析获取网址的 IP 地址，设置 UA 等信息发出第二个 GET 请求</li>
-<li>进行 HTTP 协议会话，客户端发送报头（请求报头）</li>
-<li>进入到 web 服务器上的 Web Server，如 Apache、Tomcat、Node.JS 等服务器</li>
-<li>进入部署好的后端应用，如 PHP、Java、JavaScript、Python 等，找到对应的请求处理</li>
-<li>处理结束回馈报头，此处如果浏览器访问过，缓存上有对应资源，会与服务器最后修改时间对比，一致则返回 304</li>
-<li>浏览器开始下载 HTML 文档（响应报头，状态码 200），同时使用缓存</li>
-<li>文档树建立，根据标记请求所需指定 MIME 类型的文件（比如 css、js），同时设置了 cookie</li>
-<li>页面开始渲染 DOM，JS 根据 DOM API 操作 DOM，执行事件绑定等，页面显示完成</li>
-</ul>
-
-<p>简洁版：</p>
-
-<ul>
-<li>浏览器根据请求的 URL 交给 DNS 域名解析，找到真实 IP，向服务器发起请求</li>
-<li>服务器交给后台处理完成后返回数据，浏览器接收文件（HTML、JS、CSS、图象等）</li>
-<li>浏览器对加载到的资源（HTML、JS、CSS 等）进行语法解析，建立相应的内部数据结构（如 HTML 的 DOM）</li>
-</ul>
 
 <h4 id="对前端工程师这个职位是怎么样理解的-它的前景会怎么样">对前端工程师这个职位是怎么样理解的？它的前景会怎么样？</h4>
 
