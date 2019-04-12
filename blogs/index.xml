@@ -6,10 +6,24 @@
     <description>Recent content in Blogs on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>学习网站 &#43; 文档</title>
+      <link>https://war408705279.github.io/blogs/good-good-study/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/good-good-study/</guid>
+      <description>前端学习网站推荐  极客标签：http://www.gbtags.com （传送门） 码农周刊：http://weekly.manong.io/issues （传送门） 前端周刊：http://www.feweekly.com/issues （传送门） 慕课网：http://www.imooc.com/ （传送门） div.io：http://div.io （传送门） Hacker News：https://news.ycombinator.com/news （传送门） InfoQ：http://www.infoq.com/ （传送门） w3cplus：http://www.w3cplus.com/ （传送门） Stack Overflow：http://stackoverflow.com/ （传送门） w3school：http://www.w3school.com.cn/ （传送门） mozilla：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript （传送门）  文档推荐  JQuery 基本原理 JavaScript 秘密花园 CSS 参考手册 JavaScript 标准参考教程 ECMAScript 6入门  Github 备注 根据自己需要选择性阅读，面试题是对理论知识的总结，让自己学会应该如何表达
+格式和内容不断修改更新中
+在 github 项目的右上角，有三个按钮，分别是 watch、star、fork，新来的同学注意不要用错了，无休止的邮件提醒会给你造成不必要的信息干扰
+当你选择 Watching，表示你以后会关注这个项目的全部动态，以后只要这个项目发生变动，被别人提交了 pull request、被发起了 issue 等情况你都会收到邮件通知
+star 相当于是点赞或收藏，方便以后查找
+fork 表示你想要补充完善这个项目的内容</description>
+    </item>
     
     <item>
       <title>前端面试题 - 其他</title>
