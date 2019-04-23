@@ -6,10 +6,25 @@
     <description>Recent content on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 22 Apr 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React component 生命周期</title>
+      <link>https://war408705279.github.io/blogs/react-component-life/</link>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/react-component-life/</guid>
+      <description>React Native 中的 component 和 Android 中的 activity、fragment 等一样，存在声明周期，下面先给出 component 的生命周期图
+ ##### getDefaultProps  object getDefaultProps()  执行过一次后，被创建的类会有缓存，映射的值会存在 this.props，前提是这个 prop 不是父组件指定的，这个方法在对象被创建之前执行，因此不能在方法内调用 this.props，另外，注意任何 getDefaultProps() 返回的对象在实例中共享，不是复制
+ ##### getInitialState  object getInitialState()  控件加载之前执行，返回值会被用于 state 的初始化值
+ ##### componentWillMount（重要）  void componentWillMount()  执行一次，在初始化 render 之前执行，如果在这个方法内调用 setState，render() 知道 state 发生变化，并且执行一次
+ ##### render（重要）  ReactElement render()  render 的时候 render() 会被调用
+调用 render() 方法时，首先检查 this.props 和 this.state 返回一个子元素，子元素可以是 DOM 组件或者其他自定义复合控件的虚拟实现
+如果不想渲染可以返回 null 或者 false，这种场景下，react 渲染一个 &amp;lt;noscript&amp;gt; 标签，当返回 null 或者 false，ReactDOM.</description>
+    </item>
     
     <item>
       <title>Makefile 相关知识</title>
@@ -140,21 +155,6 @@ fork 表示你想要补充完善这个项目的内容</description>
 Doctype 作用？标准模式与兼容模式各有什么区别?  &amp;lt;!DOCTYPE&amp;gt; 声明位于 HTML 文档中的第一行，处于  标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现
  标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作
   行内元素有哪些？块级元素有哪些？ 空（void）元素有那些？ 首先：CSS 规范规定，每个元素都有 display 属性，确定该元素的类型，每个元素都有默认的 display 值，如 div 的 display 默认值为 “block”，则为“块级”元素；span 默认 display 属性值为 “inline”，是“行内”元素</description>
-    </item>
-    
-    <item>
-      <title>ES6 概述</title>
-      <link>https://war408705279.github.io/blogs/es6_introduce/</link>
-      <pubDate>Sun, 03 Mar 2019 00:00:00 +0800</pubDate>
-      
-      <guid>https://war408705279.github.io/blogs/es6_introduce/</guid>
-      <description>概述 ES6（ECMAScript6）是新版本 JavaScript 语言的标准，代号 _harmony_。上一次标准的制定还是 2009 年出台的 ES5。
-ECMAScript 和 JavaScript 的关系：前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的
-ES6 和 ECMAScript2015 的关系：ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”
-箭头操作符 如果你会 C# 或者 Java，你肯定知道 lambda 表示，ES6 中新增的 箭头操作符（=&amp;gt;） 就有异曲同工之妙。它简化了函数的书写。操作符左边为输入的参数，而右边则是进行操作及返回的值 Inputs =&amp;gt; Outputs。我们知道在 JS 中回调是经常的事，而一般回调又以匿名函数的形式出现，每次都需要写一个 function，甚是繁琐，当引入箭头操作符后就可以方面的进行回调。
-箭头函数的 this 值：普通 function 函数和箭头函数的行为有一个微妙的区别，箭头函数没有它自己的 this 值，箭头函数内的 this 值继承自外围作用域。
-箭头集合：
-   &amp;lt;!&amp;ndash; 单行注释     &amp;ndash;&amp;gt; “趋向于”操作符   &amp;lt;= 小于等于   =&amp;gt; 箭头函数    如下面的例子所示。</description>
     </item>
     
   </channel>
