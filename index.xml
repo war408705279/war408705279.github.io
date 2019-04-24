@@ -24,6 +24,18 @@
     </item>
     
     <item>
+      <title>通过 ip 在 docker 容器外访问 docker 内的 web 服务</title>
+      <link>https://war408705279.github.io/blogs/visit-docker-web-via-ip/</link>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/visit-docker-web-via-ip/</guid>
+      <description>需求：比如我在 docker 里面起了一个 nginx 服务，同时在 docker 里面起了一个前端服务，如果我想在 docker 外访问这个前端页面，以下就是实现的方法
+ 在使用 Dockerfile 构建镜像之前，先新建一个 html 页面（index.html）和一个 nginx 配置文件（localhost.conf）  index.html 文件里的内容如下：
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;欢迎访问 Docker&amp;lt;/title&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width&amp;#34;&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;meta http-equiv=&amp;#34;X-UA-Compatible&amp;#34; content=&amp;#34;IE=edge&amp;#34;&amp;gt; &amp;lt;style type=&amp;#34;text/css&amp;#34;&amp;gt; html, body { width: 100%; height: 100%; } .title { text-align: center; } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h3 class=&amp;#34;title&amp;#34;&amp;gt;恭喜你成功通过 IP 访问到 Docker 里的内容&amp;lt;/h3&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; localhost.conf 文件里的内容如下：
+server { # nginx 里面监听 9000 端口，需要注意的是，由于 docker 是起在本地的，因此这个端口号要避免和已有的端口号冲突 listen 9000; # server_name 为 localhost server_name localhost; location / { # 访问目录为 /web，这个目录也可以换成别的 root /web; # 访问主页为 index.</description>
+    </item>
+    
+    <item>
       <title>React component 生命周期</title>
       <link>https://war408705279.github.io/blogs/react-component-life/</link>
       <pubDate>Tue, 23 Apr 2019 00:00:00 +0800</pubDate>
@@ -141,18 +153,6 @@ function.call(obj [, arg1 [, arg2[, [, argN]]]]])  说明</description>
 当你选择 Watching，表示你以后会关注这个项目的全部动态，以后只要这个项目发生变动，被别人提交了 pull request、被发起了 issue 等情况你都会收到邮件通知
 star 相当于是点赞或收藏，方便以后查找
 fork 表示你想要补充完善这个项目的内容</description>
-    </item>
-    
-    <item>
-      <title>前端面试题 - CSS</title>
-      <link>https://war408705279.github.io/blogs/interview-css/</link>
-      <pubDate>Sat, 30 Mar 2019 00:00:00 +0800</pubDate>
-      
-      <guid>https://war408705279.github.io/blogs/interview-css/</guid>
-      <description>前端 CSS 面试题积累 CSS 的盒子模型 有两种盒子模型
- IE 盒子模型：content 部分包含了 border 和 padding 标准 W3C 盒子模型：包含内容（content）、填充（padding）、边界（margin）、边框（border）  CSS 选择符  id 选择器（#id） 类选择器（.myclassname） 标签选择器（div，h1，p） 相邻选择器（h1+p） 子选择器（ul &amp;gt; li） 后代选择器（li a） 通配符选择器（*） 属性选择器（a[rel = &amp;ldquo;external&amp;rdquo;]） 伪类选择器（a:hover, li:nth-child） 可继承的样式：font-size、font-family、color 等 不可继承的样式：border、padding、margin、width、height 等 优先级就近原则，同权重情况下样式定义最近者为准 优先级为：!important &amp;gt; id 选择器 &amp;gt; class 选择器 &amp;gt; 标签选择器  nth-child 和 nth-of-type 之间的差异 nth-child：按照个数来计算
-看如下的例子
-&amp;lt;style&amp;gt; p:nth-child(2), p:nth-child(7){ color:red; } &amp;lt;/style&amp;gt; &amp;lt;h1&amp;gt;标题&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; 效果如下所示</description>
     </item>
     
   </channel>
