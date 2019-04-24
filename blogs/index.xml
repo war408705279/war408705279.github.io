@@ -6,10 +6,22 @@
     <description>Recent content in Blogs on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 24 Apr 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Docker 常用命令</title>
+      <link>https://war408705279.github.io/blogs/docker-command/</link>
+      <pubDate>Wed, 24 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/docker-command/</guid>
+      <description>归纳了一些 docker 的常用命令，持续更新
+基础类 # 查看 docker 版本 docker version # 显示 docker 系统的信息 docker info # 日志信息 docker logs # 故障检查 service docker status # 启动 / 关闭 docker sudo service docker start / stop 日志类 # 查看容器日志 docker logs -f &amp;lt;容器名 or ID&amp;gt; docker daemon 日志位置
+也称之为 引擎日志 根据系统不同各不相同
+ CoreOS - journalctl -u docker.service Ubuntu(16.04) - journalctl -u docker.service Ubuntu(14.04) - /var/log/upstart/docker.log Boot2Docker - /var/log/docker.log Debian GNU/Linux 8 - journalctl -u docker.</description>
+    </item>
     
     <item>
       <title>React component 生命周期</title>
@@ -141,20 +153,6 @@ fork 表示你想要补充完善这个项目的内容</description>
  IE 盒子模型：content 部分包含了 border 和 padding 标准 W3C 盒子模型：包含内容（content）、填充（padding）、边界（margin）、边框（border）  CSS 选择符  id 选择器（#id） 类选择器（.myclassname） 标签选择器（div，h1，p） 相邻选择器（h1+p） 子选择器（ul &amp;gt; li） 后代选择器（li a） 通配符选择器（*） 属性选择器（a[rel = &amp;ldquo;external&amp;rdquo;]） 伪类选择器（a:hover, li:nth-child） 可继承的样式：font-size、font-family、color 等 不可继承的样式：border、padding、margin、width、height 等 优先级就近原则，同权重情况下样式定义最近者为准 优先级为：!important &amp;gt; id 选择器 &amp;gt; class 选择器 &amp;gt; 标签选择器  nth-child 和 nth-of-type 之间的差异 nth-child：按照个数来计算
 看如下的例子
 &amp;lt;style&amp;gt; p:nth-child(2), p:nth-child(7){ color:red; } &amp;lt;/style&amp;gt; &amp;lt;h1&amp;gt;标题&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; 效果如下所示</description>
-    </item>
-    
-    <item>
-      <title>前端面试题 - HTML</title>
-      <link>https://war408705279.github.io/blogs/interview-html/</link>
-      <pubDate>Sat, 30 Mar 2019 00:00:00 +0800</pubDate>
-      
-      <guid>https://war408705279.github.io/blogs/interview-html/</guid>
-      <description>前端 HTML 面试题积累 语义化的 HTML 说明一：
- 直观的认识标签对于搜索引擎的抓取有好处，用正确的标签做正确的事情 HTML 语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析 在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人更容易将网站分块，便于阅读维护理解  说明二：
- 用正确的标签做正确的事情 HTML 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析 即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的 搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解  &amp;lt;!DOCTYPE html&amp;gt; 标签 H5 不基于 SGML，因此不需要对 DTD（document type definition）进行引用，但是需要 doctype 来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。而 HTML4.0 基于 SGML，所以需要对 DTD 进行引用，才能告知浏览器文档所使用的文档类型
-Doctype 作用？标准模式与兼容模式各有什么区别?  &amp;lt;!DOCTYPE&amp;gt; 声明位于 HTML 文档中的第一行，处于  标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现
- 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作
-  行内元素有哪些？块级元素有哪些？ 空（void）元素有那些？ 首先：CSS 规范规定，每个元素都有 display 属性，确定该元素的类型，每个元素都有默认的 display 值，如 div 的 display 默认值为 “block”，则为“块级”元素；span 默认 display 属性值为 “inline”，是“行内”元素</description>
     </item>
     
   </channel>
