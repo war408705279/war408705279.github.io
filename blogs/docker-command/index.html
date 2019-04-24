@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="author" content="Zhazha ">
+<meta name="description" content="归纳了一些 docker 的常用命令，持续更新
+基础类 # 查看 docker 版本 docker version # 显示 docker 系统的信息 docker info # 日志信息 docker logs # 故障检查 service docker status # 启动 / 关闭 docker sudo service docker start / stop 日志类 # 查看容器日志 docker logs -f &amp;lt;容器名 or ID&amp;gt; docker daemon 日志位置
+也称之为 引擎日志 根据系统不同各不相同
+ CoreOS - journalctl -u docker.service Ubuntu(16.04) - journalctl -u docker.service Ubuntu(14.04) - /var/log/upstart/docker.log Boot2Docker - /var/log/docker.log Debian GNU/Linux 8 - journalctl -u docker."/>
+<meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://war408705279.github.io/blogs/docker-command/" />
+
+
+    <title>
+        
+            Docker 常用命令 :: rm -rf *  — Welcome to my blog
+        
+    </title>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="https://war408705279.github.io/scss/main.min.099699ab246bf26f50616f7c9f00c79d46110459d1bd727b2d07d6fc09ece082.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://war408705279.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://war408705279.github.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://war408705279.github.io/favicon-16x16.png">
+<link rel="manifest" href="https://war408705279.github.io/site.webmanifest">
+<link rel="mask-icon" href="https://war408705279.github.io/safari-pinned-tab.svg" color="">
+<link rel="shortcut icon" href="https://war408705279.github.io/favicon.ico">
+<link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
+
+<meta itemprop="name" content="Docker 常用命令">
+<meta itemprop="description" content="归纳了一些 docker 的常用命令，持续更新
+基础类 # 查看 docker 版本 docker version # 显示 docker 系统的信息 docker info # 日志信息 docker logs # 故障检查 service docker status # 启动 / 关闭 docker sudo service docker start / stop 日志类 # 查看容器日志 docker logs -f &lt;容器名 or ID&gt; docker daemon 日志位置
+也称之为 引擎日志 根据系统不同各不相同
+ CoreOS - journalctl -u docker.service Ubuntu(16.04) - journalctl -u docker.service Ubuntu(14.04) - /var/log/upstart/docker.log Boot2Docker - /var/log/docker.log Debian GNU/Linux 8 - journalctl -u docker.">
+
+
+<meta itemprop="datePublished" content="2019-04-24T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-24T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="995">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://war408705279.github.io"/>
+
+<meta name="twitter:title" content="Docker 常用命令"/>
+<meta name="twitter:description" content="归纳了一些 docker 的常用命令，持续更新
+基础类 # 查看 docker 版本 docker version # 显示 docker 系统的信息 docker info # 日志信息 docker logs # 故障检查 service docker status # 启动 / 关闭 docker sudo service docker start / stop 日志类 # 查看容器日志 docker logs -f &lt;容器名 or ID&gt; docker daemon 日志位置
+也称之为 引擎日志 根据系统不同各不相同
+ CoreOS - journalctl -u docker.service Ubuntu(16.04) - journalctl -u docker.service Ubuntu(14.04) - /var/log/upstart/docker.log Boot2Docker - /var/log/docker.log Debian GNU/Linux 8 - journalctl -u docker."/>
+
+
+
+<meta property="article:published_time" content="2019-04-24 00:00:00 &#43;0800 &#43;0800" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://war408705279.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ rm -rf *</span>
+            <span class="logo__cursor"></span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://war408705279.github.io/blogs/">博客</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/docker-command/">Docker 常用命令</a></h2>
+
+            
+
+            <div class="post-content">
+                
+
+<p>归纳了一些 docker 的常用命令，持续更新</p>
+
+<h3 id="基础类">基础类</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看 docker 版本</span>
+docker version
+<span class="c1"># 显示 docker 系统的信息</span>
+docker info
+<span class="c1"># 日志信息</span>
+docker logs
+<span class="c1"># 故障检查</span>
+service docker status
+<span class="c1"># 启动 / 关闭 docker</span>
+sudo service docker start / stop</code></pre></div>
+<h3 id="日志类">日志类</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看容器日志</span>
+docker logs -f &lt;容器名 or ID&gt;</code></pre></div>
+<p>docker daemon 日志位置</p>
+
+<p>也称之为 <code>引擎日志</code> 根据系统不同各不相同</p>
+
+<ul>
+<li>CoreOS - journalctl -u docker.service</li>
+<li>Ubuntu(16.04) - journalctl -u docker.service</li>
+<li>Ubuntu(14.04) - /var/log/upstart/docker.log</li>
+<li>Boot2Docker - /var/log/docker.log</li>
+<li>Debian GNU/Linux 8 - journalctl -u docker.service</li>
+<li>Debian GNU/Linux 7 - /var/log/daemon.log</li>
+<li>CentOS 7/RHEL 7 - journalctl -u docker.service</li>
+<li>CentOS - /var/log/daemon.log | grep docker</li>
+<li>Fedora - journalctl -u docker.service</li>
+<li>OpenSuSE - journalctl -u docker.service</li>
+<li>Red Hat Enterprise Linux Server - /var/log/messages | grep docker</li>
+<li>OSX - ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/log/d‌ocker.log</li>
+</ul>
+
+<h3 id="查看容器信息">查看容器信息</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看当前运行的容器</span>
+docker ps
+<span class="c1"># 查看全部容器</span>
+docker ps -a
+<span class="c1"># 查看全部容器的 id 和信息</span>
+docker ps -a -q
+<span class="c1"># 查看全部容器占用的空间</span>
+docker ps -as
+<span class="c1"># 查看一个正在运行容器进程，支持 ps 命令参数</span>
+docker top
+<span class="c1"># 查看容器的示例 id</span>
+sudo docker inspect -f <span class="s1">&#39;{{.Id}}&#39;</span> <span class="o">[</span>id<span class="o">]</span>
+<span class="c1"># 检查镜像或者容器的参数，默认返回 JSON 格式</span>
+docker inspect
+<span class="c1"># 返回 ubuntu:14.04 镜像的 docker 版本</span>
+docker inspect --format <span class="s1">&#39;{{.DockerVersion}}&#39;</span> ubuntu:14.04
+docker inspect --format<span class="o">=</span><span class="s1">&#39;{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}&#39;</span> ubuntu:14.04</code></pre></div>
+<h3 id="容器同步命令">容器同步命令</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 保存对容器的修改</span>
+docker commit
+<span class="c1"># 保存某个容器成为一个镜像</span>
+docker commit -a <span class="s2">&#34;user&#34;</span> -m <span class="s2">&#34;commit info&#34;</span> <span class="o">[</span>CONTAINER<span class="o">]</span> <span class="o">[</span>imageName<span class="o">]</span>:<span class="o">[</span>imageTag<span class="o">]</span>
+<span class="c1"># 推送一个容器到中心仓库</span>
+docker login --username<span class="o">=[</span>userName<span class="o">]</span> --password<span class="o">=[</span>pwd<span class="o">]</span> <span class="o">[</span>registryURL<span class="o">]</span>
+<span class="c1">## 建议登录后查看 docker info</span>
+docker tag <span class="o">[</span>imageID<span class="o">]</span> <span class="o">[</span>remoteURL<span class="o">]</span>:<span class="o">[</span>imageTag<span class="o">]</span>
+docker push <span class="o">[</span>remoteURL<span class="o">]</span>:<span class="o">[</span>imageTag<span class="o">]</span>
+<span class="c1"># 拉取提交的容器</span>
+docker pull <span class="o">[</span>remoteURL<span class="o">]</span>:<span class="o">[</span>imageTag<span class="o">]</span>
+<span class="c1"># 对比容器的改动</span>
+docker diff
+<span class="c1"># 附加到一个运行的容器上</span>
+docker attach</code></pre></div>
+<h3 id="容器操作命令">容器操作命令</h3>
+
+<h4 id="创建删除容器">创建删除容器</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 创建一个容器命名为 test 使用镜像 daocloud.io/library/ubuntu</span>
+docker create -it --name <span class="nb">test</span> daocloud.io/library/ubuntu
+<span class="c1"># 创建并启动一个容器 名为 test 使用镜像 daocloud.io/library/ubuntu</span>
+docker run --name <span class="nb">test</span> daocloud.io/library/ubuntu
+<span class="c1"># 删除一个容器</span>
+docker rm <span class="o">[</span>容器id<span class="o">]</span>
+<span class="c1"># 删除所有容器</span>
+docker rm <span class="sb">`</span>docker ps -a -q<span class="sb">`</span>
+<span class="c1"># 根据 Dockerfile 构建</span>
+docker build -t <span class="o">[</span>image_name<span class="o">]</span> <span class="o">[</span>Dockerfile_path<span class="o">]</span></code></pre></div>
+<h4 id="docker-容器随系统自启">docker 容器随系统自启</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run --restart<span class="o">=</span>always</code></pre></div>
+<p>参数说明</p>
+
+<ul>
+<li>no – 默认值，如果容器挂掉不自动重启</li>
+<li>on-failure – 当容器以非 0 码退出时重启容器，同时可接受一个可选的最大重启次数参数 (例如 on-failure:10)</li>
+<li>always – 不管退出码是多少都要重启</li>
+</ul>
+
+<h4 id="容器资源限制参数">容器资源限制参数</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 限制内存最大使用</span>
+-m 1024m --memory-swap<span class="o">=</span>1024m
+<span class="c1"># 限制容器使用 CPU</span>
+--cpuset-cpus<span class="o">=</span><span class="s2">&#34;0,1&#34;</span></code></pre></div>
+<h4 id="把一个正在运行的容器保存为镜像">把一个正在运行的容器保存为镜像</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker commit &lt;CONTAIN-ID&gt; &lt;IMAGE-NAME&gt;</code></pre></div>
+<h4 id="启动停止容器等操作">启动停止容器等操作</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 启动|停止|重启容器（根据 id）</span>
+docker start<span class="p">|</span>stop<span class="p">|</span>restart <span class="o">[</span>id<span class="o">]</span>
+<span class="c1"># 暂停|恢复 某一容器的所有进程</span>
+docker pause<span class="p">|</span>unpause <span class="o">[</span>id<span class="o">]</span>
+<span class="c1"># 杀死一个或多个指定容器进程</span>
+docker <span class="nb">kill</span> -s KILL <span class="o">[</span>id<span class="o">]</span>
+<span class="c1"># 停止全部运行的容器</span>
+docker stop <span class="sb">`</span>docker ps -q<span class="sb">`</span>
+<span class="c1"># 杀掉全部运行的容器</span>
+docker <span class="nb">kill</span> -s KILL <span class="sb">`</span>docker ps -q<span class="sb">`</span></code></pre></div>
+<h4 id="交互式进入容器">交互式进入容器</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo docker <span class="nb">exec</span> -it <span class="o">{{</span>containerName or containerID<span class="o">}}</span> bash
+sudo docker <span class="nb">exec</span> -i <span class="o">{{</span>containerName or containerID<span class="o">}}</span> bash
+sudo docker <span class="nb">exec</span> -t <span class="o">{{</span>containerName or containerID<span class="o">}}</span> bash
+sudo docker <span class="nb">exec</span> -d <span class="o">{{</span>containerName or containerID<span class="o">}}</span> bash</code></pre></div>
+<p>参数说明</p>
+
+<ul>
+<li>只用 -i 参数，由于没有分配伪终端，看起来像 pipe 执行一样。但是执行结果、命令返回值都可以正确获取</li>
+<li>只用 -t 参数，则可以看到一个 console 窗口，但是执行命令会发现由于没有获得 stdin 的输出，无法看到命令执行情况</li>
+<li>使用 -it 时，则和我们平常操作 console 界面类似，而且也不会像 attach 方式因为退出，导致整个容器退出</li>
+<li>使用 -d 参数，在后台执行一个进程。如果一个命令需要长时间进程，会很快返回</li>
+</ul>
+
+<h4 id="查看容器的-root-用户密码">查看容器的 root 用户密码</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker logs &lt;容器名 or ID&gt; <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> grep <span class="s1">&#39;^User: &#39;</span> <span class="p">|</span> tail -n1</code></pre></div>
+<p>因为 Docker 容器启动时的 root 用户的密码是随机分配的。所以，通过这种方式就可以得到容器的 root 用户的密码</p>
+
+<h4 id="导入导出容器">导入导出容器</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 支持远程文件 .tar, .tar.gz, .tgz, .bzip, .tar.xz, .txz</span>
+docker import
+<span class="c1"># 导出</span>
+docker <span class="nb">export</span> <span class="o">[</span>id<span class="o">]</span> &gt;~/Downloads/ubuntu_nexus.tar</code></pre></div>
+<p>出后导入（exported-imported）的容器会丢失所有的提交历史，无法回滚</p>
+
+<h3 id="镜像操作">镜像操作</h3>
+
+<h4 id="远程镜像">远程镜像</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker login
+<span class="c1"># 搜索镜像</span>
+docker search
+<span class="c1"># 搜索处收藏数不小于 3 ，并且能够自动化构建的 django 镜像，并且完整显示镜像描述</span>
+docker search -s <span class="m">3</span> --automated --no-trunc django
+<span class="c1"># 拉取镜像</span>
+docker pull
+<span class="c1"># 拉取 ubuntu 最新的镜像</span>
+docker pull ubuntu:latest
+<span class="c1"># 服务器拉取个人动态，可选择时间区间</span>
+docker events
+<span class="c1"># 拉取个人从 2015/07/20 到 2015/08/08 的个人动态</span>
+docker events --since<span class="o">=</span><span class="s2">&#34;20150720&#34;</span> --until<span class="o">=</span><span class="s2">&#34;20150808&#34;</span></code></pre></div>
+<h4 id="镜像同步操作">镜像同步操作</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 标记本地镜像，将其归入某一仓库</span>
+docker tag
+<span class="c1"># 将 ID 为 5db5f84x1261 的容器标记为 mine/lnmp:0.2 镜像</span>
+docker tag 5db5f84x1261 mine/lnmp:0.2
+<span class="c1"># 将镜像推送至远程仓库，默认为 Docker Hub</span>
+docker push</code></pre></div>
+<h4 id="本地镜像">本地镜像</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 列出本地所有镜像</span>
+docker images
+<span class="c1"># 本地镜像名为 ubuntu 的所有镜像</span>
+docker images ubuntu
+<span class="c1"># 查看指定镜像的创建历史</span>
+docker <span class="nb">history</span> <span class="o">[</span>id<span class="o">]</span>
+<span class="c1"># 本地移除一个或多个指定的镜像</span>
+docker rmi
+<span class="c1"># 移除本地全部镜像</span>
+docker rmi <span class="sb">`</span>docker images -a -q<span class="sb">`</span>
+<span class="c1"># 指定镜像保存成 tar 归档文件， docker load 的逆操作</span>
+docker save
+<span class="c1"># 将镜像 ubuntu:14.04 保存为 ubuntu14.04.tar 文件</span>
+docker save -o ubuntu14.04.tar ubuntu:14.04
+<span class="c1"># 从 tar 镜像归档中载入镜像， docker save 的逆操作</span>
+docker load
+<span class="c1"># 上面命令的意思是将 ubuntu14.04.tar 文件载入镜像中</span>
+docker load -i ubuntu14.04.tar
+docker load &lt; /home/save.tar
+<span class="c1"># 构建自己的镜像</span>
+docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;
+docker build -t xx/gitlab .</code></pre></div>
+<p>保存后再加载（saved-loaded）的镜像不会丢失提交历史和层，可以回滚</p>
+
+<h3 id="docker-run">docker run</h3>
+
+<h4 id="后台运行-d-并暴露端口">后台运行（-d）、并暴露端口</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run -d -p <span class="m">80</span>:80 centos6-ssh</code></pre></div>
+<h4 id="run-命令详解">run 命令详解</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">-a, --attach<span class="o">=[]</span>            Attach to STDIN, STDOUT or STDERR 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项
+  --add-host<span class="o">=[]</span>              Add a custom host-to-IP mapping <span class="o">(</span>host:ip<span class="o">)</span>
+  --blkio-weight<span class="o">=</span><span class="m">0</span>            Block IO <span class="o">(</span>relative weight<span class="o">)</span>, between <span class="m">10</span> and <span class="m">1000</span>
+  -c, --cpu-shares<span class="o">=</span><span class="m">0</span>          CPU shares <span class="o">(</span>relative weight<span class="o">)</span>
+  --cap-add<span class="o">=[]</span>                Add Linux capabilities
+  --cap-drop<span class="o">=[]</span>              Drop Linux capabilities
+  --cgroup-parent<span class="o">=</span>            Optional parent cgroup <span class="k">for</span> the container
+  --cidfile<span class="o">=</span>                  Write the container ID to the file
+  --cpu-period<span class="o">=</span><span class="m">0</span>              Limit CPU CFS <span class="o">(</span>Completely Fair Scheduler<span class="o">)</span> period
+  --cpu-quota<span class="o">=</span><span class="m">0</span>              Limit the CPU CFS quota
+  --cpuset-cpus<span class="o">=</span>              CPUs in which to allow execution <span class="o">(</span><span class="m">0</span>-3, <span class="m">0</span>,1<span class="o">)</span> 绑定容器到指定CPU运行
+  --cpuset-mems<span class="o">=</span>              MEMs in which to allow execution <span class="o">(</span><span class="m">0</span>-3, <span class="m">0</span>,1<span class="o">)</span> 绑定容器到指定MEM运行
+  -d, --detach<span class="o">=</span><span class="nb">false</span>          Run container in background and print container ID 后台运行容器，并返回容器ID
+  --device<span class="o">=[]</span>                Add a host device to the container
+  --dns<span class="o">=[]</span>                    Set custom DNS servers 指定容器使用的DNS服务器，默认和宿主一致
+  --dns-search<span class="o">=[]</span>            Set custom DNS search domains 指定容器DNS搜索域名，默认和宿主一致
+  -e, --env<span class="o">=[]</span>                Set environment variables 设置环境变量
+  --entrypoint<span class="o">=</span>              Overwrite the default ENTRYPOINT of the image
+  --env-file<span class="o">=[]</span>              Read in a file of environment variables 从指定文件读入环境变量
+  --expose<span class="o">=[]</span>                Expose a port or a range of ports
+  -h, --hostname<span class="o">=</span>            Container host name 指定容器的hostname
+  --help<span class="o">=</span><span class="nb">false</span>                Print usage
+  -i, --interactive<span class="o">=</span><span class="nb">false</span>    Keep STDIN open even <span class="k">if</span> not attached 以交互模式运行容器，通常与 -t 同时使用
+  --ipc<span class="o">=</span>                      IPC namespace to use
+  -l, --label<span class="o">=[]</span>              Set meta data on a container
+  --label-file<span class="o">=[]</span>            Read in a line delimited file of labels
+  --link<span class="o">=[]</span>                  Add link to another container
+  --log-driver<span class="o">=</span>              Logging driver <span class="k">for</span> container
+  --log-opt<span class="o">=[]</span>                Log driver options
+  --lxc-conf<span class="o">=[]</span>              Add custom lxc options
+  -m, --memory<span class="o">=</span>              Memory limit
+  --mac-address<span class="o">=</span>              Container MAC address <span class="o">(</span>e.g. <span class="m">92</span>:d0:c6:0a:29:33<span class="o">)</span>
+  --memory-swap<span class="o">=</span>              Total memory <span class="o">(</span>memory + swap<span class="o">)</span>, <span class="s1">&#39;-1&#39;</span> to disable swap
+  --name<span class="o">=</span>                    Assign a name to the container 为容器指定一个名称
+  --net<span class="o">=</span>bridge                Set the Network mode <span class="k">for</span> the container  指定容器的网络连接类型，支持 bridge/host/none/container:&lt;name<span class="p">|</span>id&gt; 四种类型
+  --oom-kill-disable<span class="o">=</span><span class="nb">false</span>    Disable OOM Killer
+  -P, --publish-all<span class="o">=</span><span class="nb">false</span>    Publish all exposed ports to random ports
+  -p, --publish<span class="o">=[]</span>            Publish a container<span class="s1">&#39;s port(s) to the host
+</span><span class="s1">  --pid=                      PID namespace to use
+</span><span class="s1">  --privileged=false          Give extended privileges to this container
+</span><span class="s1">  --read-only=false          Mount the container&#39;</span>s root filesystem as <span class="nb">read</span> only
+  --restart<span class="o">=</span>no                Restart policy to apply when a container exits
+  --rm<span class="o">=</span><span class="nb">false</span>                  Automatically remove the container when it exits
+  --security-opt<span class="o">=[]</span>          Security Options
+  --sig-proxy<span class="o">=</span><span class="nb">true</span>            Proxy received signals to the process
+  -t, --tty<span class="o">=</span><span class="nb">false</span>            Allocate a pseudo-TTY 为容器重新分配一个伪输入终端，通常与 -i 同时使用
+  -u, --user<span class="o">=</span>                Username or UID <span class="o">(</span>format: &lt;name<span class="p">|</span>uid&gt;<span class="o">[</span>:&lt;group<span class="p">|</span>gid&gt;<span class="o">])</span>
+  --ulimit<span class="o">=[]</span>                Ulimit options
+  --uts<span class="o">=</span>                      UTS namespace to use
+  -v, --volume<span class="o">=[]</span>            Bind mount a volume
+  --volumes-from<span class="o">=[]</span>          Mount volumes from the specified container<span class="o">(</span>s<span class="o">)</span>
+  -w, --workdir<span class="o">=</span>              Working directory inside the container</code></pre></div>
+<h4 id="dockerfile-中的-expose-docker-run-expose-docker-run-p-之间的区别">Dockerfile 中的 EXPOSE、docker run &ndash;expose、docker run -p 之间的区别</h4>
+
+<ul>
+<li>Dockerfile 的 EXPOSE 相当于 docker run &ndash;expose，提供 container 之间的端口访问</li>
+<li>docker run -p 允许 container 外部主机访问 container 的端口</li>
+</ul>
+
+<p>详细可以参考 <a href="https://www.jianshu.com/p/adaa34795e64" title="Docker 常用命令与操作" target="_blank">传送门</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  			</div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2019</span>
+            
+                <span><a href="https://war408705279.github.io">Zhazha</a></span>
+            
+            <span><a href="https://github.com/war408705279/" target="_blank" rel="noopener">404 Not Found</a></span>
+            <span> <a href="https://war408705279.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+
+<script type="text/javascript" src="https://war408705279.github.io/js/bundle.f65a6fe80656eb86fce3f1228faa2ac0bf43b28d21eb91975f036839ed92dfd126cabb91223501623641f4ea67ac5d03882d0b8c744da38c637a1fdf8e9016c6.js" integrity="sha512-9lpv6AZW64b84/Eij6oqwL9Dso0h65GXXwNoOe2S39EmyruRIjUBYjZB9OpnrF0DiC0LjHRNo4xjeh/fjpAWxg=="></script>
+
+
+
+    </body>
+</html>
