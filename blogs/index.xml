@@ -155,5 +155,46 @@ star 相当于是点赞或收藏，方便以后查找
 fork 表示你想要补充完善这个项目的内容</description>
     </item>
     
+    <item>
+      <title>前端面试题 - CSS</title>
+      <link>https://war408705279.github.io/blogs/interview-css/</link>
+      <pubDate>Sat, 30 Mar 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/interview-css/</guid>
+      <description>前端 CSS 面试题积累 CSS 的盒子模型 有两种盒子模型
+ IE 盒子模型：content 部分包含了 border 和 padding 标准 W3C 盒子模型：包含内容（content）、填充（padding）、边界（margin）、边框（border）  CSS 选择符  id 选择器（#id） 类选择器（.myclassname） 标签选择器（div，h1，p） 相邻选择器（h1+p） 子选择器（ul &amp;gt; li） 后代选择器（li a） 通配符选择器（*） 属性选择器（a[rel = &amp;ldquo;external&amp;rdquo;]） 伪类选择器（a:hover, li:nth-child） 可继承的样式：font-size、font-family、color 等 不可继承的样式：border、padding、margin、width、height 等 优先级就近原则，同权重情况下样式定义最近者为准 优先级为：!important &amp;gt; id 选择器 &amp;gt; class 选择器 &amp;gt; 标签选择器  nth-child 和 nth-of-type 之间的差异 nth-child：按照个数来计算
+看如下的例子
+&amp;lt;style&amp;gt; p:nth-child(2), p:nth-child(7){ color:red; } &amp;lt;/style&amp;gt; &amp;lt;h1&amp;gt;标题&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;这是 span&amp;lt;/span&amp;gt; &amp;lt;p&amp;gt;这是段落&amp;lt;/p&amp;gt; 效果如下所示</description>
+    </item>
+    
+    <item>
+      <title>前端面试题 - HTML</title>
+      <link>https://war408705279.github.io/blogs/interview-html/</link>
+      <pubDate>Sat, 30 Mar 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/interview-html/</guid>
+      <description>前端 HTML 面试题积累 语义化的 HTML 说明一：
+ 直观的认识标签对于搜索引擎的抓取有好处，用正确的标签做正确的事情 HTML 语义化就是让页面的内容结构化，便于对浏览器、搜索引擎解析 在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的。搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人更容易将网站分块，便于阅读维护理解  说明二：
+ 用正确的标签做正确的事情 HTML 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析 即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的 搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO 使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解  &amp;lt;!DOCTYPE html&amp;gt; 标签 H5 不基于 SGML，因此不需要对 DTD（document type definition）进行引用，但是需要 doctype 来规范浏览器的行为（让浏览器按照它们应该的方式来运行）。而 HTML4.0 基于 SGML，所以需要对 DTD 进行引用，才能告知浏览器文档所使用的文档类型
+Doctype 作用？标准模式与兼容模式各有什么区别?  &amp;lt;!DOCTYPE&amp;gt; 声明位于 HTML 文档中的第一行，处于  标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE 不存在或格式不正确会导致文档以兼容模式呈现
+ 标准模式的排版 和 JS 运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示，模拟老式浏览器的行为以防止站点无法工作
+  行内元素有哪些？块级元素有哪些？ 空（void）元素有那些？ 首先：CSS 规范规定，每个元素都有 display 属性，确定该元素的类型，每个元素都有默认的 display 值，如 div 的 display 默认值为 “block”，则为“块级”元素；span 默认 display 属性值为 “inline”，是“行内”元素</description>
+    </item>
+    
+    <item>
+      <title>ES6 概述</title>
+      <link>https://war408705279.github.io/blogs/es6-introduce/</link>
+      <pubDate>Sun, 03 Mar 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/es6-introduce/</guid>
+      <description>概述 ES6（ECMAScript6）是新版本 JavaScript 语言的标准，代号 _harmony_。上一次标准的制定还是 2009 年出台的 ES5。
+ECMAScript 和 JavaScript 的关系：前者是后者的规格，后者是前者的一种实现（另外的 ECMAScript 方言还有 Jscript 和 ActionScript）。日常场合，这两个词是可以互换的
+ES6 和 ECMAScript2015 的关系：ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。本书中提到 ES6 的地方，一般是指 ES2015 标准，但有时也是泛指“下一代 JavaScript 语言”
+箭头操作符 如果你会 C# 或者 Java，你肯定知道 lambda 表示，ES6 中新增的 箭头操作符（=&amp;gt;） 就有异曲同工之妙。它简化了函数的书写。操作符左边为输入的参数，而右边则是进行操作及返回的值 Inputs =&amp;gt; Outputs。我们知道在 JS 中回调是经常的事，而一般回调又以匿名函数的形式出现，每次都需要写一个 function，甚是繁琐，当引入箭头操作符后就可以方面的进行回调。
+箭头函数的 this 值：普通 function 函数和箭头函数的行为有一个微妙的区别，箭头函数没有它自己的 this 值，箭头函数内的 this 值继承自外围作用域。
+箭头集合：
+   &amp;lt;!&amp;ndash; 单行注释     &amp;ndash;&amp;gt; “趋向于”操作符   &amp;lt;= 小于等于   =&amp;gt; 箭头函数    如下面的例子所示。</description>
+    </item>
+    
   </channel>
 </rss>
