@@ -6,10 +6,26 @@
     <description>Recent content on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Fri, 26 Apr 2019 00:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 27 Apr 2019 00:00:00 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>React &#43; Webpack 构建自己的项目</title>
+      <link>https://war408705279.github.io/blogs/react-webpack/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/react-webpack/</guid>
+      <description>React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
+本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
+跟随本文档进行操作，最后你将得到一个属于自己的基于 React+Webpack 的框架项目。
+ ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+.idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
+.babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
+由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
+ ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.</description>
+    </item>
     
     <item>
       <title>电影下载网址推荐</title>
