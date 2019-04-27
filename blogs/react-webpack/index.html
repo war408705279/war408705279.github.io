@@ -8,11 +8,11 @@
 <meta name="description" content="React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
 本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
 跟随本文档进行操作，最后你将得到一个属于自己的基于 React&#43;Webpack 的框架项目。
- ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+新建 React 项目 如上图所示即为新建的项目目录结构。
 .idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
 .babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
 由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
- ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node."/>
+准备工作 安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.js（建议安装最新版本的 Node.js，目前更新到 V8.1.0），也可以使用 cnpm 进行安装，使用 cnpm 安装速度更快，也更加稳定。"/>
 <meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://war408705279.github.io/blogs/react-webpack/" />
@@ -46,16 +46,16 @@
 <meta itemprop="description" content="React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
 本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
 跟随本文档进行操作，最后你将得到一个属于自己的基于 React&#43;Webpack 的框架项目。
- ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+新建 React 项目 如上图所示即为新建的项目目录结构。
 .idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
 .babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
 由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
- ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.">
+准备工作 安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.js（建议安装最新版本的 Node.js，目前更新到 V8.1.0），也可以使用 cnpm 进行安装，使用 cnpm 安装速度更快，也更加稳定。">
 
 
 <meta itemprop="datePublished" content="2019-04-27T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-27T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="1122">
+<meta itemprop="wordCount" content="1114">
 
 
 
@@ -67,11 +67,11 @@
 <meta name="twitter:description" content="React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
 本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
 跟随本文档进行操作，最后你将得到一个属于自己的基于 React&#43;Webpack 的框架项目。
- ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+新建 React 项目 如上图所示即为新建的项目目录结构。
 .idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
 .babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
 由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
- ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node."/>
+准备工作 安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.js（建议安装最新版本的 Node.js，目前更新到 V8.1.0），也可以使用 cnpm 进行安装，使用 cnpm 安装速度更快，也更加稳定。"/>
 
 
 
@@ -143,15 +143,15 @@
             
 
             <div class="post-content">
-                <p>React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。</p>
+                
+
+<p>React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。</p>
 
 <p>本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。</p>
 
 <p>跟随本文档进行操作，最后你将得到一个属于自己的基于 React+Webpack 的框架项目。</p>
 
-<ul>
-<li>##### 新建 React 项目</li>
-</ul>
+<h3 id="新建-react-项目">新建 React 项目</h3>
 
 <p><img src="https://war408705279.github.io/images/blogs/directory_structure.png" alt="目录结构" title="目录结构" /></p>
 
@@ -165,9 +165,7 @@
 
 <p>由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。</p>
 
-<ul>
-<li>##### 准备工作</li>
-</ul>
+<h3 id="准备工作">准备工作</h3>
 
 <p>安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.js（建议安装最新版本的 Node.js，目前更新到 V8.1.0），也可以使用 cnpm 进行安装，使用 cnpm 安装速度更快，也更加稳定。</p>
 
@@ -176,9 +174,7 @@
 <pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
 </code></pre>
 
-<ul>
-<li>##### 安装 npm</li>
-</ul>
+<h3 id="安装-npm">安装 npm</h3>
 
 <p>首先要安装 npm，在项目文件夹中打开 cmd 命令窗口，输入如下代码即可完成 npm 的安装，同时创建 node_modules 文件夹。</p>
 
@@ -190,9 +186,7 @@
 <pre><code>npm init
 </code></pre>
 
-<ul>
-<li>##### 安装 react</li>
-</ul>
+<h3 id="安装-react">安装 react</h3>
 
 <p>在 cmd 命令窗口中输入如下代码安装 react 模块。</p>
 
@@ -208,9 +202,7 @@
 
 <p><img src="https://war408705279.github.io/images/blogs/react_and_readtDOM.png" alt="react + reactDOM" title="react + reactDOM" /></p>
 
-<ul>
-<li>##### 安装 webpack</li>
-</ul>
+<h3 id="安装-webpack">安装 webpack</h3>
 
 <p><em>什么是 webpack</em></p>
 
@@ -321,9 +313,7 @@ npm install style-loader --save-dev
 
 <p>安装成功后，在 package.json 文件中会有相应的体现。</p>
 
-<ul>
-<li>##### Babel</li>
-</ul>
+<h3 id="babel">Babel</h3>
 
 <p><em>什么是 Babel</em></p>
 
@@ -412,9 +402,7 @@ npm install --save-dev babel-preset-stage-3
 </code></pre></div>
 <p>至此就完成了开发环境的配置</p>
 
-<ul>
-<li>##### 示例项目代码</li>
-</ul>
+<h3 id="示例项目代码">示例项目代码</h3>
 
 <p>开发环境配置完成后，接下来就是要编写相应的代码，本示例项目的代码如下所示。</p>
 
@@ -671,9 +659,7 @@ npm install --save-dev babel-preset-stage-3
   <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root6&#39;</span><span class="p">)</span>
 <span class="p">);</span>
 </code></pre></div>
-<ul>
-<li>##### 运行 webpack</li>
-</ul>
+<h3 id="运行-webpack">运行 webpack</h3>
 
 <p>代码编写完成后运行 webpack 对现有的项目代码进行打包，在 cmd 命令窗口输入如下代码即可运行。</p>
 
