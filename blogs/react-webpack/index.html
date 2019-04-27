@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="author" content="Zhazha ">
+<meta name="description" content="React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
+本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
+跟随本文档进行操作，最后你将得到一个属于自己的基于 React&#43;Webpack 的框架项目。
+ ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+.idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
+.babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
+由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
+ ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node."/>
+<meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://war408705279.github.io/blogs/react-webpack/" />
+
+
+    <title>
+        
+            React &#43; Webpack 构建自己的项目 :: rm -rf *  — Welcome to my blog
+        
+    </title>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" href="https://war408705279.github.io/scss/main.min.099699ab246bf26f50616f7c9f00c79d46110459d1bd727b2d07d6fc09ece082.css">
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://war408705279.github.io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://war408705279.github.io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://war408705279.github.io/favicon-16x16.png">
+<link rel="manifest" href="https://war408705279.github.io/site.webmanifest">
+<link rel="mask-icon" href="https://war408705279.github.io/safari-pinned-tab.svg" color="">
+<link rel="shortcut icon" href="https://war408705279.github.io/favicon.ico">
+<link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
+
+<meta itemprop="name" content="React &#43; Webpack 构建自己的项目">
+<meta itemprop="description" content="React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
+本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
+跟随本文档进行操作，最后你将得到一个属于自己的基于 React&#43;Webpack 的框架项目。
+ ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+.idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
+.babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
+由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
+ ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.">
+
+
+<meta itemprop="datePublished" content="2019-04-27T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-27T00:00:00&#43;08:00" />
+<meta itemprop="wordCount" content="1122">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://war408705279.github.io"/>
+
+<meta name="twitter:title" content="React &#43; Webpack 构建自己的项目"/>
+<meta name="twitter:description" content="React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。
+本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。
+跟随本文档进行操作，最后你将得到一个属于自己的基于 React&#43;Webpack 的框架项目。
+ ##### 新建 React 项目  如上图所示即为新建的项目目录结构。
+.idea 文件夹保存的是 IDEA 编译器的一些设置文件；asset 文件夹保存的是压缩之后的文件；node_modules 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。
+.babelrc 文件是 babel 的配置文件；package.json 文件是记录 npm 安装及开发依赖信息的文件；test.html 、 test.js 及 test.css 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；webpack.config.js 文件是保存 webpack 配置信息的文件。
+由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。
+ ##### 准备工作  安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node."/>
+
+
+
+<meta property="article:published_time" content="2019-04-27 00:00:00 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://war408705279.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ rm -rf *</span>
+            <span class="logo__cursor"></span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://war408705279.github.io/blogs/">博客</a></li><li><a href="https://war408705279.github.io/movies/">电影</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/react-webpack/">React + Webpack 构建自己的项目</a></h2>
+
+            
+
+            <div class="post-content">
+                <p>React 已经成为当下最热门的前端框架之一，其虚拟 DOM 和组件化开发让前端开发更加丰富灵活，而 Webpack 凭借它异步加载和可分离打包等优秀的特性，更为 React 的开发提供了便利，其优秀的特性不再赘述。</p>
+
+<p>本文将对 React、Babel、Webpack 的环境搭建进行阐述，指出搭建过程中存在的一些坑，并提出相应的解决方法。</p>
+
+<p>跟随本文档进行操作，最后你将得到一个属于自己的基于 React+Webpack 的框架项目。</p>
+
+<ul>
+<li>##### 新建 React 项目</li>
+</ul>
+
+<p><img src="https://war408705279.github.io/images/blogs/directory_structure.png" alt="目录结构" title="目录结构" /></p>
+
+<p>如上图所示即为新建的项目目录结构。</p>
+
+<p><em>.idea</em> 文件夹保存的是 IDEA 编译器的一些设置文件；<em>asset</em> 文件夹保存的是压缩之后的文件；<em>node_modules</em> 文件夹存放的是使用 npm 安装 react、babel 及 webpack 后生成的相应文件。</p>
+
+<p><em>.babelrc</em> 文件是 babel 的配置文件；<em>package.json</em> 文件是记录 npm 安装及开发依赖信息的文件；<em>test.html</em> 、 <em>test.js</em> 及 <em>test.css</em> 文件是该项目的测试文件，分别保存 html 信息、js 代码以及样式信息；<em>webpack.config.js</em> 文件是保存 webpack 配置信息的文件。</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/jsx_harmony.png" alt="修改编译器为 JSX Harmony" title="修改编译器为 JSX Harmony" /></p>
+
+<p>由于 react 代码需要 JSX 来写，因此我们要修改编译器相应的配置（以下以 IDEA 15.0.2 为例）。如上图所示，修改相应的配置后，使用 JSX 编写代码就不会出现错误提示。</p>
+
+<ul>
+<li>##### 准备工作</li>
+</ul>
+
+<p>安装 React、Babel 及 Webpack 需要使用 npm，因此需要安装 Node.js（建议安装最新版本的 Node.js，目前更新到 V8.1.0），也可以使用 cnpm 进行安装，使用 cnpm 安装速度更快，也更加稳定。</p>
+
+<p>cnpm：npm 在国内的映射，目前使用的是淘宝镜像，安装方法：在 cmd 命令窗口中输入如下代码即可进行安装。</p>
+
+<pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
+</code></pre>
+
+<ul>
+<li>##### 安装 npm</li>
+</ul>
+
+<p>首先要安装 npm，在项目文件夹中打开 cmd 命令窗口，输入如下代码即可完成 npm 的安装，同时创建 node_modules 文件夹。</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>安装完成后再输入如下代码即可完成 npm 的初始化，同时新建 package.json 文件。</p>
+
+<pre><code>npm init
+</code></pre>
+
+<ul>
+<li>##### 安装 react</li>
+</ul>
+
+<p>在 cmd 命令窗口中输入如下代码安装 react 模块。</p>
+
+<pre><code>npm install react --save
+</code></pre>
+
+<p>由于 react 升级后把 reactDOM 独立出来了，因此还需要安装 react-dom，输入如下代码。</p>
+
+<pre><code>npm install react-dom --save
+</code></pre>
+
+<p>安装成功后在 package.json 文件中会有相应的体现，如下图所示。</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/react_and_readtDOM.png" alt="react + reactDOM" title="react + reactDOM" /></p>
+
+<ul>
+<li>##### 安装 webpack</li>
+</ul>
+
+<p><em>什么是 webpack</em></p>
+
+<p>事实上它是一个打包工具，而不是像 RequireJS 或 SeaJS 这样的模块加载器，通过使用 webpack，能够像 Node.js 一样处理依赖关系，然后解析出模块之间的依赖，将代码打包</p>
+
+<p><em>为什么要用 webpack</em></p>
+
+<p>如今的很多网页其实可以看作是功能丰富的应用，它们拥有着复杂的 JavaScript 代码和一大堆依赖包。为了简化开发的复杂度，前端社区涌现出了很多好的实践方法。</p>
+
+<ol>
+<li>模块化，让我们可以把复杂的程序细化为小的文件</li>
+<li>类似于 TypeScript 这种在 JavaScript 基础上拓展的开发语言，使我们能够实现目前版本的 JavaScript 不能直接使用的特性，并且之后还能转换为 JavaScript 文件使浏览器可以识别</li>
+<li>Scss、less 等 CSS 处理器</li>
+<li>&hellip;&hellip;</li>
+</ol>
+
+<p>这些改进确实大大的提高了我们的开发效率，但是利用它们开发的文件往往需要进行额外的处理才能让浏览器识别，而手动处理又是十分繁琐的，这就为 webpack 类的工具的出现提供了需求。</p>
+
+<p><em>安装 webpack</em></p>
+
+<p>全局安装 webpack，需要在 cmd 命令窗口中输入如下的代码。</p>
+
+<pre><code>npm install webpack -g
+</code></pre>
+
+<p>在本项目中安装 webpack，需要在 cmd 命令窗口中输入如下的代码。</p>
+
+<pre><code>npm install webpack --save-dev
+</code></pre>
+
+<p>安装成功后，在 package.json 文件中会有相应的体现，如下图所示。</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/install_webpack.png" alt="成功安装 webpack" title="成功安装 webpack" /></p>
+
+<p><em>webpack 配置</em></p>
+
+<p>每个项目下面都必须配置有一个 webpack.config.js，它的作用如同常规的 gulpfile.js / Gruntfile.js，是配置 webpack 的一个配置文件项，它告诉 webpack 需要做什么。因此在项目根目录中创建 js 文件 webpack.config.js，文件内容大概如下所示。</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">webpack</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webpack&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">ExtractTextPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;extract-text-webpack-plugin&#39;</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// 配置生成 Source Maps，选择合适的选项
+</span><span class="c1"></span>  <span class="c1">// devtool: &#39;eval-source-map&#39;,
+</span><span class="c1"></span>  <span class="c1">// 页面入口文件配置
+</span><span class="c1"></span>  <span class="nx">entry</span><span class="o">:</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/test.js&#39;</span><span class="p">,</span>
+  <span class="c1">// 入口文件输出配置
+</span><span class="c1"></span>  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/asset/&#39;</span><span class="p">,</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;bundle.js&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// 加载器配置
+</span><span class="c1"></span>    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.json$/</span><span class="p">,</span>
+        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;json-loader&#39;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.jsx?$/</span><span class="p">,</span>
+        <span class="nx">exclude</span><span class="o">:</span> <span class="p">[</span><span class="sr">/node_modules/</span><span class="p">,</span> <span class="sr">/.idea/</span><span class="p">],</span>
+        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+        <span class="nx">loader</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;style-loader&#39;</span><span class="p">,</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">]</span> <span class="c1">// 添加对样式表的处理
+</span><span class="c1"></span>      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="c1">// 插件
+</span><span class="c1"></span>  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">BannerPlugin</span><span class="p">(</span><span class="s2">&#34;Copyright Room 407 8th Building.&#34;</span><span class="p">),</span> <span class="c1">// 在这个数组中 new 一个就可以了
+</span><span class="c1"></span>    <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">({</span>
+      <span class="nx">template</span><span class="o">:</span> <span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">&#34;/test.html&#34;</span> <span class="c1">//new 一个这个插件的实例，并传入相关的参数
+</span><span class="c1"></span>    <span class="p">}),</span>
+    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">UglifyJsPlugin</span><span class="p">(),</span>
+    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">DefinePlugin</span><span class="p">({</span>
+      <span class="s1">&#39;process.env&#39;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s1">&#39;NODE_ENV&#39;</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="s1">&#39;production&#39;</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">]</span>
+  <span class="c1">// 其它解决方案配置
+</span><span class="c1"></span>  <span class="c1">// resolve: {
+</span><span class="c1"></span>    <span class="c1">// extensions: [&#39;.js&#39;, &#39;.json&#39;]
+</span><span class="c1"></span>  <span class="c1">// }
+</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div>
+<p>现在对 webpack.config.js 配置文件主要的几个配置项进行说明</p>
+
+<p>entry：页面入口文件，在这里指明主入口的 js 文件就可以了（__dirname 是 node.js 定义的一个变量，指当前文件路径）</p>
+
+<p>output：文件打包压缩后的输出路径配置，里面包括输出的路径及输出文件名称的配置</p>
+
+<p>module：定义了对模块的处理逻辑，这里用 loaders 定义了一系列的加载器以及一系列的正则。当需要加载的文件匹配 test 的正则时，就会调用后面的 loader 对文件进行处理，这正是 webpack 强大的原因。比如这里定义了以 .js 结尾的文件都用 babel-loader 做处理，而以 .jsx 结尾的文件会先经过 jsx-loader 处理，然后经过 babel-loader 处理。当然这些 loader 都需要使用 npm 进行安装</p>
+
+<p>plugins：这里定义了需要使用的一些插件</p>
+
+<p><em>安装 loader 示例</em></p>
+
+<p>上述 loader 可以使用 npm 进行安装，在 cmd 命令窗口中输入代码即可，如下所示。</p>
+
+<pre><code>npm install babel-loader --save-dev
+npm install css-loader --save-dev
+npm install jsx-loader --save-dev
+npm install json-loader --save-dev
+npm install style-loader --save-dev
+</code></pre>
+
+<p>安装成功后，在 package.json 文件中会有相应的体现。</p>
+
+<ul>
+<li>##### Babel</li>
+</ul>
+
+<p><em>什么是 Babel</em></p>
+
+<p>Babel 其实是一个编译 JavaScript 平台，它的强大之处表现在可以通过编译帮你达到以下的目的。</p>
+
+<ol>
+<li>下一代的 JavaScript 标准（ES6、ES7），这些标准目前并未被当前的浏览器完全支持，Babel 可以对其进行转换，将其转换为当前浏览器都支持的语言</li>
+<li>可以转换基于 JavaScript 进行了扩展的语言，例如 react 的 JSX</li>
+</ol>
+
+<p><em>安装 Babel</em></p>
+
+<p>在 cmd 命令窗口中输入如下代码即可完成安装。</p>
+
+<pre><code>npm install babel -g
+</code></pre>
+
+<p>Babel 提供 babel-cli 工具，用于命令行转码，在 cmd 命令窗口输入如下代码即可完成安装，安装完成后在 package.json 文件中会有相应的体现。</p>
+
+<pre><code>npm install babel-cli --save-dev
+</code></pre>
+
+<p>如果某些代码需要调用 Babel 的 API 进行转码，就需要使用 babel-core 模块，在 cmd 命令窗口中输入如下代码进行安装。</p>
+
+<pre><code>npm install babel-core --save-dev
+</code></pre>
+
+<p>Babel 的配置文件是 <em>.babelrc</em> ，存放在项目的根目录下，使用 Babel 的第一步，就是配置这个文件，首先新建 .babelrc 文件，文件默认内容如下。</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;presets&#34;</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="nt">&#34;plugins&#34;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span></code></pre></div>
+<p><em>presets</em> 字段设定转码规则，官方提供以下的规则集，可以根据需要进行安装，安装完成后在 package.json 文件中会有相应的体现。</p>
+
+<pre><code># ES2015 转码规则
+npm install --save-dev babel-preset-es2015
+
+# react 转码规则
+npm install --save-dev babel-preset-react
+
+# ES7 不同阶段语法提案的转码规则（共有 4 个阶段），选装一个
+npm install --save-dev babel-preset-stage-0
+npm install --save-dev babel-preset-stage-1
+npm install --save-dev babel-preset-stage-2
+npm install --save-dev babel-preset-stage-3
+</code></pre>
+
+<p>安装之后在 .babelrc 文件中加入配置</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;presets&#34;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&#34;es2015&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;react&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;stage-0&#34;</span>
+  <span class="p">],</span>
+  <span class="nt">&#34;plugins&#34;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span></code></pre></div>
+<p>同时安装 babel-loader，在 cmd 命令窗口中输入如下代码进行安装，安装成功后在 package.json 文件中会有相应的体现。</p>
+
+<pre><code>npm install babel-loader --save-dev
+</code></pre>
+
+<p>babel-loader 的使用在之前 webpack.config.js 的配置中已经进行了阐述。</p>
+
+<p>_注_：有的用户不想单独创建 .babelrc 文件对 babel 进行配置，那么可以将相应的配置写在 webpack.config.js 文件中，如下所示。</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+  <span class="c1">// 加载器配置
+</span><span class="c1"></span>  <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.json$/</span><span class="p">,</span>
+      <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;json-loader&#39;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.jsx?$/</span><span class="p">,</span>
+      <span class="nx">exclude</span><span class="o">:</span> <span class="p">[</span><span class="sr">/node_modules/</span><span class="p">,</span> <span class="sr">/.idea/</span><span class="p">],</span>
+      <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
+      <span class="nx">query</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">presets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;react&#39;</span><span class="p">,</span> <span class="s1">&#39;es2015&#39;</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+      <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;style-loader!css-loader?modules&#39;</span> <span class="c1">// 添加对样式表的处理
+</span><span class="c1"></span>    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>至此就完成了开发环境的配置</p>
+
+<ul>
+<li>##### 示例项目代码</li>
+</ul>
+
+<p>开发环境配置完成后，接下来就是要编写相应的代码，本示例项目的代码如下所示。</p>
+
+<p><em>test.html 文件</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>React 测试<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root1&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element&#39;s contents will be replaced with your component. --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root2&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element&#39;s contents will be replaced with your component. --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root3&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element&#39;s contents will be replaced with your component. --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root4&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element&#39;s contents will be replaced with your component. --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root5&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element&#39;s contents will be replaced with your component. --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;root6&#34;</span><span class="p">&gt;</span>
+  <span class="c">&lt;!-- This element&#39;s contents will be replaced with your component. --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- 引入test.js --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;asset/bundle.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
+<p><em>test.css 文件</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">html</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">domNode</span> <span class="p">{</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#D3D3D3</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>
+<p><em>test.js 文件</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="k">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./test.css&#39;</span><span class="p">;</span> <span class="c1">// 导入 css 文件
+</span><span class="c1"></span>
+<span class="c1">// 第一个例子
+</span><span class="c1"></span><span class="k">class</span> <span class="nx">Clock</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">date</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()};</span>
+  <span class="p">}</span>
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timerID</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span>
+      <span class="p">()</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">(),</span>
+      <span class="mi">1000</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">timerID</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">tick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="nx">date</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">domNode</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="nx">world</span><span class="o">!&lt;</span><span class="err">/h1&gt;</span>
+        <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">It</span> <span class="nx">is</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">toLocaleTimeString</span><span class="p">()}.</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">Clock</span> <span class="err">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root1&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 第二个例子
+</span><span class="c1"></span><span class="k">class</span> <span class="nx">Welcome</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">domNode</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Welcome</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;Sara&#34;</span><span class="err">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Welcome</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;Cahal&#34;</span><span class="err">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Welcome</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&#34;Edite&#34;</span><span class="err">/&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">App</span> <span class="err">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root2&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 第三个例子
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">LoginButton</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="nx">Login</span>
+    <span class="o">&lt;</span><span class="err">/button&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">LogoutButton</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">props</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="nx">Logout</span>
+    <span class="o">&lt;</span><span class="err">/button&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">UserGreeting</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">back</span><span class="o">!&lt;</span><span class="err">/h1&gt;;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">GuestGreeting</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Please</span> <span class="nx">sign</span> <span class="nx">up</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Greeting</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">isLoggedIn</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">UserGreeting</span> <span class="err">/&gt;;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">GuestGreeting</span> <span class="err">/&gt;;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nx">LoginControl</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleLoginClick</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleLoginClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleLogoutClick</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleLogoutClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">isLoggedIn</span><span class="o">:</span> <span class="kc">false</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleLoginClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">isLoggedIn</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleLogoutClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">isLoggedIn</span><span class="o">:</span> <span class="kc">false</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="nx">isLoggedIn</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">isLoggedIn</span><span class="p">;</span>
+
+    <span class="kd">let</span> <span class="nx">button</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">button</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">LogoutButton</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleLogoutClick</span><span class="p">}</span><span class="err">/&gt;;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">button</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">LoginButton</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleLoginClick</span><span class="p">}</span><span class="err">/&gt;;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">domNode</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Greeting</span> <span class="nx">isLoggedIn</span><span class="o">=</span><span class="p">{</span><span class="nx">isLoggedIn</span><span class="p">}</span><span class="err">/&gt;</span>
+        <span class="p">{</span><span class="nx">button</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="err">/div&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">LoginControl</span> <span class="err">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root3&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 第四个例子
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">Mailbox</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="nx">unreadMessages</span> <span class="o">=</span> <span class="nx">props</span><span class="p">.</span><span class="nx">unreadMessages</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">domNode</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="o">!&lt;</span><span class="err">/h1&gt;</span>
+      <span class="p">{</span>
+        <span class="nx">unreadMessages</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span>
+        <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span>
+          <span class="nx">You</span> <span class="nx">have</span> <span class="p">{</span><span class="nx">unreadMessages</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span> <span class="nx">unread</span> <span class="nx">messages</span><span class="p">.</span>
+        <span class="o">&lt;</span><span class="err">/h2&gt;</span>
+      <span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">const</span> <span class="nx">messages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;React&#39;</span><span class="p">,</span> <span class="s1">&#39;Re: React&#39;</span><span class="p">,</span> <span class="s1">&#39;Re:Re: React&#39;</span><span class="p">,</span> <span class="s1">&#39;Re:Re:Re: Fuck React&#39;</span><span class="p">];</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">Mailbox</span> <span class="nx">unreadMessages</span><span class="o">=</span><span class="p">{</span><span class="nx">messages</span><span class="p">}</span> <span class="err">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root4&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 第五个例子
+</span><span class="c1"></span><span class="k">const</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="k">const</span> <span class="nx">listItems</span> <span class="o">=</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">number</span><span class="p">)</span> <span class="p">=&gt;</span>
+  <span class="o">&lt;</span><span class="nx">li</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="nx">number</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="err">/li&gt;</span>
+<span class="p">);</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">ul</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">listItems</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/ul&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root5&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// 第六个例子
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">BoilingVerdict</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">celsius</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">The</span> <span class="nx">water</span> <span class="nx">would</span> <span class="nx">boil</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">The</span> <span class="nx">water</span> <span class="nx">would</span> <span class="nx">not</span> <span class="nx">boil</span><span class="p">.</span><span class="o">&lt;</span><span class="err">/p&gt;;</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nx">Calculator</span> <span class="k">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span><span class="nx">temperature</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">handleChange</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">temperature</span><span class="o">:</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="nx">temperature</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">temperature</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">fieldset</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">legend</span><span class="o">&gt;</span><span class="nx">Enter</span> <span class="nx">temperature</span> <span class="k">in</span> <span class="nx">Celsius</span><span class="o">:&lt;</span><span class="err">/legend&gt;</span>
+        <span class="o">&lt;</span><span class="nx">input</span>
+          <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">temperature</span><span class="p">}</span>
+          <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">handleChange</span><span class="p">}</span><span class="err">/&gt;</span>
+        <span class="o">&lt;</span><span class="nx">BoilingVerdict</span>
+          <span class="nx">celsius</span><span class="o">=</span><span class="p">{</span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)}</span><span class="err">/&gt;</span>
+      <span class="o">&lt;</span><span class="err">/fieldset&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">Calculator</span> <span class="err">/&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root6&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<ul>
+<li>##### 运行 webpack</li>
+</ul>
+
+<p>代码编写完成后运行 webpack 对现有的项目代码进行打包，在 cmd 命令窗口输入如下代码即可运行。</p>
+
+<pre><code>webpack
+</code></pre>
+
+<p>如果不愿意输入 webpack 来启动相应的打包操作，可以在 package.json 文件的 scripts 标签中加入如下所示的代码。</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+  <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack&#34;</span>
+  <span class="p">}</span></code></pre></div>
+<p>完成后即可通过在 cmd 命令窗口中输入如下所示的代码启动 webpack。</p>
+
+<pre><code>npm start
+</code></pre>
+
+<p>运行结果如下图所示。</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/run_webpack_result.png" alt="运行结果" title="运行结果" /></p>
+
+<p>运行成功后将会生成压缩文件（生成文件的路径及名称都是之前在 webpack.config.js 文件中配置好的），打开入口的 html 文件即可浏览编码的结果，如下图所示。</p>
+
+<p><img src="https://war408705279.github.io/images/blogs/result_show.png" alt="结果展示" title="结果展示" /></p>
+
+<p>到这里你就拥有一个属于自己的 React+Webpack 的项目了。</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  			</div>
+
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2019</span>
+            
+                <span><a href="https://war408705279.github.io">Zhazha</a></span>
+            
+            <span><a href="https://github.com/war408705279/" target="_blank" rel="noopener">404 Not Found</a></span>
+            <span> <a href="https://war408705279.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+
+<script type="text/javascript" src="https://war408705279.github.io/js/bundle.f65a6fe80656eb86fce3f1228faa2ac0bf43b28d21eb91975f036839ed92dfd126cabb91223501623641f4ea67ac5d03882d0b8c744da38c637a1fdf8e9016c6.js" integrity="sha512-9lpv6AZW64b84/Eij6oqwL9Dso0h65GXXwNoOe2S39EmyruRIjUBYjZB9OpnrF0DiC0LjHRNo4xjeh/fjpAWxg=="></script>
+
+
+
+    </body>
+</html>
