@@ -1,28 +1,30 @@
 ### Zhazha's blog
 
-访问地址：https://war408705279.github.io/
+访问地址：https://war408705279.github.io
 
-#### 如何使用 Git+Hugo 搭建属于自己的博客网站
+#### 如何使用 Git + Hugo 搭建属于自己的博客网站
 
-平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去。但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github + Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
+平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去
 
-*注*：以下步骤以在 macOS 上的操作为例，其它操作系统类似，只是一些工具和命令有区别
+但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 `Github + Hugo` 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
+
+*注*：以下步骤以在 `macOS` 上的操作为例，其它操作系统类似，只是一些工具和命令有区别
 
 #### 注册一个 Github 账号
 
-首先你要有一个 Github 账号，这里就不赘述了，毕竟注册 Github 的流程不复杂
+首先你要有一个 `Github` 账号，这里就不赘述了，毕竟注册 `Github` 的流程不复杂
 
 #### 创建一个 repo
 
-新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username
+新建一个 `GitHub repository`，库名为 `username.github.io`，`username` 即你的 `GitHub` 账号 `username`
 
-例如我创建的 repo 就叫 war408705279.github.io
+例如我创建的 `repo` 就叫 `war408705279.github.io`
 
 #### 安装 Hugo
 
-Hugo 安装的官方文档 [传送门](https://gohugo.io/getting-started/installing/ "Hugo 安装的官方文档")
+`Hugo` 安装的官方文档 [传送门](https://gohugo.io/getting-started/installing/ "Hugo 安装的官方文档")
 
-可以使用 Homebrew 进行快速的安装，命令如下
+可以使用 `Homebrew` 进行快速的安装，命令如下
 
 ```shell
 # 安装 hugo
@@ -34,7 +36,7 @@ hugo version
 
 #### 新建一个 Hugo 网站
 
-cd 到你想保存 Hugo 网站的目录下，运行下面的命令
+`cd` 到你想保存 `Hugo` 网站的目录下，运行下面的命令
 
 ```shell
 cd /code
@@ -42,15 +44,15 @@ cd /code
 hugo new site myblog
 ```
 
-命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹
+命令运行成功后会在当前目录（`/code`）下创建一个名为 `myblog` 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 `myblog` 文件夹
 
 #### 选择 Hugo 主题并克隆至本地目录
 
-Hugo 一个比较棒的功能是可以让用户自定义博客主题
+`Hugo` 一个比较棒的功能是可以让用户自定义博客主题
 
-官方获取 themes 主题的地址 [传送门](https://themes.gohugo.io "Hugo 官方主题")
+官方获取 `themes` 主题的地址 [传送门](https://themes.gohugo.io "Hugo 官方主题")
 
-目前我使用的主题是 hello-friend-ng [传送门](https://themes.gohugo.io/hugo-theme-hello-friend-ng/ "Hugo hello-friend-ng 主题")
+目前我使用的主题是 `hello-friend-ng` [传送门](https://themes.gohugo.io/hugo-theme-hello-friend-ng/ "Hugo hello-friend-ng 主题")
 
 将所选主题克隆至本地目录，运行下面的命令
 
@@ -70,11 +72,15 @@ git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend
 
 #### 编辑配置文件
 
-现在准备工作就完成了，需要修改配置文件使主题生效，同时也可以通过配置文件自定义 title，目录 等
+现在准备工作就完成了，需要修改配置文件使主题生效，同时也可以通过配置文件自定义 `title`，目录 等
 
-配置文件为 /code/myblog 目录下的 config.toml 文件
+配置文件为 `/code/myblog` 目录下的 `config.toml` 文件
 
-一般情况下，Hugo 主题页面中多会对该主题怎么进行配置予以说明，如果实在不知道怎么去配置，git clone 下来的 themes 代码里面有示例可以进行参考，类似我使用的主题，配置文件的示例就保存在 /code/myblog/themes/hello-friend-ng/exampleSite/config.toml 文件中
+一般情况下，`Hugo` 主题页面中多会对该主题怎么进行配置予以说明
+
+如果实在不知道怎么去配置，`git clone` 下来的 `themes` 代码里面有示例可以进行参考
+
+类似我使用的主题，配置文件的示例就保存在 `/code/myblog/themes/hello-friend-ng/exampleSite/config.toml` 文件中
 
 下面这段配置是我目前正在使用的配置
 
@@ -197,13 +203,17 @@ cd /code/myblog
 hugo new blogs/blog-test.md
 ```
 
-运行上述命令后，会在 /code/myblog/content 目录下面创建一个 blogs 文件夹，并在该文件夹中创建 blog-test.md 文件。在后续创建文章的过程中，要注意路径和文件命名的问题，避免重复创建、路径错误等问题
+运行上述命令后，会在 `/code/myblog/content` 目录下面创建一个 `blogs` 文件夹
+
+并在该文件夹中创建 `blog-test.md` 文件
+
+在后续创建文章的过程中，要注意路径和文件命名的问题，避免重复创建、路径错误等问题
 
 编辑新建的文章，添加内容并保存
 
 #### 本地预览网站效果
 
-在本地启动 Hugo server
+在本地启动 `Hugo server`
 
 ```shell
 cd /code/myblog
@@ -213,11 +223,15 @@ hugo server -D
 
 可以看到本地服务启在 http://localhost:1313
 
-如果你对编辑的结果满意，就可以准备发布了。如果不满意，可以继续对 config.toml 文件或你创建 md 的文件进行编辑，本地的 hugo server 是热更新的，每次你保存后就会自动更新
+如果你对编辑的结果满意，就可以准备发布了
+
+如果不满意，可以继续对 `config.toml` 文件或你创建 `md` 的文件进行编辑
+
+本地的 `hugo server` 是热更新的，每次你保存后就会自动更新
 
 #### 构建 Hugo 网站
 
-运行下面的命令在本地构建 hugo 网站
+运行下面的命令在本地构建 `Hugo` 网站
 
 ```shell
 cd /code/myblog
@@ -225,11 +239,11 @@ cd /code/myblog
 hugo
 ```
 
-本地构建成功后，生成的文件保存在 /code/myblog/public 文件夹中，包含 html、css、js、图片文件等
+本地构建成功后，生成的文件保存在 `/code/myblog/public` 文件夹中，包含 `html、css、js、图片文件`等
 
 #### 将网站文件夹转换为 Git 库
 
-下面就是将本地目录和 Git 远程库关联起来
+下面就是将本地目录和 `Git` 远程库关联起来
 
 ```shell
 # 生成的 hugo 站点文件保存在 public 目录中，需要将 public 文件夹转换为 Git 库
@@ -244,24 +258,24 @@ git remote add origin git@github.com:war408705279/war408705279.github.io.git
 
 #### 将修改推至远程库
 
-关联成功后，会看到本地 Git 库和远程的 Git 仓库有差异，需要将修改推送到远程的 Git 仓库，运行下面的命令
+关联成功后，会看到本地 `Git` 库和远程的 `Git` 仓库有差异，需要将修改推送到远程的 `Git` 仓库，运行下面的命令
 
 ```shell
 git add .
-git commit -m 'init blog page'
+git commit -m 'commit message'
 git push origin master
 ```
 
-推送成功后，你的 blog 网站就创建成功了，可以通过下面的链接访问
+推送成功后，你的 `blog` 网站就创建成功了，可以通过下面的链接访问
 
 ```shell
 # 把 war408705279.github.io 这部分换成你的 Git repo 名字就可以了
-https://war408705279.github.io/
+https://war408705279.github.io
 ```
 
-如果想使用 HTTPS 以防止其他人窥探或篡改网站流量，在 GitHub 上打开相应的库，点击 Settings 勾选 Enforce HTTPS 即可，如下图所示
+如果想使用 `HTTPS` 以防止其他人窥探或篡改网站流量，在 `GitHub` 上打开相应的库，点击 `Settings` 勾选 `Enforce HTTPS` 即可，如下图所示
 
-![Github Repo 使用 HTTPS](./readme-images/github_repo_enforce_https.png "Github Repo 使用 HTTPS")
+![Github Repo 使用 HTTPS](./readme-images/github-repo-enforce-https.png "Github Repo 使用 HTTPS")
 
 #### 后续
 
@@ -269,8 +283,8 @@ https://war408705279.github.io/
 
 - 新建一篇文章，编辑内容
 - 本地预览网站呈现效果
-- 构建 Hugo 网站
-- 提交修改至 Git 本地库
+- 构建 `Hugo` 网站
+- 提交修改至 `Git` 本地库
 - 将修改推至远程库
 
 #### Tips

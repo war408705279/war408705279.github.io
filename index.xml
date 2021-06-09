@@ -139,12 +139,13 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
     </item>
     
     <item>
-      <title>如何使用 Git&#43;Hugo 搭建属于自己的博客网站</title>
+      <title>如何使用 Git &#43; Hugo 搭建属于自己的博客网站</title>
       <link>https://war408705279.github.io/blogs/hugo/</link>
       <pubDate>Tue, 09 Apr 2019 00:00:00 +0800</pubDate>
       
       <guid>https://war408705279.github.io/blogs/hugo/</guid>
-      <description>平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去。但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github + Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
+      <description>平时在开发过程中多多少少会有一些积累，这个时候就想把这些积累写成博客，一是当做自己本身的沉淀，二是可以把这些积累分享出去
+但是根据常规思路搭建一个属于自己的博客网站又太麻烦，这个时候可以使用 Github + Hugo 快速搭建一套属于自己的博客网站，下面就对搭建流程做一个简单的介绍
 *注*：以下步骤以在 macOS 上的操作为例，其它操作系统类似，只是一些工具和命令有区别
 注册一个 Github 账号 首先你要有一个 Github 账号，这里就不赘述了，毕竟注册 Github 的流程不复杂
 创建一个 repo 新建一个 GitHub repository，库名为 username.github.io，username 即你的 GitHub 账号 username
@@ -152,8 +153,7 @@ Ajax 中 GET 和 POST 方法的区别 GET 和 POST 都是向服务器发送的�
 安装 Hugo Hugo 安装的官方文档 传送门
 可以使用 Homebrew 进行快速的安装，命令如下
 # 安装 hugo brew install hugo # 查看 hugo 版本信息 hugo version 新建一个 Hugo 网站 cd 到你想保存 Hugo 网站的目录下，运行下面的命令
-cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹
-选择 Hugo 主题并克隆至本地目录 Hugo 一个比较棒的功能是可以让用户自定义博客主题</description>
+cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）下创建一个名为 myblog 的文件夹，里面保存着网站的初始文件。注意这里不用重复创建 myblog 文件夹</description>
     </item>
     
     <item>
