@@ -6,10 +6,33 @@
     <description>Recent content in Blogs on rm -rf *</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Sat, 10 Jul 2021 20:51:04 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 31 Jul 2022 15:02:54 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JS 宏任务和微任务</title>
+      <link>https://war408705279.github.io/blogs/js-macro-micro-task/</link>
+      <pubDate>Sun, 31 Jul 2022 15:02:54 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/js-macro-micro-task/</guid>
+      <description>事件循环 首先说一下事件循环
+浏览器中 JavaScript 的执行流程和 Node.js 中的流程都是基于事件循环的
+理解事件循环的工作方式对于代码优化很重要，有时对于正确的架构也很重要
+事件循环的概念非常简单。它是一个在 JavaScript 引擎等待任务，执行任务和进入休眠状态等待更多任务这几个状态之间转换的无限循环
+引擎的一般算法：
+ 当有任务时：从最先进入的任务开始执行 休眠直到出现任务，然后转到第 1 步  一个任务到来时，引擎可能正处于繁忙状态，那么这个任务就会被排入队列。多个任务组成了一个队列，即所谓的宏任务队列
+宏任务 &amp;amp;&amp;amp; 微任务 除了上述所讲的宏任务外，还有微任务
+微任务仅来自于我们的代码。它们通常是由 promise 创建的：对 .then/catch/finally 处理程序的执行会成为微任务。微任务也被用于 await 的幕后，因为它是 promise 处理的另一种形式
+还有一个特殊的函数 queueMicrotask(func)，它对 func 进行排队，以在微任务队列中执行
+每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作
+看下面的例子
+setTimeout(() =&amp;gt; alert(&amp;#39;timeout&amp;#39;)); Promise.resolve().then(() =&amp;gt; alert(&amp;#39;promise&amp;#39;)); alert(&amp;#39;code&amp;#39;);  上面代码的执行顺序为：
+ code 首先显示，因为它是常规的同步调用 promise 第二个出现，因为 then 会通过微任务队列，并在当前代码之后执行 timeout 最后显示，因为它是一个宏任务  微任务会在执行任何其他事件处理，或渲染，或执行任何其他宏任务之前完成
+比较常见的面试题 下面这段代码的输出顺序是什么
+setTimeout(function () { console.log(&amp;#39;1&amp;#39;) new Promise((resolve) =&amp;gt; { console.log(&amp;#39;2&amp;#39;) resolve() }).</description>
+    </item>
     
     <item>
       <title>成名</title>
