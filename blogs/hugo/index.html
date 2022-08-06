@@ -22,7 +22,7 @@ cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）
 
     <title>
         
-            如何使用 Git &#43; Hugo 搭建属于自己的博客网站 :: rm -rf *  — Welcome to my blog
+            如何使用 Git &#43; Hugo 搭建属于自己的博客网站 :: 简眸。  — 人生漫长我劝你好生走路
         
     </title>
 
@@ -59,7 +59,7 @@ cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）
 
 <meta itemprop="datePublished" content="2019-04-09T00:00:00&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-09T00:00:00&#43;08:00" />
-<meta itemprop="wordCount" content="609">
+<meta itemprop="wordCount" content="614">
 
 
 
@@ -101,7 +101,7 @@ cd /code hugo new site myblog 命令运行成功后会在当前目录（/code）
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text">$ rm -rf *</span>
+            <span class="logo__text">简眸。</span>
             <span class="logo__cursor"></span>
         
     </div>
@@ -219,7 +219,7 @@ git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend
 
 <p>下面这段配置是我目前正在使用的配置</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;https://war408705279.github.io&#34;</span>
-<span class="nx">title</span>   <span class="p">=</span> <span class="s2">&#34;rm -rf *&#34;</span>
+<span class="nx">title</span>   <span class="p">=</span> <span class="s2">&#34;简眸。&#34;</span>
 
 <span class="nx">DefaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
 
@@ -277,7 +277,7 @@ git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend
   <span class="nx">keywords</span> <span class="p">=</span> <span class="s2">&#34;HTML5, Javascript, css, front-end, blog&#34;</span>
   <span class="nx">images</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&#34;</span><span class="p">]</span>
 
-  <span class="nx">homeSubtitle</span> <span class="p">=</span> <span class="s2">&#34;Welcome to my blog&#34;</span>
+  <span class="nx">homeSubtitle</span> <span class="p">=</span> <span class="s2">&#34;人生漫长我劝你好生走路&#34;</span>
 
   <span class="c"># Prefix of link to the git commit detail page. GitInfo must be enabled.</span>
   <span class="c"># gitUrl = &#34;&#34;</span>
@@ -296,7 +296,7 @@ git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend
   <span class="nx">defaultTheme</span> <span class="p">=</span> <span class="s2">&#34;dark&#34;</span>
 
   <span class="p">[</span><span class="nx">params</span><span class="p">.</span><span class="nx">logo</span><span class="p">]</span>
-    <span class="nx">logoText</span>     <span class="p">=</span> <span class="s2">&#34;$ rm -rf *&#34;</span>
+    <span class="nx">logoText</span>     <span class="p">=</span> <span class="s2">&#34;简眸。&#34;</span>
     <span class="nx">logoHomeLink</span> <span class="p">=</span> <span class="s2">&#34;/&#34;</span>
 
   <span class="c"># Social icons</span>
@@ -311,7 +311,7 @@ git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend
 
 <span class="p">[</span><span class="nx">languages</span><span class="p">]</span>
   <span class="p">[</span><span class="nx">languages</span><span class="p">.</span><span class="nx">en</span><span class="p">]</span>
-    <span class="nx">subtitle</span>  <span class="p">=</span> <span class="s2">&#34;Welcome to my blog&#34;</span>
+    <span class="nx">subtitle</span>  <span class="p">=</span> <span class="s2">&#34;人生漫长我劝你好生走路&#34;</span>
     <span class="nx">weight</span>    <span class="p">=</span> <span class="mi">1</span>
     <span class="nx">copyright</span> <span class="p">=</span> <span class="s1">&#39;&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;&#39;</span>
 
@@ -319,7 +319,13 @@ git clone https://github.com/rhazdon/hugo-theme-hello-friend-ng.git hello-friend
   <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
     <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;blogs&#34;</span>
     <span class="nx">name</span>       <span class="p">=</span> <span class="s2">&#34;博客&#34;</span>
-    <span class="nx">url</span>        <span class="p">=</span> <span class="s2">&#34;blogs/&#34;</span></code></pre></div>
+    <span class="nx">url</span>        <span class="p">=</span> <span class="s2">&#34;blogs/&#34;</span>
+    <span class="nx">weight</span>     <span class="p">=</span> <span class="mi">9</span>
+  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;travel&#34;</span>
+    <span class="nx">name</span>       <span class="p">=</span> <span class="s2">&#34;游记&#34;</span>
+    <span class="nx">url</span>        <span class="p">=</span> <span class="s2">&#34;travel/&#34;</span>
+    <span class="nx">weight</span>     <span class="p">=</span> <span class="mi">10</span></code></pre></div>
 <h4 id="新建一篇文章">新建一篇文章</h4>
 
 <p>进入网站文件夹的根目录</p>
