@@ -144,7 +144,7 @@ disableHugoGeneratorInject = false
   keywords = "HTML5, Javascript, css, front-end, blog"
   images = [""]
 
-  homeSubtitle = "Welcome to my blog"
+  homeSubtitle = "人生漫长我劝你好生走路"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   # gitUrl = ""
@@ -163,7 +163,7 @@ disableHugoGeneratorInject = false
   defaultTheme = "dark"
 
   [params.logo]
-    logoText     = "$ rm -rf *"
+    logoText     = "简眸。"
     logoHomeLink = "/"
 
   # Social icons
@@ -178,7 +178,7 @@ disableHugoGeneratorInject = false
 
 [languages]
   [languages.en]
-    subtitle  = "Welcome to my blog"
+    subtitle  = "人生漫长我劝你好生走路"
     weight    = 1
     copyright = '<a href="https://github.com/war408705279/" target="_blank" rel="noopener">404 Not Found</a>'
 
@@ -187,6 +187,12 @@ disableHugoGeneratorInject = false
     identifier = "blogs"
     name       = "博客"
     url        = "blogs/"
+    weight     = 9
+  [[menu.main]]
+    identifier = "travel"
+    name       = "游记"
+    url        = "travel/"
+    weight     = 10
 ```
 
 #### 新建一篇文章
