@@ -163,7 +163,7 @@ disableHugoGeneratorInject = false
   defaultTheme = "dark"
 
   [params.logo]
-    logoText     = "$ rm -rf *"
+    logoText     = "简眸。"
     logoHomeLink = "/"
 
   # Social icons
