@@ -5,7 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="author" content="Zhazha ">
-<meta name="description" content="TODO"/>
+<meta name="description" content="协作流程 使用修改版的 git-flow 流程 作为 Git 库的协作流程
+需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
+与原版 git-flow 流程的差异如下
+ feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&amp;gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&amp;gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&amp;gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&amp;gt; develop 的操作也采用提 PR 的形式进行  额外说明
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request TODO"/>
 <meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://war408705279.github.io/blogs/git-rules/" />
@@ -13,7 +17,7 @@
 
     <title>
         
-            GIT 规范 :: 简眸。  — 人生漫长我劝你好生走路
+            Git 规范 :: 简眸。  — 人生漫长我劝你好生走路
         
     </title>
 
@@ -35,13 +39,17 @@
 <link rel="shortcut icon" href="https://war408705279.github.io/favicon.ico">
 <link rel="shortcut icon" href="https://github.githubassets.com/favicon.ico">
 
-<meta itemprop="name" content="GIT 规范">
-<meta itemprop="description" content="TODO">
+<meta itemprop="name" content="Git 规范">
+<meta itemprop="description" content="协作流程 使用修改版的 git-flow 流程 作为 Git 库的协作流程
+需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
+与原版 git-flow 流程的差异如下
+ feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&gt; develop 的操作也采用提 PR 的形式进行  额外说明
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request TODO">
 
 
 <meta itemprop="datePublished" content="2023-05-25T13:12:26&#43;08:00" />
 <meta itemprop="dateModified" content="2023-05-25T13:12:26&#43;08:00" />
-<meta itemprop="wordCount" content="1">
+<meta itemprop="wordCount" content="86">
 
 
 
@@ -49,8 +57,12 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://war408705279.github.io"/>
 
-<meta name="twitter:title" content="GIT 规范"/>
-<meta name="twitter:description" content="TODO"/>
+<meta name="twitter:title" content="Git 规范"/>
+<meta name="twitter:description" content="协作流程 使用修改版的 git-flow 流程 作为 Git 库的协作流程
+需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
+与原版 git-flow 流程的差异如下
+ feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&gt; develop 的操作也采用提 PR 的形式进行  额外说明
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request TODO"/>
 
 
 
@@ -117,12 +129,43 @@
         </div>
 
         <article>
-            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/git-rules/">GIT 规范</a></h2>
+            <h2 class="post-title"><a href="https://war408705279.github.io/blogs/git-rules/">Git 规范</a></h2>
 
             
 
             <div class="post-content">
-                <p><code>TODO</code></p>
+                
+
+<h3 id="协作流程">协作流程</h3>
+
+<p>使用修改版的 <a href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank">git-flow 流程</a> 作为 <code>Git</code> 库的协作流程</p>
+
+<p>需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 <code>review</code> 并审批通过，在公司内则体现为任何变更都以提 <code>PR</code> 形式进行，而原版 <code>git-flow</code> 没有考虑这一点（原版的使用方法为本地操作后直接 <code>push</code>）</p>
+
+<p>与原版 <code>git-flow</code> 流程的差异如下</p>
+
+<ul>
+<li><code>feature</code> 分支的命名应当符合 <code>feature/xxx</code> 的格式。<code>feature</code> 分支仅用于在中心库暂存（<code>stage</code>）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 <code>block</code> 日常小修小补（往往业务上也不会允许发现问题不马上修复）</li>
+<li>如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步</li>
+<li>个人库的分支命名不作强制要求，但建议使用或体现 <code>issue</code> 号</li>
+<li>不开 <code>release/xxx</code> 分支，代之以直接提发版 <code>PR</code></li>
+<li>每次发版后不需要马上打 <code>tag</code> 并做 <code>master -&gt; develop</code> 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 <code>tag</code> 及时或隔一阵批量打，建议时常做 <code>master -&gt; develop</code> 的操作</li>
+<li><code>HOTFIX</code> 的场景不受影响，仍然必须 <code>master -&gt; develop</code></li>
+<li>版本 <code>tag</code> 应当打到发版 <code>PR</code> 的合并提交上</li>
+<li><code>master -&gt; develop</code> 的操作也采用提 <code>PR</code> 的形式进行</li>
+</ul>
+
+<p>额外说明</p>
+
+<ul>
+<li>禁止在中心库直接进行研发工作。请在本人的 <code>fork</code> 进行工作并通过 <code>PR</code> 与中心库交互。建议单开分支，不要直接使用默认分支（如 <code>develop</code>）</li>
+<li>除特殊场合外（开 <code>feature</code> 分支、修复他人误操作等），禁止直接向中心库做 <code>push</code> 操作</li>
+<li>在美国、欧洲等地，由于 <code>BLM</code> 运动等<code>政治正确</code>原因，现已存在将 <code>master</code> 分支重命名为 <code>main</code> 的实践。由于中国技术人员一般理解的 <code>master</code> 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进</li>
+</ul>
+
+<h3 id="pull-request">Pull Request</h3>
+
+<p><code>TODO</code></p>
 
             </div>
         </article>
