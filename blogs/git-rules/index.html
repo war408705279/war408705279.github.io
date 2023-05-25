@@ -49,7 +49,7 @@
 
 <meta itemprop="datePublished" content="2023-05-25T13:12:26&#43;08:00" />
 <meta itemprop="dateModified" content="2023-05-25T13:12:26&#43;08:00" />
-<meta itemprop="wordCount" content="212">
+<meta itemprop="wordCount" content="322">
 
 
 
@@ -251,7 +251,103 @@
 
 <h3 id="commit"><code>Commit</code></h3>
 
-<p><code>TODO</code></p>
+<h4 id="变更的分拆原则-价值观">变更的分拆原则（价值观）</h4>
+
+<p>研发人员应当尽力对单个 <code>PR</code> 所含的 <code>commits</code> 进行合理分拆</p>
+
+<p>每个 <code>commit</code> 应当含且仅含 <code>1</code> 个逻辑变更</p>
+
+<p>每个 <code>commit</code> 均应当能在被作为 <code>HEAD</code> 检出的情况下正常编译、运行。这是为了万一出现知识失传等情况，方便未来的开发人员在不熟悉项目的前提下对任意时间点的系统进行阅读、调试、<code>git bisect</code> 等操作</p>
+
+<p>如果一个业务变更在宏观上可能涉及整理性工作（如重构、风格调整等），由于尺度宏观，其对项目工作量的影响不可忽略，应当搁置开发，先讨论方案</p>
+
+<p>如果一个业务变更在微观技术细节上，不得不先做整理性工作才能加功能 <code>/</code> 改功能 <code>/</code> 删功能，应当先将整理工作组织为一个或多个单独提交，再行后续变更</p>
+
+<p>如果一个业务变更在微观技术细节上，既可以先做 <code>/</code> 顺带做整理工作，也可以维持现状，建议先做整理工作；除非业务压力非常显著，此时应当将后续整理工作记录 <code>issue</code> 并关联。<code>业务压力</code>的判断采用客观标准，例如项目 <code>delay</code> 风险极高、<code>HOTFIX</code>、需求方咖位很高下班前就要，等等</p>
+
+<p>特别地，研发过程中经常偶然发现一些改错别字、重新格式化等可做可不做的改进，建议顺手修掉，建议分拆单独 <code>commit</code></p>
+
+<h3 id="commit-message"><code>Commit message</code></h3>
+
+<h4 id="提交分类">提交分类</h4>
+
+<p>必填，使用略有修改的 <a href="https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type" target="_blank">Angular 的分类定义</a></p>
+
+<p>以下重复一遍描述并尽量给出示例。（排序为字母顺序）</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>build</code></td>
+<td>构建系统、外部依赖相关变更</td>
+<td>如果此类变更有业务影响，优先适用 <code>feat / fix</code></td>
+</tr>
+
+<tr>
+<td><code>ci</code></td>
+<td><code>CI</code> 配置、<code>CI</code> 脚本变更</td>
+<td><code>-</code></td>
+</tr>
+
+<tr>
+<td><code>chore</code></td>
+<td>杂活</td>
+<td>存在于老版本的 <code>AngularJS</code> 提交规范，最新的 <code>Angular</code> 提交规范中已经被细化为 <code>build</code> 与 <code>ci</code> 了。允许继续使用一段时间。建议使用更具体的分类</td>
+</tr>
+
+<tr>
+<td><code>docs</code></td>
+<td>仅修改文档 <code>/</code> 注释语义的变更</td>
+<td>注释由于是给人看的，因此算作文档。本分类一定涉及语义的变更（措辞变化、内容新增 <code>/</code> 变更 <code>/</code> 删除等），单纯的错别字、排版修改算 <code>style</code></td>
+</tr>
+
+<tr>
+<td><code>feat</code></td>
+<td>新功能；业务变更；语义变更</td>
+<td>只要有任何外部可见的语义变更，都算作 <code>feat / fix</code>，不论影响大小，某种程度上也是托底分类。修复不预期的语义算作 <code>fix</code>。无语义变更的性能优化算作 <code>perf</code></td>
+</tr>
+
+<tr>
+<td><code>fix</code></td>
+<td>修复不预期的语义 <code>/</code> 行为</td>
+<td><code>-</code></td>
+</tr>
+
+<tr>
+<td><code>perf</code></td>
+<td>性能优化</td>
+<td>仅限纯性能优化，不得包含任何外部可见的语义变更。如必须产生变更，建议考虑是否可以将纯性能优化部分独立出来。如确实无法分拆，整个提交算作 <code>feat</code></td>
+</tr>
+
+<tr>
+<td><code>refactor</code></td>
+<td>任何不影响语义的代码变更。这是托底分类，如果有更具体的分类适用，则用具体分类</td>
+<td><code>-</code></td>
+</tr>
+
+<tr>
+<td><code>style</code></td>
+<td>代码风格变更</td>
+<td>仅限 <code>whitespaces</code>、换行、<code>gofmt</code>、拼写错误 <code>/</code> 错别字 <code>/</code> 标点符号修改等性质的变更。动到代码结构但没动到语义，算 <code>refactor</code>。有语义变更的注释变更，算 <code>docs</code></td>
+</tr>
+
+<tr>
+<td><code>test</code></td>
+<td>测试代码变更</td>
+<td>仅限单纯涉及单元 <code>/</code> 集成测试套件的变更，例如：加测试、补测试、改测试（<code>fix build</code>，健壮性优化等）、删测试（仅限删除不再适用的测试用例，禁止删除有作用的测试，即禁止削足适履）</td>
+</tr>
+</tbody>
+</table>
 
             </div>
         </article>
