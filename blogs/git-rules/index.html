@@ -9,7 +9,7 @@
 需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
 与原版 git-flow 流程的差异如下
  feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&amp;gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&amp;gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&amp;gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&amp;gt; develop 的操作也采用提 PR 的形式进行  额外说明
- 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request TODO"/>
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request 一个 Pull Request（下称 PR）一般应当只对应一个 issue"/>
 <meta name="keywords" content="HTML5, Javascript, css, front-end, blog"/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="https://war408705279.github.io/blogs/git-rules/" />
@@ -44,12 +44,12 @@
 需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
 与原版 git-flow 流程的差异如下
  feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&gt; develop 的操作也采用提 PR 的形式进行  额外说明
- 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request TODO">
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request 一个 Pull Request（下称 PR）一般应当只对应一个 issue">
 
 
 <meta itemprop="datePublished" content="2023-05-25T13:12:26&#43;08:00" />
 <meta itemprop="dateModified" content="2023-05-25T13:12:26&#43;08:00" />
-<meta itemprop="wordCount" content="86">
+<meta itemprop="wordCount" content="212">
 
 
 
@@ -62,7 +62,7 @@
 需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
 与原版 git-flow 流程的差异如下
  feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&gt; develop 的操作也采用提 PR 的形式进行  额外说明
- 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request TODO"/>
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request 一个 Pull Request（下称 PR）一般应当只对应一个 issue"/>
 
 
 
@@ -163,7 +163,93 @@
 <li>在美国、欧洲等地，由于 <code>BLM</code> 运动等<code>政治正确</code>原因，现已存在将 <code>master</code> 分支重命名为 <code>main</code> 的实践。由于中国技术人员一般理解的 <code>master</code> 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进</li>
 </ul>
 
-<h3 id="pull-request">Pull Request</h3>
+<h3 id="pull-request"><code>Pull Request</code></h3>
+
+<p>一个 <code>Pull Request</code>（下称 <code>PR</code>）一般应当只对应一个 <code>issue</code></p>
+
+<p>为使团队成员间的工作进度分享透明化，协作高效、规范化，提倡遵循社区最佳实践。建议早提 <code>PR</code>（带 <code>[WIP]</code> 标签避免他人提前看到施工现场），频繁 <code>push</code>，经常 <code>rebase</code>，提交 <code>review</code> 前整理 <code>commit</code> 内容与顺序等</p>
+
+<h4 id="pr-标题"><code>PR</code> 标题</h4>
+
+<p><code>PR</code> 标题必须包含其实现的 <code>issue</code> 编号</p>
+
+<p>如果当前做的事情暂无 <code>issue</code>，必须建立一个，这主要是允许各团队成员正确追踪工作量。<code>QA</code> 性质的工作一视同仁，也必须建立相应的 <code>issue</code></p>
+
+<p>如 <code>PR</code> 同时实现了多个 <code>issues</code>，标题必须包含每一个 <code>issue</code> 编号</p>
+
+<p><code>PR</code> 标题可以带 <code>0</code> 或多个固定格式的前缀，用来传达固定含义。允许的前缀及其含义如下</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>[WIP]</code></td>
+<td>施工中（<code>Work in Progress</code>）</td>
+<td>一般情况下其他人应当无视该 <code>PR</code> 的存在，包括但不限于无视其不符合规范、代码脏乱差、测试失败等问题。禁止被合并</td>
+</tr>
+
+<tr>
+<td><code>[QA]</code></td>
+<td>正常由 <code>QA</code> 发起的工作</td>
+<td>行有余力的研发同学可以辅助部分 <code>QA</code> 工作，这部分工作虽然由研发同学发起，性质仍然属于 <code>QA</code> 工作，因此也要带上该前缀</td>
+</tr>
+
+<tr>
+<td><code>[DO NOT MERGE]</code></td>
+<td>并不预期被合并的代码</td>
+<td>一般用于肯定不会合并的临时调试性代码，例如单纯只为加两行日志发到测试环境之类。其他人也应当无视该 <code>PR</code> 的存在。禁止被合并</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p><code>PR</code> 标题中的每个前缀与每个 <code>issue</code> 号之间必须使用 <code>1</code> 个半角空格分隔，最后一个 <code>issue</code> 号与 <code>PR</code> 标题之间也必须使用 <code>1</code> 个半角空格分隔。作为 <code>PR</code> 标题的句子末尾禁止带标点</p>
+
+<p><code>HOTFIX PR</code> 的标题必须以 <code>HOTFIX</code> 字样开头（除前缀、<code>issue</code> 号之外），禁止在 <code>HOTFIX</code> 字样后带标点</p>
+
+<p>特别地，对于协作流程所使用的特殊 <code>PR</code>，标题不采用上述的形式，而必须采用以下的固定写法（不区分大小写）</p>
+
+<hr />
+
+<table>
+<thead>
+<tr>
+<th>标题</th>
+<th>含义</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><code>master -&gt; develop</code></td>
+<td>用于 <code>HOTFIX</code> 或正常发布后的往回合并</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<p><code>PR</code> 标题应当表明做的具体事情。虽然复制粘贴 <code>issue</code> 标题是允许的，但如果相应 <code>issue</code> 的标题描述不具体，则不建议这么做</p>
+
+<h4 id="pr-正文-description"><code>PR</code> 正文（<code>description</code>）</h4>
+
+<p>选填。<code>PR</code> 的正文如果填写，主要用来记录辅助 <code>review</code> 的内容，例如施工进度、<code>review comments</code> 订正进度、依赖的其他 <code>PR</code>、相关 <code>commit hash</code> 等等</p>
+
+<p>如需要附着大段说明文字，此时这些文字往往具有业务性质，应当写在 <code>JIRA issue</code> 正文、<code>JIRA issue</code> 评论区、<code>CF</code> 文档等位置。这是由于非研发人员如 <code>PM</code> 没有代码托管平台的权限，但往往也有阅读相关细节的需求</p>
+
+<p>建议善用 <code>GitHub</code> 的自动关联功能，将相关的其他 <code>PR</code> 一并提及</p>
+
+<h3 id="commit"><code>Commit</code></h3>
 
 <p><code>TODO</code></p>
 
