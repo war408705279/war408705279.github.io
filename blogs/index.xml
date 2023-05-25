@@ -6,10 +6,23 @@
     <description>Recent content in Blogs on 简眸。</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>&lt;a href=&#34;https://github.com/war408705279/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;404 Not Found&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 31 Jul 2022 15:02:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 May 2023 13:12:26 +0800</lastBuildDate>
     
 	<atom:link href="https://war408705279.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Git 规范</title>
+      <link>https://war408705279.github.io/blogs/git-rules/</link>
+      <pubDate>Thu, 25 May 2023 13:12:26 +0800</pubDate>
+      
+      <guid>https://war408705279.github.io/blogs/git-rules/</guid>
+      <description>协作流程 使用修改版的 git-flow 流程 作为 Git 库的协作流程
+需要修改的原因是企业场景下任何对中心库的修改必须有第二个人 review 并审批通过，在公司内则体现为任何变更都以提 PR 形式进行，而原版 git-flow 没有考虑这一点（原版的使用方法为本地操作后直接 push）
+与原版 git-flow 流程的差异如下
+ feature 分支的命名应当符合 feature/xxx 的格式。feature 分支仅用于在中心库暂存（stage）技术上非平滑迁移的功能，主要是必须变更表结构的大功能一类。这类分支往往开发周期也较长，且不能 block 日常小修小补（往往业务上也不会允许发现问题不马上修复） 如涉及中心库的分支增减、含义变化等变更操作，应当在团队内同步 个人库的分支命名不作强制要求，但建议使用或体现 issue 号 不开 release/xxx 分支，代之以直接提发版 PR 每次发版后不需要马上打 tag 并做 master -&amp;gt; develop 的合并，主要原因是累（原版自动化的动作，在公司场景下要手动操作）。但仍然建议 tag 及时或隔一阵批量打，建议时常做 master -&amp;gt; develop 的操作 HOTFIX 的场景不受影响，仍然必须 master -&amp;gt; develop 版本 tag 应当打到发版 PR 的合并提交上 master -&amp;gt; develop 的操作也采用提 PR 的形式进行  额外说明
+ 禁止在中心库直接进行研发工作。请在本人的 fork 进行工作并通过 PR 与中心库交互。建议单开分支，不要直接使用默认分支（如 develop） 除特殊场合外（开 feature 分支、修复他人误操作等），禁止直接向中心库做 push 操作 在美国、欧洲等地，由于 BLM 运动等政治正确原因，现已存在将 master 分支重命名为 main 的实践。由于中国技术人员一般理解的 master 并不含种族歧视意味，且该变更对研发实质上无影响，故不跟进  Pull Request 一个 Pull Request（下称 PR）一般应当只对应一个 issue</description>
+    </item>
     
     <item>
       <title>JS 宏任务和微任务</title>
